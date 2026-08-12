@@ -1,0 +1,704 @@
+[
+ {
+  "hub": "Noida sec-37 Parking",
+  "league": "A",
+  "heads": 11,
+  "units9": 451,
+  "qtr": 4510,
+  "recv": 79.4,
+  "disp": 93.4,
+  "dg": 3.8,
+  "dgt": 17,
+  "yms": 79.1,
+  "ymsx": false,
+  "bar": {
+   "recv": 83,
+   "disp": 90,
+   "dg": 5,
+   "yms": 70
+  },
+  "ch": [
+   false,
+   true,
+   true,
+   true
+  ],
+  "passed": 3,
+  "q": 0.75
+ },
+ {
+  "hub": "Metrowalk_Parking Yard",
+  "league": "A",
+  "heads": 10,
+  "units9": 246,
+  "qtr": 2460,
+  "recv": 81.9,
+  "disp": 99.9,
+  "dg": 3.7,
+  "dgt": 9,
+  "yms": 85.8,
+  "ymsx": false,
+  "bar": {
+   "recv": 83,
+   "disp": 90,
+   "dg": 5,
+   "yms": 70
+  },
+  "ch": [
+   false,
+   true,
+   true,
+   true
+  ],
+  "passed": 3,
+  "q": 0.75
+ },
+ {
+  "hub": "Gurgaon_Parking 2",
+  "league": "A",
+  "heads": 9,
+  "units9": 222,
+  "qtr": 2220,
+  "recv": 86.6,
+  "disp": 85.9,
+  "dg": 7.2,
+  "dgt": 16,
+  "yms": 86.0,
+  "ymsx": false,
+  "bar": {
+   "recv": 83,
+   "disp": 90,
+   "dg": 5,
+   "yms": 70
+  },
+  "ch": [
+   true,
+   false,
+   false,
+   true
+  ],
+  "passed": 2,
+  "q": 0.5
+ },
+ {
+  "hub": "Bangalore Parking",
+  "league": "A",
+  "heads": 3,
+  "units9": 179,
+  "qtr": 1790,
+  "recv": 64.6,
+  "disp": 59.1,
+  "dg": 14.5,
+  "dgt": 26,
+  "yms": 60.2,
+  "ymsx": false,
+  "bar": {
+   "recv": 83,
+   "disp": 90,
+   "dg": 5,
+   "yms": 70
+  },
+  "ch": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "passed": 0,
+  "q": 0.0
+ },
+ {
+  "hub": "Hyderabad-2 Parking",
+  "league": "A",
+  "heads": 3,
+  "units9": 167,
+  "qtr": 1670,
+  "recv": 96.9,
+  "disp": 100.0,
+  "dg": 1.8,
+  "dgt": 3,
+  "yms": 67.7,
+  "ymsx": false,
+  "bar": {
+   "recv": 83,
+   "disp": 90,
+   "dg": 5,
+   "yms": 70
+  },
+  "ch": [
+   true,
+   true,
+   true,
+   false
+  ],
+  "passed": 3,
+  "q": 0.75
+ },
+ {
+  "hub": "Pune_Cars24 Parking",
+  "league": "A",
+  "heads": 3,
+  "units9": 127,
+  "qtr": 1270,
+  "recv": 83.3,
+  "disp": 84.8,
+  "dg": 2.4,
+  "dgt": 3,
+  "yms": 76.4,
+  "ymsx": false,
+  "bar": {
+   "recv": 83,
+   "disp": 90,
+   "dg": 5,
+   "yms": 70
+  },
+  "ch": [
+   true,
+   false,
+   true,
+   true
+  ],
+  "passed": 3,
+  "q": 0.75
+ },
+ {
+  "hub": "Chennai Parking",
+  "league": "A",
+  "heads": 3,
+  "units9": 115,
+  "qtr": 1150,
+  "recv": 74.4,
+  "disp": 80.9,
+  "dg": 1.7,
+  "dgt": 2,
+  "yms": 71.3,
+  "ymsx": false,
+  "bar": {
+   "recv": 83,
+   "disp": 90,
+   "dg": 5,
+   "yms": 70
+  },
+  "ch": [
+   false,
+   false,
+   true,
+   true
+  ],
+  "passed": 2,
+  "q": 0.5
+ },
+ {
+  "hub": "Kolkata-3 Parking",
+  "league": "A",
+  "heads": 3,
+  "units9": 111,
+  "qtr": 1110,
+  "recv": 86.4,
+  "disp": 94.3,
+  "dg": 1.8,
+  "dgt": 2,
+  "yms": 44.1,
+  "ymsx": false,
+  "bar": {
+   "recv": 83,
+   "disp": 90,
+   "dg": 5,
+   "yms": 70
+  },
+  "ch": [
+   true,
+   true,
+   true,
+   false
+  ],
+  "passed": 3,
+  "q": 0.75
+ },
+ {
+  "hub": "Lucknow Parking",
+  "league": "B",
+  "heads": 2,
+  "units9": 80,
+  "qtr": 800,
+  "recv": 93.3,
+  "disp": 79.9,
+  "dg": 2.5,
+  "dgt": 2,
+  "yms": 83.8,
+  "ymsx": false,
+  "bar": {
+   "recv": 94,
+   "disp": 98,
+   "dg": 5,
+   "yms": 60
+  },
+  "ch": [
+   false,
+   false,
+   true,
+   true
+  ],
+  "passed": 2,
+  "q": 0.5
+ },
+ {
+  "hub": "Patna-2 Parking",
+  "league": "B",
+  "heads": 3,
+  "units9": 61,
+  "qtr": 610,
+  "recv": 84.8,
+  "disp": 100.0,
+  "dg": 4.9,
+  "dgt": 3,
+  "yms": 82.0,
+  "ymsx": false,
+  "bar": {
+   "recv": 94,
+   "disp": 98,
+   "dg": 5,
+   "yms": 60
+  },
+  "ch": [
+   false,
+   true,
+   true,
+   true
+  ],
+  "passed": 3,
+  "q": 0.75
+ },
+ {
+  "hub": "Jaipur Parking-2",
+  "league": "B",
+  "heads": 2,
+  "units9": 50,
+  "qtr": 500,
+  "recv": 87.0,
+  "disp": 79.3,
+  "dg": 12.0,
+  "dgt": 6,
+  "yms": 64.0,
+  "ymsx": false,
+  "bar": {
+   "recv": 94,
+   "disp": 98,
+   "dg": 5,
+   "yms": 60
+  },
+  "ch": [
+   false,
+   false,
+   false,
+   true
+  ],
+  "passed": 1,
+  "q": 0.0
+ },
+ {
+  "hub": "Indore Parking",
+  "league": "B",
+  "heads": 2,
+  "units9": 47,
+  "qtr": 470,
+  "recv": 93.9,
+  "disp": 66.1,
+  "dg": 2.1,
+  "dgt": 1,
+  "yms": 66.0,
+  "ymsx": false,
+  "bar": {
+   "recv": 94,
+   "disp": 98,
+   "dg": 5,
+   "yms": 60
+  },
+  "ch": [
+   false,
+   false,
+   true,
+   true
+  ],
+  "passed": 2,
+  "q": 0.5
+ },
+ {
+  "hub": "Kochi Parking",
+  "league": "B",
+  "heads": 1,
+  "units9": 46,
+  "qtr": 460,
+  "recv": 96.2,
+  "disp": 81.8,
+  "dg": 0.0,
+  "dgt": 0,
+  "yms": 26.1,
+  "ymsx": false,
+  "bar": {
+   "recv": 94,
+   "disp": 98,
+   "dg": 5,
+   "yms": 60
+  },
+  "ch": [
+   true,
+   false,
+   true,
+   false
+  ],
+  "passed": 2,
+  "q": 0.5
+ },
+ {
+  "hub": "Coimbatore Parking",
+  "league": "B",
+  "heads": 1,
+  "units9": 33,
+  "qtr": 330,
+  "recv": 42.9,
+  "disp": 51.2,
+  "dg": 0.0,
+  "dgt": 0,
+  "yms": 0.0,
+  "ymsx": false,
+  "bar": {
+   "recv": 94,
+   "disp": 98,
+   "dg": 5,
+   "yms": 60
+  },
+  "ch": [
+   false,
+   false,
+   true,
+   false
+  ],
+  "passed": 1,
+  "q": 0.0
+ },
+ {
+  "hub": "Meerut Parking",
+  "league": "B",
+  "heads": 2,
+  "units9": 24,
+  "qtr": 240,
+  "recv": 100.0,
+  "disp": 100.0,
+  "dg": 4.2,
+  "dgt": 1,
+  "yms": 100.0,
+  "ymsx": false,
+  "bar": {
+   "recv": 94,
+   "disp": 98,
+   "dg": 5,
+   "yms": 60
+  },
+  "ch": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "passed": 4,
+  "q": 1.0
+ },
+ {
+  "hub": "Agra Parking",
+  "league": "B",
+  "heads": 1,
+  "units9": 24,
+  "qtr": 240,
+  "recv": 94.7,
+  "disp": 100.0,
+  "dg": 8.3,
+  "dgt": 2,
+  "yms": 62.5,
+  "ymsx": false,
+  "bar": {
+   "recv": 94,
+   "disp": 98,
+   "dg": 5,
+   "yms": 60
+  },
+  "ch": [
+   true,
+   true,
+   false,
+   true
+  ],
+  "passed": 3,
+  "q": 0.75
+ },
+ {
+  "hub": "Dehradun Parking",
+  "league": "B",
+  "heads": 1,
+  "units9": 22,
+  "qtr": 220,
+  "recv": 93.3,
+  "disp": 83.3,
+  "dg": 0.0,
+  "dgt": 0,
+  "yms": 59.1,
+  "ymsx": false,
+  "bar": {
+   "recv": 94,
+   "disp": 98,
+   "dg": 5,
+   "yms": 60
+  },
+  "ch": [
+   false,
+   false,
+   true,
+   false
+  ],
+  "passed": 1,
+  "q": 0.0
+ },
+ {
+  "hub": "Bhubaneswar Parking",
+  "league": "B",
+  "heads": 1,
+  "units9": 20,
+  "qtr": 200,
+  "recv": 94.7,
+  "disp": 98.0,
+  "dg": 0.0,
+  "dgt": 0,
+  "yms": 85.0,
+  "ymsx": false,
+  "bar": {
+   "recv": 94,
+   "disp": 98,
+   "dg": 5,
+   "yms": 60
+  },
+  "ch": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "passed": 4,
+  "q": 1.0
+ },
+ {
+  "hub": "Kanpur Parking",
+  "league": "B",
+  "heads": 1,
+  "units9": 19,
+  "qtr": 190,
+  "recv": 80.0,
+  "disp": 100.0,
+  "dg": 0.0,
+  "dgt": 0,
+  "yms": 47.4,
+  "ymsx": false,
+  "bar": {
+   "recv": 94,
+   "disp": 98,
+   "dg": 5,
+   "yms": 60
+  },
+  "ch": [
+   false,
+   true,
+   true,
+   false
+  ],
+  "passed": 2,
+  "q": 0.5
+ },
+ {
+  "hub": "Bhopal-2 Parking",
+  "league": "B",
+  "heads": 1,
+  "units9": 18,
+  "qtr": 180,
+  "recv": 76.9,
+  "disp": 97.3,
+  "dg": 0.0,
+  "dgt": 0,
+  "yms": 66.7,
+  "ymsx": false,
+  "bar": {
+   "recv": 94,
+   "disp": 98,
+   "dg": 5,
+   "yms": 60
+  },
+  "ch": [
+   false,
+   false,
+   true,
+   true
+  ],
+  "passed": 2,
+  "q": 0.5
+ },
+ {
+  "hub": "Ranchi-2 Parking",
+  "league": "B",
+  "heads": 2,
+  "units9": 17,
+  "qtr": 170,
+  "recv": 100.0,
+  "disp": 100.0,
+  "dg": 0.0,
+  "dgt": 0,
+  "yms": 58.8,
+  "ymsx": false,
+  "bar": {
+   "recv": 94,
+   "disp": 98,
+   "dg": 5,
+   "yms": 60
+  },
+  "ch": [
+   true,
+   true,
+   true,
+   false
+  ],
+  "passed": 3,
+  "q": 0.75
+ },
+ {
+  "hub": "Gwalior Parking",
+  "league": "B",
+  "heads": 1,
+  "units9": 13,
+  "qtr": 130,
+  "recv": 100.0,
+  "disp": 100.0,
+  "dg": 0.0,
+  "dgt": 0,
+  "yms": 46.1,
+  "ymsx": false,
+  "bar": {
+   "recv": 94,
+   "disp": 98,
+   "dg": 5,
+   "yms": 60
+  },
+  "ch": [
+   true,
+   true,
+   true,
+   false
+  ],
+  "passed": 3,
+  "q": 0.75
+ },
+ {
+  "hub": "Raipur Parking",
+  "league": "B",
+  "heads": 1,
+  "units9": 13,
+  "qtr": 130,
+  "recv": 60.0,
+  "disp": 100.0,
+  "dg": 7.7,
+  "dgt": 1,
+  "yms": 38.5,
+  "ymsx": false,
+  "bar": {
+   "recv": 94,
+   "disp": 98,
+   "dg": 5,
+   "yms": 60
+  },
+  "ch": [
+   false,
+   true,
+   false,
+   false
+  ],
+  "passed": 1,
+  "q": 0.0
+ },
+ {
+  "hub": "Trivandrum Parking",
+  "league": "B",
+  "heads": 1,
+  "units9": 12,
+  "qtr": 120,
+  "recv": 100.0,
+  "disp": 100.0,
+  "dg": 0.0,
+  "dgt": 0,
+  "yms": 16.7,
+  "ymsx": false,
+  "bar": {
+   "recv": 94,
+   "disp": 98,
+   "dg": 5,
+   "yms": 60
+  },
+  "ch": [
+   true,
+   true,
+   true,
+   false
+  ],
+  "passed": 3,
+  "q": 0.75
+ },
+ {
+  "hub": "Gorakhpur Parking",
+  "league": "B",
+  "heads": 1,
+  "units9": 7,
+  "qtr": 70,
+  "recv": 100.0,
+  "disp": 100.0,
+  "dg": 0.0,
+  "dgt": 0,
+  "yms": 71.4,
+  "ymsx": false,
+  "bar": {
+   "recv": 94,
+   "disp": 98,
+   "dg": 5,
+   "yms": 60
+  },
+  "ch": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "passed": 4,
+  "q": 1.0
+ },
+ {
+  "hub": "Thrissur Parking",
+  "league": "B",
+  "heads": 1,
+  "units9": 6,
+  "qtr": 60,
+  "recv": 100.0,
+  "disp": 100.0,
+  "dg": 0.0,
+  "dgt": 0,
+  "yms": 0.0,
+  "ymsx": false,
+  "bar": {
+   "recv": 94,
+   "disp": 98,
+   "dg": 5,
+   "yms": 60
+  },
+  "ch": [
+   true,
+   true,
+   true,
+   false
+  ],
+  "passed": 3,
+  "q": 0.75
+ }
+]
