@@ -36,25 +36,35 @@ Each hub object:
   "heads": 11,
   "units9": 451,
   "qtr": 4510,
+  "n": 4,
   "recv": 79.4,
   "disp": 93.4,
   "dg": 3.8,
   "dgt": 17,
   "yms": 79.1,
   "ymsx": false,
-  "bar": { "recv": 83, "disp": 90, "dg": 5, "yms": 70 },
-  "ch": [false, true, true, true],
-  "passed": 3,
-  "q": 0.75
+  "base": null,
+  "bar": { "recv": 85.0, "disp": 100.0, "dg": 5, "yms": 70 },
+  "ch": [false, false, true, true],
+  "passed": 2,
+  "q": 0.5
 }
 ```
 
+- `n` — how many checks apply at this hub, `4` or `3`. Hubs without a yard app are
+  measured on 3 and use a different ladder (all 3 / 2 of 3 / 1 or 0, keeping
+  everything / **two-thirds** / nothing). Absent is treated as `4`.
 - `units9` — cars stocked in during the measurement window
 - `qtr` — cars projected across the quarter (drives the pool)
 - `recv` / `disp` / `yms` — percentages. `dg` — dealer complaints per 100 cars
-- `ymsx` — `true` where YMS is not available at the hub, which auto-passes that check
-- `bar` — that hub's four thresholds
-- `ch` — pass/fail per check, in order: documents in, documents out, complaints, yard app
+- `ymsx` — `true` where YMS is not available at the hub. Vestigial: `n` now drives
+  this, and a 3-check hub simply has no fourth card. Kept because the upstream
+  export still emits it.
+- `base` — currently `null` for every hub and unused by the page
+- `bar` — that hub's thresholds, per hub (they are no longer flat per league).
+  `bar.yms` is `null` on 3-check hubs
+- `ch` — pass/fail per check, in order: documents in, documents out, complaints, yard
+  app. Length matches `n`
 - `passed` — count of `ch` that are true
 - `q` — what the team keeps: 1.0 / 0.75 / 0.5 / 0
 
@@ -134,11 +144,11 @@ The per-car rate is set in `index.html` (`let RATE=15;`). Change it there if the
 rate is revised, and re-announce before the quarter starts, not during.
 
 There is also a **₹5,000 per-person cap** in the page
-(`Math.min(5000, pool / h.heads)`). Where it bites, the "Each person gets" cell shows
-₹5,000 while the four cells to its left still multiply out to more than that — the
-notice shows arithmetic that does not produce its own answer. On the August data this
-affects one hub (Hyderabad-2: ₹6,262 uncapped). Either state the cap on the notice or
-drop it from the calculation; leaving it silent invites the question at the yard.
+(`Math.min(5000, pool / h.heads)`). On the current data it never binds — the highest
+per-person figure is ₹4,175 — so nothing on the notice contradicts itself today. It
+would bind again if payouts rose, and when it does the "Each person gets" cell shows
+₹5,000 while the four cells to its left still multiply out to more. If that happens,
+either state the cap on the notice or drop it from the calculation.
 
 ## Before you make this public
 
