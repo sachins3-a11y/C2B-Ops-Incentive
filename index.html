@@ -1,66 +1,586 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Hub Incentive — Yard Notice</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=IBM+Plex+Sans+Devanagari:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<meta name="description" content="Quarterly team incentive notice for C2B parking hubs — the 4 checks, what your team keeps, and what each person gets.">
+<meta name="theme-color" content="#4736FE"><!-- Brand Blue/300 -->
+<link rel="icon" type="image/svg+xml" href="./assets/favicon.svg">
+<link rel="apple-touch-icon" href="./assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Geist = Cars24 brand font. IBM Plex Sans Devanagari covers the Hindi copy, which Geist does not. -->
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=IBM+Plex+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--paper:#F4F5F2;--ink:#101828;--ink2:#3D4A63;--rule:#C9CEC6;--pass:#0B7A45;--miss:#B3341F;--gold:#E8A317;--band:#101828}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#DDE0DA;font-family:'IBM Plex Sans','IBM Plex Sans Devanagari',sans-serif;color:var(--ink);padding:22px 14px;-webkit-font-smoothing:antialiased}
-.bar{max-width:840px;margin:0 auto 16px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-select,button{font-family:inherit;font-size:14px;padding:9px 12px;border:1.5px solid var(--ink);background:#fff;color:var(--ink);border-radius:2px;cursor:pointer}
-select{min-width:240px}
-button[aria-pressed="true"]{background:var(--ink);color:#fff}
-.sheet{max-width:840px;margin:0 auto;background:var(--paper);border:1.5px solid var(--ink);box-shadow:0 2px 0 rgba(16,24,40,.22)}
-.hd{background:var(--band);color:#fff;padding:20px 26px 18px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap}
-.eyebrow{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8FA0BE;font-weight:600}
-h1{font-family:Archivo,sans-serif;font-weight:900;font-size:30px;line-height:1.04;letter-spacing:-.015em;margin-top:5px}
-.lg{font-family:Archivo;font-weight:700;font-size:11px;letter-spacing:.1em;border:1.5px solid #5B6B8C;padding:5px 10px;color:#C6D2E8;white-space:nowrap}
-.rule{padding:16px 26px;border-bottom:1.5px solid var(--rule);font-size:19px;font-weight:500;line-height:1.45}
-.rule b{font-family:Archivo;font-weight:900;color:var(--ink)}
-.sec{padding:18px 26px;border-bottom:1.5px solid var(--rule)}
-.sech{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);font-weight:600;margin-bottom:14px}
-.checks{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.chk{border:1.5px solid var(--ink);background:#fff;padding:13px 12px 12px;position:relative;min-height:132px;display:flex;flex-direction:column}
-.chk .n{font-family:Archivo;font-weight:700;font-size:10px;letter-spacing:.1em;color:var(--ink2)}
-.chk .t{font-weight:600;font-size:14.5px;margin:5px 0 9px;line-height:1.25}
-.chk .need{font-size:12.5px;color:var(--ink2);margin-bottom:2px}
-.chk .got{font-family:Archivo;font-weight:900;font-size:27px;letter-spacing:-.02em;margin-top:auto;line-height:1}
-.stamp{position:absolute;top:11px;right:11px;font-family:Archivo;font-weight:900;font-size:11px;letter-spacing:.08em;padding:3px 7px;border:1.5px solid}
-.ok .stamp{color:var(--pass);border-color:var(--pass)} .ok .got{color:var(--pass)}
-.no .stamp{color:var(--miss);border-color:var(--miss)} .no .got{color:var(--miss)}
-.no{background:#FBF3F1}
-.ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
-.rung{border:1.5px solid var(--rule);padding:12px;text-align:center;background:#fff}
-.rung.on{border-color:var(--ink);border-width:2.5px;background:var(--gold)}
-.rung .a{font-family:Archivo;font-weight:900;font-size:23px;line-height:1}
-.rung .b{font-size:12.5px;color:var(--ink2);margin-top:5px}
-.rung.on .b{color:var(--ink);font-weight:600}
-.chain{display:flex;align-items:stretch;flex-wrap:wrap;gap:0;border:1.5px solid var(--ink);background:#fff}
-.cell{flex:1 1 0;min-width:104px;padding:14px 10px;text-align:center;border-right:1.5px solid var(--rule)}
-.cell:last-child{border-right:0;background:var(--band);color:#fff;flex:1.25 1 0}
-.cell .v{font-family:Archivo;font-weight:900;font-size:26px;letter-spacing:-.02em;line-height:1}
-.cell:last-child .v{font-size:34px;color:var(--gold)}
-.cell .k{font-size:11.5px;color:var(--ink2);margin-top:6px;line-height:1.3}
-.cell:last-child .k{color:#B9C6DE}
-.ft{padding:15px 26px;font-size:13px;color:var(--ink2);line-height:1.6}
-.ft b{color:var(--ink)}
-@media(max-width:700px){.checks,.ladder{grid-template-columns:repeat(2,1fr)}h1{font-size:23px}.rule{font-size:16.5px}}
-@media print{body{background:#fff;padding:0}.bar{display:none}.sheet{border:none;box-shadow:none;max-width:100%}}
-</style></head><body>
-<div class="bar">
-  <select id="hub" aria-label="Choose hub"></select>
-  <button id="lang" aria-pressed="false">हिन्दी</button>
-  <button onclick="window.print()">Print</button>
+/* ═══════════════════════════════════════════════════════════════════════
+   CARS24 LEGO DESIGN SYSTEM
+   Layer 1 primitives → Layer 2 semantic → Layer 3 typography → components.
+   No hardcoded hex, spacing px, radius px or border px below the token
+   blocks. Letter-spacing is 0 everywhere, per the type scale.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ─── LAYER 1 — PRIMITIVES (never used directly in components) ───────── */
+:root{
+  /* Base */
+  --base-white:#FFFFFF;
+
+  /* Alpha — White */
+  --alpha-white-20:rgba(255,255,255,.20);
+  --alpha-white-70:rgba(255,255,255,.70);
+
+  /* Alpha — Black */
+  --alpha-black-20:rgba(10,10,10,.04);
+
+  /* Brand Blue (Cars24) */
+  --brand-blue-25:#F6F5FF;
+  --brand-blue-100:#E3E1FF;
+  --brand-blue-300:#4736FE;   /* ✦ primary */
+  --brand-blue-400:#4031E5;
+  --brand-blue-500:#392BCB;
+  --brand-blue-900:#191359;
+
+  /* Neutral */
+  --neutral-50:#FAFAFA;
+  --neutral-100:#F5F5F5;
+  --neutral-200:#E5E5E5;
+  --neutral-300:#D4D4D4;
+  --neutral-400:#A1A1A1;
+  --neutral-500:#737373;
+  --neutral-900:#171717;
+
+  /* Red */
+  --red-50:#FEF2F2;
+  --red-100:#FFE2E2;
+  --red-500:#FB2C36;
+  --red-600:#E7000B;
+  --red-700:#C10007;
+
+  /* Green */
+  --green-50:#F0FDF4;
+  --green-100:#DCFCE7;
+  --green-500:#00C951;
+  --green-600:#00A63E;
+  --green-700:#008236;
+
+  /* ─── SPACING ─────────────────────────────────────────────────────── */
+  --lego-spacing-2:2px;    --lego-spacing-4:4px;    --lego-spacing-6:6px;
+  --lego-spacing-8:8px;    --lego-spacing-10:10px;  --lego-spacing-12:12px;
+  --lego-spacing-14:14px;  --lego-spacing-16:16px;  --lego-spacing-18:18px;
+  --lego-spacing-20:20px;  --lego-spacing-24:24px;  --lego-spacing-26:26px;
+  --lego-spacing-28:28px;  --lego-spacing-30:30px;  --lego-spacing-32:32px;
+  --lego-spacing-36:36px;  --lego-spacing-40:40px;  --lego-spacing-48:48px;
+  --lego-spacing-56:56px;
+
+  /* ─── BORDER ──────────────────────────────────────────────────────── */
+  --border-none:0px;
+  --border-thin:0.5px;
+  --border-regular:1px;
+  --border-medium:1.5px;
+  --border-bold:2px;
+
+  /* ─── RADIUS ──────────────────────────────────────────────────────── */
+  --radius-none:0px;   --radius-xxs:4px;    --radius-xs:8px;
+  --radius-s:12px;     --radius-m:14px;     --radius-l:16px;
+  --radius-xl:20px;    --radius-xxl:24px;   --radius-xxxl:32px;
+  --radius-full:999px;
+}
+
+/* ─── LAYER 2 — SEMANTIC TOKENS + BRAND THEME (Cars24) ───────────────── */
+[data-brand="cars24"]{
+  /* Brand: Geist, with a Devanagari companion for the Hindi toggle */
+  --brand-font:'Geist','IBM Plex Sans Devanagari',sans-serif;
+  --brand-primary:var(--brand-blue-300);
+  --weight-regular:400;
+  --weight-medium:500;
+  --weight-semibold:600;
+  --weight-bold:700;
+
+  /* surface */
+  --lego-color-surface-default-rest:var(--base-white);
+  --lego-color-surface-subtle-rest:var(--neutral-50);
+  --lego-color-surface-subtle-hover:var(--neutral-100);
+  --lego-color-surface-brand-primary-rest:var(--brand-blue-300);
+  --lego-color-surface-brand-primary-hover:var(--brand-blue-400);
+  --lego-color-surface-brand-primary-active:var(--brand-blue-500);
+  --lego-color-surface-brand-subtle-rest:var(--brand-blue-25);
+  --lego-color-surface-feedback-success-rest:var(--green-50);
+  --lego-color-surface-feedback-success-subtle:var(--green-100);
+  --lego-color-surface-feedback-success-strong:var(--green-600);
+  --lego-color-surface-feedback-danger-rest:var(--red-50);
+  --lego-color-surface-feedback-danger-subtle:var(--red-100);
+  --lego-color-surface-feedback-danger-strong:var(--red-600);
+  --lego-color-surface-feedback-neutral-strong:var(--neutral-400);
+
+  /* text */
+  --lego-color-text-primary-rest:var(--neutral-900);
+  --lego-color-text-secondary-rest:var(--neutral-500);
+  --lego-color-text-inverse-rest:var(--base-white);
+  --lego-color-text-inverse-secondary-rest:var(--alpha-white-70);
+  --lego-color-text-brand-primary-rest:var(--brand-blue-300);
+  --lego-color-text-brand-strong-rest:var(--brand-blue-900);
+  --lego-color-text-feedback-success-rest:var(--green-700);
+  --lego-color-text-feedback-danger-rest:var(--red-700);
+
+  /* icon */
+  --lego-color-icon-secondary-rest:var(--neutral-500);
+  --lego-color-icon-inverse-rest:var(--base-white);
+
+  /* border */
+  --lego-color-border-default-rest:var(--neutral-200);
+  --lego-color-border-subtle-rest:var(--neutral-100);
+  --lego-color-border-strong-rest:var(--neutral-300);
+  --lego-color-border-brand-primary-rest:var(--brand-blue-300);
+  --lego-color-border-brand-subtle-rest:var(--brand-blue-100);
+  --lego-color-border-inverse-rest:var(--alpha-white-20);
+  --lego-color-border-feedback-success-rest:var(--green-500);
+  --lego-color-border-feedback-danger-rest:var(--red-500);
+
+  /* translucent */
+  --lego-color-translucent-white-20:var(--alpha-white-20);
+  --lego-color-translucent-black-20:var(--alpha-black-20);
+}
+
+/* ─── LAYER 3 — TYPOGRAPHY (mobile scale) ───────────────────────────── */
+.d3{font-size:32px;line-height:38px;letter-spacing:0}
+.h1{font-size:24px;line-height:32px;letter-spacing:0}
+.h2{font-size:21px;line-height:25px;letter-spacing:0}
+.h3{font-size:19px;line-height:23px;letter-spacing:0}
+.h4{font-size:17px;line-height:20px;letter-spacing:0}
+.h5{font-size:15px;line-height:18px;letter-spacing:0}
+.h6{font-size:13px;line-height:16px;letter-spacing:0}
+.label-1{font-size:16px;line-height:20px;letter-spacing:0}
+.label-2{font-size:14px;line-height:18px;letter-spacing:0}
+.label-3{font-size:12px;line-height:16px;letter-spacing:0}
+.label-4{font-size:10px;line-height:14px;letter-spacing:0}
+.body-1{font-size:15px;line-height:20px;letter-spacing:0}
+.body-2{font-size:13px;line-height:18px;letter-spacing:0}
+.body-3{font-size:11px;line-height:17px;letter-spacing:0}
+.caption-lg{font-size:14px;line-height:16px;letter-spacing:0}
+.caption-md{font-size:12px;line-height:14px;letter-spacing:0}
+.caption-sm{font-size:9px;line-height:14px;letter-spacing:0}
+
+[data-brand] :is(.d3,.h1,.h2,.h3,.h4,.h5,.h6){font-family:var(--brand-font);font-weight:var(--weight-semibold)}
+[data-brand] :is(.label-1,.label-2){font-family:var(--brand-font);font-weight:var(--weight-semibold)}
+[data-brand] :is(.label-3,.label-4){font-family:var(--brand-font);font-weight:var(--weight-regular)}
+[data-brand] :is(.body-1,.body-2,.body-3){font-family:var(--brand-font);font-weight:var(--weight-regular)}
+[data-brand] .caption-lg{font-family:var(--brand-font);font-weight:var(--weight-semibold)}
+[data-brand] :is(.caption-md,.caption-sm){font-family:var(--brand-font);font-weight:var(--weight-regular)}
+
+/* Desktop scale */
+@media(min-width:1024px){
+  .d3{font-size:40px;line-height:48px}
+  .h1{font-size:32px;line-height:43px}
+  .h2{font-size:28px;line-height:33px}
+  .h3{font-size:24px;line-height:29px}
+  .h4{font-size:19px;line-height:22px}
+  .h5{font-size:17px;line-height:20px}
+  .h6{font-size:15px;line-height:18px}
+  .label-1{font-size:20px;line-height:25px}
+  .label-2{font-size:17px;line-height:22px}
+  .label-3{font-size:14px;line-height:19px}
+  .label-4{font-size:12px;line-height:17px}
+  .body-1{font-size:18px;line-height:24px}
+  .body-2{font-size:16px;line-height:22px}
+  .body-3{font-size:14px;line-height:22px}
+  .caption-lg{font-size:17px;line-height:19px}
+  .caption-md{font-size:14px;line-height:16px}
+  .caption-sm{font-size:11px;line-height:17px}
+}
+
+/* ─── LAYER 4 — COMPONENTS ──────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+
+body{
+  background:var(--lego-color-surface-subtle-rest);
+  color:var(--lego-color-text-primary-rest);
+  font-family:var(--brand-font);
+  font-weight:var(--weight-regular);
+  padding:var(--lego-spacing-16);
+  -webkit-font-smoothing:antialiased;
+}
+@media(min-width:1024px){body{padding:var(--lego-spacing-48)}}
+
+.page{
+  max-width:900px;
+  margin-inline:auto;
+  display:flex;
+  flex-direction:column;
+  gap:var(--lego-spacing-16);
+}
+
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.icon{width:var(--lego-spacing-16);height:var(--lego-spacing-16);flex:none}
+
+/* Toolbar ─────────────────────────────────────────────────────────── */
+.toolbar{display:flex;flex-wrap:wrap;gap:var(--lego-spacing-8);align-items:center}
+.field{position:relative;display:flex;flex:1 1 260px;min-width:0}
+
+.select{
+  width:100%;
+  appearance:none;
+  font-family:var(--brand-font);
+  font-weight:var(--weight-medium);
+  color:var(--lego-color-text-primary-rest);
+  background:var(--lego-color-surface-default-rest);
+  border:var(--border-regular) solid var(--lego-color-border-default-rest);
+  border-radius:var(--radius-xs);
+  padding:var(--lego-spacing-12) var(--lego-spacing-40) var(--lego-spacing-12) var(--lego-spacing-16);
+  cursor:pointer;
+  transition:border-color .15s;
+}
+.select:hover{border-color:var(--lego-color-border-strong-rest)}
+.field__chevron{
+  position:absolute;
+  right:var(--lego-spacing-16);
+  top:50%;
+  transform:translateY(-50%);
+  color:var(--lego-color-icon-secondary-rest);
+  pointer-events:none;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:var(--lego-spacing-8);
+  padding:var(--lego-spacing-12) var(--lego-spacing-16);
+  border:var(--border-regular) solid transparent;
+  border-radius:var(--radius-s);
+  font-family:var(--brand-font);
+  font-weight:var(--weight-semibold);
+  cursor:pointer;
+  transition:background .15s,border-color .15s,color .15s;
+}
+.btn--primary{
+  background:var(--lego-color-surface-brand-primary-rest);
+  color:var(--lego-color-text-inverse-rest);
+}
+.btn--primary:hover{background:var(--lego-color-surface-brand-primary-hover)}
+.btn--primary:active{background:var(--lego-color-surface-brand-primary-active)}
+
+.btn--toggle{
+  background:var(--lego-color-surface-default-rest);
+  border-color:var(--lego-color-border-default-rest);
+  border-radius:var(--radius-full);
+  color:var(--lego-color-text-primary-rest);
+}
+.btn--toggle:hover{
+  background:var(--lego-color-surface-subtle-hover);
+  border-color:var(--lego-color-border-strong-rest);
+}
+.btn--toggle[aria-pressed="true"]{
+  background:var(--lego-color-surface-brand-subtle-rest);
+  border-color:var(--lego-color-border-brand-primary-rest);
+  color:var(--lego-color-text-brand-primary-rest);
+}
+
+:where(.btn,.select):focus-visible{
+  outline:var(--border-bold) solid var(--lego-color-border-brand-primary-rest);
+  outline-offset:var(--lego-spacing-2);
+}
+
+/* Sheet ───────────────────────────────────────────────────────────── */
+.sheet{
+  background:var(--lego-color-surface-default-rest);
+  border:var(--border-regular) solid var(--lego-color-border-default-rest);
+  border-radius:var(--radius-l);
+  overflow:hidden;
+  box-shadow:0 var(--lego-spacing-2) var(--lego-spacing-12) var(--lego-color-translucent-black-20);
+}
+
+.sheet__hd{
+  background:var(--lego-color-surface-brand-primary-rest);
+  color:var(--lego-color-text-inverse-rest);
+  padding:var(--lego-spacing-24);
+  display:flex;
+  flex-direction:column;
+  gap:var(--lego-spacing-16);
+}
+@media(min-width:1024px){.sheet__hd{padding:var(--lego-spacing-32)}}
+
+.sheet__brandrow{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:var(--lego-spacing-16);
+  flex-wrap:wrap;
+}
+.logo{
+  display:block;
+  height:var(--lego-spacing-20);
+  width:auto;
+  aspect-ratio:874/189;   /* logo artwork ratio — geometry, not a spacing token */
+  color:var(--lego-color-icon-inverse-rest);
+}
+@media(min-width:1024px){.logo{height:var(--lego-spacing-24)}}
+
+.chip{
+  display:inline-flex;
+  align-items:center;
+  gap:var(--lego-spacing-6);
+  padding:var(--lego-spacing-6) var(--lego-spacing-12);
+  border:var(--border-regular) solid var(--lego-color-border-inverse-rest);
+  border-radius:var(--radius-full);
+  background:var(--lego-color-translucent-white-20);
+  color:var(--lego-color-text-inverse-rest);
+  white-space:nowrap;
+}
+
+.sheet__eyebrow{color:var(--lego-color-text-inverse-secondary-rest)}
+[data-brand] .sheet__title{font-weight:var(--weight-bold);margin-top:var(--lego-spacing-4)}
+
+/* Headline strip */
+.headline{
+  padding:var(--lego-spacing-20) var(--lego-spacing-24);
+  background:var(--lego-color-surface-brand-subtle-rest);
+  border-bottom:var(--border-regular) solid var(--lego-color-border-brand-subtle-rest);
+  color:var(--lego-color-text-brand-strong-rest);
+}
+@media(min-width:1024px){.headline{padding:var(--lego-spacing-24) var(--lego-spacing-32)}}
+[data-brand] .headline strong{
+  font-weight:var(--weight-bold);
+  color:var(--lego-color-text-brand-primary-rest);
+}
+
+/* Section */
+.sec{
+  padding:var(--lego-spacing-24);
+  display:flex;
+  flex-direction:column;
+  gap:var(--lego-spacing-16);
+  border-top:var(--border-regular) solid var(--lego-color-border-subtle-rest);
+}
+@media(min-width:1024px){.sec{padding:var(--lego-spacing-32)}}
+/* the headline strip already draws a divider — don't stack a second one on it */
+.headline+.sec{border-top:var(--border-none)}
+.sec__title{color:var(--lego-color-text-secondary-rest)}
+
+/* Checks ──────────────────────────────────────────────────────────── */
+.checks{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--lego-spacing-12)}
+
+.check{
+  background:var(--lego-color-surface-subtle-rest);
+  border:var(--border-regular) solid var(--lego-color-border-default-rest);
+  border-radius:var(--radius-m);
+  padding:var(--lego-spacing-20);
+  display:flex;
+  flex-direction:column;
+  gap:var(--lego-spacing-12);
+}
+.check--pass{
+  background:var(--lego-color-surface-feedback-success-rest);
+  border-color:var(--lego-color-border-feedback-success-rest);
+}
+.check--miss{
+  background:var(--lego-color-surface-feedback-danger-rest);
+  border-color:var(--lego-color-border-feedback-danger-rest);
+}
+
+.check__top{display:flex;align-items:center;justify-content:space-between;gap:var(--lego-spacing-8)}
+[data-brand] .check__idx{color:var(--lego-color-text-secondary-rest);font-weight:var(--weight-semibold)}
+[data-brand] .check__title{color:var(--lego-color-text-primary-rest);font-weight:var(--weight-semibold)}
+.check__need{color:var(--lego-color-text-secondary-rest)}
+.check__foot{margin-top:auto;display:flex;flex-direction:column;gap:var(--lego-spacing-8)}
+[data-brand] .check__got{font-weight:var(--weight-bold)}
+.check--pass .check__got{color:var(--lego-color-text-feedback-success-rest)}
+.check--miss .check__got{color:var(--lego-color-text-feedback-danger-rest)}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  padding:var(--lego-spacing-2) var(--lego-spacing-6);
+  border:var(--border-regular) solid transparent;
+  border-radius:var(--radius-xxs);
+  white-space:nowrap;
+}
+[data-brand] .badge{font-weight:var(--weight-bold)}
+.badge--pass{
+  background:var(--lego-color-surface-feedback-success-subtle);
+  border-color:var(--lego-color-border-feedback-success-rest);
+  color:var(--lego-color-text-feedback-success-rest);
+}
+.badge--miss{
+  background:var(--lego-color-surface-feedback-danger-subtle);
+  border-color:var(--lego-color-border-feedback-danger-rest);
+  color:var(--lego-color-text-feedback-danger-rest);
+}
+
+/* Progress toward the threshold */
+.meter{
+  height:var(--lego-spacing-6);
+  border-radius:var(--radius-full);
+  background:var(--lego-color-surface-default-rest);
+  border:var(--border-regular) solid var(--lego-color-border-default-rest);
+  overflow:hidden;
+}
+.meter__fill{
+  display:block;
+  height:100%;
+  border-radius:var(--radius-full);
+  background:var(--lego-color-surface-feedback-neutral-strong);
+}
+.check--pass .meter__fill{background:var(--lego-color-surface-feedback-success-strong)}
+.check--miss .meter__fill{background:var(--lego-color-surface-feedback-danger-strong)}
+
+/* Ladder ──────────────────────────────────────────────────────────── */
+.ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--lego-spacing-12)}
+
+.rung{
+  background:var(--lego-color-surface-subtle-rest);
+  border:var(--border-regular) solid var(--lego-color-border-default-rest);
+  border-radius:var(--radius-m);
+  padding:var(--lego-spacing-16) var(--lego-spacing-12);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:var(--lego-spacing-4);
+  text-align:center;
+}
+.rung--on{
+  background:var(--lego-color-surface-brand-primary-rest);
+  border-color:var(--lego-color-surface-brand-primary-rest);
+  border-width:var(--border-medium);
+}
+[data-brand] .rung__a{color:var(--lego-color-text-primary-rest);font-weight:var(--weight-bold)}
+.rung__b{color:var(--lego-color-text-secondary-rest)}
+.rung--on .rung__a{color:var(--lego-color-text-inverse-rest)}
+.rung--on .rung__b{color:var(--lego-color-text-inverse-secondary-rest)}
+
+/* Money chain ─────────────────────────────────────────────────────── */
+.chain{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:var(--border-regular);
+  background:var(--lego-color-border-default-rest);
+  border:var(--border-regular) solid var(--lego-color-border-default-rest);
+  border-radius:var(--radius-m);
+  overflow:hidden;
+}
+.chain__cell{
+  background:var(--lego-color-surface-default-rest);
+  padding:var(--lego-spacing-16) var(--lego-spacing-12);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:var(--lego-spacing-4);
+  text-align:center;
+}
+[data-brand] .chain__v{color:var(--lego-color-text-primary-rest);font-weight:var(--weight-bold)}
+.chain__k{color:var(--lego-color-text-secondary-rest)}
+.chain__cell--total{background:var(--lego-color-surface-brand-primary-rest)}
+.chain__cell--total .chain__v{color:var(--lego-color-text-inverse-rest)}
+.chain__cell--total .chain__k{color:var(--lego-color-text-inverse-secondary-rest)}
+
+/* Footer ──────────────────────────────────────────────────────────── */
+.sheet__ft{
+  padding:var(--lego-spacing-20) var(--lego-spacing-24);
+  background:var(--lego-color-surface-subtle-rest);
+  border-top:var(--border-regular) solid var(--lego-color-border-subtle-rest);
+  color:var(--lego-color-text-secondary-rest);
+}
+@media(min-width:1024px){.sheet__ft{padding:var(--lego-spacing-24) var(--lego-spacing-32)}}
+[data-brand] .sheet__ft strong{
+  color:var(--lego-color-text-primary-rest);
+  font-weight:var(--weight-semibold);
+}
+
+/* ─── RESPONSIVE ────────────────────────────────────────────────────── */
+@media(max-width:760px){
+  .checks,.ladder{grid-template-columns:repeat(2,1fr)}
+  .chain{grid-template-columns:repeat(2,1fr)}
+  .chain__cell--total{grid-column:1/-1}
+}
+@media(max-width:520px){
+  .field{flex:1 1 100%}
+}
+@media(max-width:400px){
+  .checks,.ladder,.chain{grid-template-columns:1fr}
+}
+
+/* ─── PRINT — one A4 sheet per hub ──────────────────────────────────── */
+@media print{
+  @page{margin:12mm}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:var(--lego-color-surface-default-rest);padding:var(--border-none)}
+  .toolbar{display:none}
+  .page{max-width:none;gap:var(--border-none)}
+  .sheet{
+    border:var(--border-none);
+    border-radius:var(--radius-none);
+    box-shadow:none;
+  }
+  /* A4 is narrower than 760px, which would otherwise trip the mobile
+     breakpoint and push the notice onto a second page. Keep it wide. */
+  .checks,.ladder{grid-template-columns:repeat(4,1fr)}
+  .chain{grid-template-columns:repeat(5,1fr)}
+  .chain__cell--total{grid-column:auto}
+  /* Tighten to the page without touching the on-screen rhythm */
+  .sheet__hd{padding:var(--lego-spacing-16) var(--lego-spacing-20);gap:var(--lego-spacing-12)}
+  .headline{padding:var(--lego-spacing-12) var(--lego-spacing-20)}
+  .sec{padding:var(--lego-spacing-16) var(--lego-spacing-20);gap:var(--lego-spacing-10)}
+  .check{padding:var(--lego-spacing-12);gap:var(--lego-spacing-8)}
+  .rung{padding:var(--lego-spacing-12) var(--lego-spacing-8)}
+  .chain__cell{padding:var(--lego-spacing-12) var(--lego-spacing-8)}
+  .sheet__ft{padding:var(--lego-spacing-12) var(--lego-spacing-20)}
+  .check,.rung,.chain,.chain__cell,.checks,.ladder,.sec{break-inside:avoid}
+}
+</style>
+</head>
+
+<body data-brand="cars24">
+
+<!-- Toolbar icons. The logo is inlined per-render instead: Chromium will not
+     paint a sprite <use> reference in print, and this notice has to print. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="c24-chevron" viewBox="0 0 16 16">
+<path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M4 6l4 4 4-4"/>
+</symbol>
+<symbol id="c24-printer" viewBox="0 0 16 16">
+<path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M4.5 6V2.5h7V6M4.5 12H3a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-1.5M4.5 9.5h7v4h-7z"/>
+</symbol>
+</defs></svg>
+
+<div class="page">
+
+  <div class="toolbar">
+    <label class="sr-only" for="hub">Choose hub</label>
+    <span class="field">
+      <select class="select label-2" id="hub"></select>
+      <svg class="icon field__chevron" aria-hidden="true"><use href="#c24-chevron"></use></svg>
+    </span>
+    <button class="btn btn--toggle label-2" id="lang" type="button" aria-pressed="false">हिन्दी</button>
+    <button class="btn btn--primary label-2" id="print" type="button">
+      <svg class="icon" aria-hidden="true"><use href="#c24-printer"></use></svg>
+      <span id="printLabel">Print</span>
+    </button>
+  </div>
+
+  <article class="sheet" id="sheet" aria-live="polite"></article>
+
 </div>
-<div class="sheet" id="sheet"></div>
+
 <script>
 let HUBS=[{"hub": "Noida sec-37 Parking", "league": "A", "heads": 11, "units9": 451, "qtr": 4510, "recv": 79.4, "disp": 93.4, "dg": 3.8, "dgt": 17, "yms": 79.1, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [false, true, true, true], "passed": 3, "q": 0.75}, {"hub": "Metrowalk_Parking Yard", "league": "A", "heads": 10, "units9": 246, "qtr": 2460, "recv": 81.9, "disp": 99.9, "dg": 3.7, "dgt": 9, "yms": 85.8, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [false, true, true, true], "passed": 3, "q": 0.75}, {"hub": "Gurgaon_Parking 2", "league": "A", "heads": 9, "units9": 222, "qtr": 2220, "recv": 86.6, "disp": 85.9, "dg": 7.2, "dgt": 16, "yms": 86.0, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [true, false, false, true], "passed": 2, "q": 0.5}, {"hub": "Bangalore Parking", "league": "A", "heads": 3, "units9": 179, "qtr": 1790, "recv": 64.6, "disp": 59.1, "dg": 14.5, "dgt": 26, "yms": 60.2, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [false, false, false, false], "passed": 0, "q": 0.0}, {"hub": "Hyderabad-2 Parking", "league": "A", "heads": 3, "units9": 167, "qtr": 1670, "recv": 96.9, "disp": 100.0, "dg": 1.8, "dgt": 3, "yms": 67.7, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [true, true, true, false], "passed": 3, "q": 0.75}, {"hub": "Pune_Cars24 Parking", "league": "A", "heads": 3, "units9": 127, "qtr": 1270, "recv": 83.3, "disp": 84.8, "dg": 2.4, "dgt": 3, "yms": 76.4, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [true, false, true, true], "passed": 3, "q": 0.75}, {"hub": "Chennai Parking", "league": "A", "heads": 3, "units9": 115, "qtr": 1150, "recv": 74.4, "disp": 80.9, "dg": 1.7, "dgt": 2, "yms": 71.3, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [false, false, true, true], "passed": 2, "q": 0.5}, {"hub": "Kolkata-3 Parking", "league": "A", "heads": 3, "units9": 111, "qtr": 1110, "recv": 86.4, "disp": 94.3, "dg": 1.8, "dgt": 2, "yms": 44.1, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [true, true, true, false], "passed": 3, "q": 0.75}, {"hub": "Lucknow Parking", "league": "B", "heads": 2, "units9": 80, "qtr": 800, "recv": 93.3, "disp": 79.9, "dg": 2.5, "dgt": 2, "yms": 83.8, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, false, true, true], "passed": 2, "q": 0.5}, {"hub": "Patna-2 Parking", "league": "B", "heads": 3, "units9": 61, "qtr": 610, "recv": 84.8, "disp": 100.0, "dg": 4.9, "dgt": 3, "yms": 82.0, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, true, true, true], "passed": 3, "q": 0.75}, {"hub": "Jaipur Parking-2", "league": "B", "heads": 2, "units9": 50, "qtr": 500, "recv": 87.0, "disp": 79.3, "dg": 12.0, "dgt": 6, "yms": 64.0, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, false, false, true], "passed": 1, "q": 0.0}, {"hub": "Indore Parking", "league": "B", "heads": 2, "units9": 47, "qtr": 470, "recv": 93.9, "disp": 66.1, "dg": 2.1, "dgt": 1, "yms": 66.0, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, false, true, true], "passed": 2, "q": 0.5}, {"hub": "Kochi Parking", "league": "B", "heads": 1, "units9": 46, "qtr": 460, "recv": 96.2, "disp": 81.8, "dg": 0.0, "dgt": 0, "yms": 26.1, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, false, true, false], "passed": 2, "q": 0.5}, {"hub": "Coimbatore Parking", "league": "B", "heads": 1, "units9": 33, "qtr": 330, "recv": 42.9, "disp": 51.2, "dg": 0.0, "dgt": 0, "yms": 0.0, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, false, true, false], "passed": 1, "q": 0.0}, {"hub": "Meerut Parking", "league": "B", "heads": 2, "units9": 24, "qtr": 240, "recv": 100.0, "disp": 100.0, "dg": 4.2, "dgt": 1, "yms": 100.0, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, true, true], "passed": 4, "q": 1.0}, {"hub": "Agra Parking", "league": "B", "heads": 1, "units9": 24, "qtr": 240, "recv": 94.7, "disp": 100.0, "dg": 8.3, "dgt": 2, "yms": 62.5, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, false, true], "passed": 3, "q": 0.75}, {"hub": "Dehradun Parking", "league": "B", "heads": 1, "units9": 22, "qtr": 220, "recv": 93.3, "disp": 83.3, "dg": 0.0, "dgt": 0, "yms": 59.1, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, false, true, false], "passed": 1, "q": 0.0}, {"hub": "Bhubaneswar Parking", "league": "B", "heads": 1, "units9": 20, "qtr": 200, "recv": 94.7, "disp": 98.0, "dg": 0.0, "dgt": 0, "yms": 85.0, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, true, true], "passed": 4, "q": 1.0}, {"hub": "Kanpur Parking", "league": "B", "heads": 1, "units9": 19, "qtr": 190, "recv": 80.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 47.4, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, true, true, false], "passed": 2, "q": 0.5}, {"hub": "Bhopal-2 Parking", "league": "B", "heads": 1, "units9": 18, "qtr": 180, "recv": 76.9, "disp": 97.3, "dg": 0.0, "dgt": 0, "yms": 66.7, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, false, true, true], "passed": 2, "q": 0.5}, {"hub": "Ranchi-2 Parking", "league": "B", "heads": 2, "units9": 17, "qtr": 170, "recv": 100.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 58.8, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, true, false], "passed": 3, "q": 0.75}, {"hub": "Gwalior Parking", "league": "B", "heads": 1, "units9": 13, "qtr": 130, "recv": 100.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 46.1, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, true, false], "passed": 3, "q": 0.75}, {"hub": "Raipur Parking", "league": "B", "heads": 1, "units9": 13, "qtr": 130, "recv": 60.0, "disp": 100.0, "dg": 7.7, "dgt": 1, "yms": 38.5, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, true, false, false], "passed": 1, "q": 0.0}, {"hub": "Trivandrum Parking", "league": "B", "heads": 1, "units9": 12, "qtr": 120, "recv": 100.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 16.7, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, true, false], "passed": 3, "q": 0.75}, {"hub": "Gorakhpur Parking", "league": "B", "heads": 1, "units9": 7, "qtr": 70, "recv": 100.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 71.4, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, true, true], "passed": 4, "q": 1.0}, {"hub": "Thrissur Parking", "league": "B", "heads": 1, "units9": 6, "qtr": 60, "recv": 100.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 0.0, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, true, false], "passed": 3, "q": 0.75}];
 let RATE=15;
+// Cars24 logo (Cars24 Logo Repository, SVG). Single-colour, so it picks up
+// --lego-color-icon-inverse-rest through currentColor.
+const LOGO=`<svg class="logo" viewBox="163 501 874 189" preserveAspectRatio="xMinYMid meet" role="img" aria-label="CARS24">
+<path fill="currentColor" d="M322.9,510.43h-140.34c-10.71,0-19.4,8.68-19.4,19.4v140.34c0,10.71,8.68,19.4,19.4,19.4h140.34c10.71,0,19.4-8.69,19.4-19.4v-140.34c0-10.72-8.69-19.4-19.4-19.4ZM315.69,617.34c-7.46,26.96-31.88,46.87-61.06,47.51-.49.02-.98.02-1.47.02s-.98,0-1.47-.02c-.54-.01-1.07-.03-1.61-.06-.06,0-.12,0-.17.01-21.07-1.04-39.49-12.13-50.58-28.58-6.97-10.34-11.04-22.81-11.04-36.21,0-6.33.91-12.45,2.59-18.23.19-.63.77-1.07,1.43-1.07h22.99c1.05,0,1.76,1.05,1.39,2.04-2.06,5.3-3.2,11.13-3.2,17.26,0,19.6,11.67,36.19,27.76,41.76,1.56.55,3.17.99,4.81,1.32,2.3.46,4.68.7,7.1.7,4.15,0,8.15-.71,11.91-2.02,6.29-2.17,11.9-6.03,16.41-11.11,3.61-4.06,6.51-8.88,8.46-14.23.22-.59.78-.99,1.4-.99h22.92c.99,0,1.7.95,1.44,1.9ZM315.67,590.96h-22.47c-.71,0-1.31-.5-1.45-1.19-1.7-7.85-5.32-14.87-10.29-20.45-3.15-3.55-6.84-6.5-10.92-8.69-1.76-.95-3.59-1.76-5.5-2.42-3.75-1.3-7.74-2-11.88-2h-44.36c-1.33,0-1.99-1.62-1.04-2.56,10.97-10.75,25.76-17.64,42.15-18.46.06,0,.12,0,.17.01.54-.03,1.07-.06,1.61-.06.49-.02.98-.02,1.47-.02s.98,0,1.47.02c31.49.69,57.45,23.83,62.5,54.05.15.91-.54,1.76-1.46,1.76Z"/>
+<path fill="currentColor" d="M676.19,577.49h21.91c.76,0,1.38.62,1.38,1.38v17.26c3.3-13.74,12.83-21.42,28.96-20.96.75.02,1.36.63,1.36,1.38v21.21c0,.76-.62,1.38-1.38,1.38h-2.2c-14.69,0-25.98,9.79-25.98,26.17v48.7c0,.76-.62,1.38-1.38,1.38h-22.66c-.76,0-1.38-.62-1.38-1.38v-95.15c0-.76.62-1.38,1.38-1.38Z"/>
+<path fill="currentColor" d="M656.74,576.92h-22.82c-.76,0-1.38.62-1.38,1.38v11.43c-8.12-9.47-19.44-15.36-31.95-15.36-24.71,0-44.75,22.92-44.75,51.18s20.04,51.18,44.75,51.18c12.52,0,23.84-5.88,31.95-15.36v12.05c0,.76.62,1.38,1.38,1.38h22.82c.76,0,1.38-.62,1.38-1.38v-95.14c0-.76-.62-1.38-1.38-1.38ZM632.54,628.1c-1.21,14.49-12.7,25.85-26.7,25.85-14.81,0-26.81-12.71-26.81-28.39s12-28.38,26.81-28.38c14,0,25.49,11.35,26.7,25.84.07.84.11,1.69.11,2.54s-.04,1.71-.11,2.54Z"/>
+<path fill="currentColor" d="M815.08,676.49h102.31c.76,0,1.38-.62,1.38-1.38v-22.86c0-.76-.62-1.38-1.38-1.38h-49.88l36.21-42.88.89-1.05c7-8.48,11.33-19.26,11.65-31.04.02-.49.03-.98.03-1.48,0-28.23-22.89-51.12-51.13-51.12-25.19,0-46.12,18.22-50.35,42.19-.12.69.31,1.36.98,1.55l22.35,6.43c.84.24,1.68-.35,1.75-1.22,1.14-13.6,13.03-24.15,27.14-23.12,12.46.91,22.53,11.03,23.37,23.5.46,6.8-1.77,13.08-5.72,17.87l-.4.47-28.47,33.71-22.12,26.19-19.16,22.68c-.1.12-.16.28-.16.45v1.81c0,.38.31.69.69.69Z"/>
+<path fill="currentColor" d="M1035.46,615.64h-14.4v-90.92c0-.76-.62-1.38-1.38-1.38h-23.52c-.45,0-.88.22-1.13.59l-63.77,91.71-12.23,17.6c-.16.23-.25.5-.25.79v2.87c0,.76.62,1.38,1.38,1.38h75.29v36.8c0,.76.62,1.38,1.38,1.38h22.87c.76,0,1.38-.62,1.38-1.38v-36.8h14.4c.76,0,1.38-.62,1.38-1.38v-19.89c0-.76-.62-1.38-1.38-1.38ZM995.43,615.64h-32.73l32.73-47.08v47.08Z"/>
+<path fill="currentColor" d="M543.04,618.26c.9,0,1.57.85,1.34,1.72-8.73,32.74-38.59,56.86-74.07,56.86s-66.86-25.36-74.7-59.35c-1.29-5.57-1.97-11.36-1.97-17.32,0-6.61.84-13.04,2.41-19.16,8.5-33.07,38.52-57.51,74.26-57.51s65.03,23.86,73.93,56.34c.24.87-.43,1.73-1.34,1.73h-27.83c-.57,0-1.07-.36-1.28-.89-7.11-18.26-23.9-31.08-43.47-31.08-26.02,0-47.1,22.64-47.1,50.56s21.09,50.57,47.1,50.57c19.76,0,36.67-13.06,43.66-31.58.2-.54.72-.9,1.29-.9h27.79,0Z"/>
+<path fill="currentColor" d="M775.73,676.66c-8.06,0-14.68-1.09-19.88-3.25-5.2-2.17-9.32-4.89-12.35-8.18-3.03-3.28-5.3-6.53-6.78-9.75-1.29-2.79-2.34-6.01-3.17-9.64-.2-.87.45-1.7,1.35-1.7h20.71c.59,0,1.11.38,1.31.95.81,2.31,1.79,4.25,2.94,5.84,1.3,1.8,3.32,3.38,6.04,4.74,2.72,1.37,6.32,2.04,10.78,2.04,5.33,0,9.17-1.14,11.52-3.44,2.35-2.29,3.53-4.86,3.53-7.71s-1.02-4.93-3.07-6.6c-2.04-1.67-5.05-2.94-9.01-3.81l-13.56-2.78c-5.45-1.12-10.53-2.75-15.24-4.93-4.71-2.17-8.55-5.14-11.52-8.92-2.97-3.78-4.46-8.64-4.46-14.58,0-8.8,3.35-16.07,10.04-21.83,6.69-5.76,15.79-8.64,27.32-8.64,7.31,0,13.35.99,18.12,2.97,4.77,1.98,8.61,4.46,11.52,7.44,2.91,2.97,5.08,5.95,6.5,8.92,1.22,2.55,2.24,5.51,3.05,8.88.21.87-.45,1.71-1.34,1.71h-19.95c-.57,0-1.1-.35-1.29-.89-.7-1.95-1.56-3.57-2.58-4.87-1.18-1.49-2.91-2.82-5.2-3.99-2.29-1.18-5.36-1.76-9.2-1.76-5.2,0-8.89,1.12-11.06,3.35-2.17,2.23-3.25,4.59-3.25,7.06,0,2.73,1.18,4.83,3.53,6.32,2.35,1.49,5.39,2.6,9.1,3.35l12.82,2.78c9.17,1.86,16.69,5.08,22.58,9.67,5.88,4.59,8.83,11.21,8.83,19.88,0,5.83-1.52,11.12-4.55,15.89-3.03,4.77-7.44,8.55-13.19,11.33-5.76,2.78-12.73,4.18-20.9,4.18h0Z"/>
+</svg>`;
 const T={
- en:{eyebrow:"Quarterly team incentive · August cycle",lg:"LEAGUE",
-  rule:'Every car your hub takes in earns the team <b>₹RATE</b>. Pass all 4 checks and you keep it all.',
-  checks:"The 4 checks — measured every month",need:"Need",
+ en:{eyebrow:"Quarterly team incentive · August cycle",lg:"League",people:"people",print:"Print",
+  rule:'Every car your hub takes in earns the team <strong>₹RATE</strong>. Pass all 4 checks and you keep it all.',
+  checks:"The 4 checks — measured every month",need:"Need",pass:"PASS",miss:"MISS",
   names:["Documents received in 24 hrs","Documents dispatched in 24 hrs","Dealer complaints","Yard app updated"],
   ladder:"Checks passed → what your team keeps",
   rungs:["all 4","3 of 4","2 of 4","1 or 0"],keeps:["Keep everything","Keep three-quarters","Keep half","Nothing this time"],
@@ -68,9 +588,9 @@ const T={
   ck:["Cars in","× ₹RATE per car","× what you keep","÷ RATE_HEADS people","Each person gets"],
   ft:"Paid once a quarter with salary. Numbers shown are from the August cycle. Checks are measured monthly and averaged over the quarter. Questions — ask your hub in-charge.",
   exempt:"Not available here"},
- hi:{eyebrow:"त्रैमासिक टीम इंसेंटिव · अगस्त चक्र",lg:"लीग",
-  rule:'आपके हब में आने वाली हर गाड़ी टीम को <b>₹RATE</b> दिलाती है। चारों चेक पास करें तो पूरा पैसा आपका।',
-  checks:"4 चेक — हर महीने देखे जाते हैं",need:"चाहिए",
+ hi:{eyebrow:"त्रैमासिक टीम इंसेंटिव · अगस्त चक्र",lg:"लीग",people:"लोग",print:"प्रिंट",
+  rule:'आपके हब में आने वाली हर गाड़ी टीम को <strong>₹RATE</strong> दिलाती है। चारों चेक पास करें तो पूरा पैसा आपका।',
+  checks:"4 चेक — हर महीने देखे जाते हैं",need:"चाहिए",pass:"पास",miss:"फेल",
   names:["24 घंटे में डॉक्युमेंट रिसीव","24 घंटे में डॉक्युमेंट डिस्पैच","डीलर शिकायत","यार्ड ऐप अपडेट"],
   ladder:"कितने चेक पास → टीम को कितना मिलेगा",
   rungs:["चारों","4 में से 3","4 में से 2","1 या 0"],keeps:["पूरा पैसा","तीन-चौथाई","आधा","इस बार कुछ नहीं"],
@@ -78,47 +598,122 @@ const T={
   ck:["गाड़ियाँ","× ₹RATE प्रति गाड़ी","× आपका हिस्सा","÷ RATE_HEADS लोग","हर व्यक्ति को"],
   ft:"तिमाही में एक बार सैलरी के साथ। ऊपर दिए नंबर अगस्त चक्र के हैं। चेक हर महीने नापे जाते हैं और तिमाही का औसत लिया जाता है। सवाल हों तो हब इंचार्ज से पूछें।",
   exempt:"यहाँ उपलब्ध नहीं"}};
+
 let lang='en';
 const sel=document.getElementById('hub');
-HUBS.forEach((h,i)=>{const o=document.createElement('option');o.value=i;o.textContent=h.hub+"  ·  League "+h.league;sel.appendChild(o);});
+function fillOptions(){
+  sel.innerHTML='';
+  HUBS.forEach((h,i)=>{
+    const o=document.createElement('option');
+    o.value=i;
+    o.textContent=h.hub+"  ·  "+T[lang].lg+" "+h.league;
+    sel.appendChild(o);
+  });
+}
 function money(n){return '₹'+Math.round(n).toLocaleString('en-IN');}
+
+// How close the hub is to each threshold, 0-100. Complaints (index 2) are
+// inverted — fewer is better. An exempt yard app check reads as met.
+function meterPct(i,h){
+  if(i===3&&h.ymsx) return 100;
+  const got=[h.recv,h.disp,h.dg,h.yms][i];
+  const need=[h.bar.recv,h.bar.disp,h.bar.dg,h.bar.yms][i];
+  if(got==null||need==null) return 0;
+  if(i===2) return got<=need?100:Math.max(6,Math.round(need/got*100));
+  return need<=0?100:Math.min(100,Math.round(got/need*100));
+}
+
 function draw(){
- const h=HUBS[+sel.value],t=T[lang];
+ const h=HUBS[+sel.value]||HUBS[0],t=T[lang];
  const pool=h.qtr*RATE*h.q, per=Math.min(5000,pool/h.heads);
  const got=[h.recv==null?'—':h.recv+'%', h.disp==null?'—':h.disp+'%', h.dg+' / 100', h.ymsx?'—':(h.yms==null?'—':h.yms+'%')];
  const need=[h.bar.recv+'% +', h.bar.disp+'% +', 'max '+h.bar.dg+' / 100', h.ymsx?t.exempt:h.bar.yms+'% +'];
+
  document.getElementById('sheet').innerHTML=`
- <div class="hd"><div><div class="eyebrow">${t.eyebrow}</div><h1>${h.hub}</h1></div>
-   <div class="lg">${t.lg} ${h.league} · ${h.heads} ${lang==='en'?'people':'लोग'}</div></div>
- <div class="rule">${t.rule.replace('RATE',RATE)}</div>
- <div class="sec"><div class="sech">${t.checks}</div><div class="checks">
- ${[0,1,2,3].map(i=>`<div class="chk ${h.ch[i]?'ok':'no'}"><div class="n">0${i+1}</div>
-    <div class="stamp">${h.ch[i]?(lang==='en'?'PASS':'पास'):(lang==='en'?'MISS':'फेल')}</div>
-    <div class="t">${t.names[i]}</div><div class="need">${t.need}: ${need[i]}</div>
-    <div class="got">${got[i]}</div></div>`).join('')}
- </div></div>
- <div class="sec"><div class="sech">${t.ladder}</div><div class="ladder">
- ${[4,3,2,1].map((n,i)=>`<div class="rung ${h.passed===n||(n===1&&h.passed<=1)?'on':''}">
-    <div class="a">${t.rungs[i]}</div><div class="b">${t.keeps[i]}</div></div>`).join('')}
- </div></div>
- <div class="sec"><div class="sech">${t.chain}</div><div class="chain">
-   <div class="cell"><div class="v">${h.qtr.toLocaleString('en-IN')}</div><div class="k">${t.ck[0]}</div></div>
-   <div class="cell"><div class="v">${money(h.qtr*RATE)}</div><div class="k">${t.ck[1].replace('RATE',RATE)}</div></div>
-   <div class="cell"><div class="v">${Math.round(h.q*100)}%</div><div class="k">${t.ck[2]}</div></div>
-   <div class="cell"><div class="v">${h.heads}</div><div class="k">${t.ck[3].replace('RATE_HEADS',h.heads)}</div></div>
-   <div class="cell"><div class="v">${money(per)}</div><div class="k">${t.ck[4]}</div></div>
- </div></div>
- <div class="ft">${t.ft}</div>`;
+ <header class="sheet__hd">
+   <div class="sheet__brandrow">
+     ${LOGO}
+     <span class="chip label-3">${t.lg} ${h.league} · ${h.heads} ${t.people}</span>
+   </div>
+   <div>
+     <p class="sheet__eyebrow label-3">${t.eyebrow}</p>
+     <h1 class="sheet__title h1">${h.hub}</h1>
+   </div>
+ </header>
+
+ <p class="headline body-1">${t.rule.replace('RATE',RATE)}</p>
+
+ <section class="sec">
+   <h2 class="sec__title label-2">${t.checks}</h2>
+   <div class="checks">
+   ${[0,1,2,3].map(i=>`
+     <article class="check ${h.ch[i]?'check--pass':'check--miss'}">
+       <div class="check__top">
+         <span class="check__idx label-4">0${i+1}</span>
+         <span class="badge ${h.ch[i]?'badge--pass':'badge--miss'} caption-sm">${h.ch[i]?t.pass:t.miss}</span>
+       </div>
+       <h3 class="check__title h6">${t.names[i]}</h3>
+       <div class="check__foot">
+         <div class="meter"><span class="meter__fill" style="width:${meterPct(i,h)}%"></span></div>
+         <p class="check__need caption-md">${t.need}: ${need[i]}</p>
+         <p class="check__got h2">${got[i]}</p>
+       </div>
+     </article>`).join('')}
+   </div>
+ </section>
+
+ <section class="sec">
+   <h2 class="sec__title label-2">${t.ladder}</h2>
+   <div class="ladder">
+   ${[4,3,2,1].map((n,i)=>{
+     const on=h.passed===n||(n===1&&h.passed<=1);
+     return `<div class="rung ${on?'rung--on':''}"${on?' aria-current="true"':''}>
+       <span class="rung__a h4">${t.rungs[i]}</span>
+       <span class="rung__b body-3">${t.keeps[i]}</span>
+     </div>`;}).join('')}
+   </div>
+ </section>
+
+ <section class="sec">
+   <h2 class="sec__title label-2">${t.chain}</h2>
+   <div class="chain">
+     <div class="chain__cell"><span class="chain__v h4">${h.qtr.toLocaleString('en-IN')}</span><span class="chain__k caption-md">${t.ck[0]}</span></div>
+     <div class="chain__cell"><span class="chain__v h4">${money(h.qtr*RATE)}</span><span class="chain__k caption-md">${t.ck[1].replace('RATE',RATE)}</span></div>
+     <div class="chain__cell"><span class="chain__v h4">${Math.round(h.q*100)}%</span><span class="chain__k caption-md">${t.ck[2]}</span></div>
+     <div class="chain__cell"><span class="chain__v h4">${h.heads}</span><span class="chain__k caption-md">${t.ck[3].replace('RATE_HEADS',h.heads)}</span></div>
+     <div class="chain__cell chain__cell--total"><span class="chain__v h2">${money(per)}</span><span class="chain__k caption-md">${t.ck[4]}</span></div>
+   </div>
+ </section>
+
+ <footer class="sheet__ft body-3">${t.ft}</footer>`;
 }
+
 sel.onchange=draw;
+document.getElementById('print').onclick=()=>window.print();
+document.getElementById('lang').onclick=e=>{
+  lang=lang==='en'?'hi':'en';
+  const btn=e.currentTarget;
+  btn.setAttribute('aria-pressed',lang==='hi');
+  btn.textContent=lang==='en'?'हिन्दी':'English';
+  document.documentElement.lang=lang;
+  document.getElementById('printLabel').textContent=T[lang].print;
+  const i=sel.value;
+  fillOptions();
+  sel.value=i;
+  draw();
+};
+
+fillOptions();
+draw();
+
 // Monthly refresh: replace hubs.json in the repo and Vercel redeploys automatically.
 // Falls back to the data baked in above so the file still works opened directly from disk.
 fetch('./hubs.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{
   if(!d||!Array.isArray(d)||!d.length) return;
-  HUBS=d; sel.innerHTML='';
-  HUBS.forEach((h,i)=>{const o=document.createElement('option');o.value=i;o.textContent=h.hub+"  \u00b7  League "+h.league;sel.appendChild(o);});
+  HUBS=d;
+  fillOptions();
   draw();
 }).catch(()=>{});
-document.getElementById('lang').onclick=e=>{lang=lang==='en'?'hi':'en';e.target.setAttribute('aria-pressed',lang==='hi');e.target.textContent=lang==='en'?'हिन्दी':'English';draw();};
-draw();
-</script></body></html>
+</script>
+</body>
+</html>
