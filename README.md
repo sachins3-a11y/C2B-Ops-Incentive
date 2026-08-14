@@ -6,7 +6,7 @@ Single-page printable notice, one sheet per hub. Static site, no build step.
 
 | File | What it is |
 |---|---|
-| `index.html` | The notice. Hub selector, English/Hindi toggle, print button. |
+| `index.html` | The notice. Page header, filter bar, collapsible sections, English/Hindi toggle, print button. |
 | `hubs.json` | The data. **This is the only file you change each month.** |
 | `assets/favicon.svg` | Browser-tab icon — the Cars24 icon mark. |
 
@@ -77,6 +77,37 @@ layers the system defines:
    copy, which Geist does not cover.
 4. **Components** — everything else.
 
+Motion uses its own small token set (`--ease-*`, `--dur-*`, `--stagger`). The Lego
+system does not define motion, so these are local, but they are tokens so timing
+stays uniform.
+
+### Interaction
+
+- **Page header** — sticky, carries the logo, the language toggle and Print.
+- **Filter bar** — four controls: hub, league, what the team keeps, and sort order.
+  League/keeps narrow the hub list; the count under the bar shows how many of the
+  total survive the filters. If a filter combination matches nothing, the sheet shows
+  an empty state rather than a stale hub.
+- **Dropdowns** are a custom listbox, not a native `<select>`, so the hub picker can be
+  searched. Keyboard: `↑`/`↓`/`Home`/`End` to move, `Enter` to pick, `Esc` to close,
+  type to filter. The list is `role="listbox"` with `aria-activedescendant` on whichever
+  element holds focus — the search input when the dropdown has one, otherwise the trigger.
+- **Sections collapse.** Open state lives outside the render, so it survives changing
+  hub, filter or language. A collapsed section shows its headline number in the header.
+
+Hub names come from `hubs.json` and are escaped before they reach `innerHTML`.
+
+### Motion caveat worth knowing
+
+The money figures count up on each render. `settle()` jumps every counter and meter to
+its final value, and it is wired to `beforeprint` so a print started mid-animation still
+prints final numbers. It also bumps a generation counter, which is what stops a queued
+animation frame from overwriting the settled values — without that, printing within
+~540ms of changing hub printed a wrong payout. If you add another animated value, route
+it through `settle()` too.
+
+Everything animated is disabled under `prefers-reduced-motion: reduce` and in print.
+
 If you edit the CSS, keep to the tokens: no raw hex, no raw px for
 padding/gap/radius/border-width, no bare `font-weight` numbers. The only literal
 pixel values below the token blocks are media-query breakpoints, the page
@@ -92,6 +123,10 @@ breakpoint, so `@media print` re-forces the wide grids and tightens the section
 padding; without that it spills onto a second page. The tallest hub currently renders
 at ~1000px against ~1032px of usable A4 height, so there is not much headroom — if you
 add a row or a section, re-check that it still prints on one page.
+
+Print also ignores the screen state: the page header and filter bar come off, the
+sheet carries the logo itself, and **collapsed sections print open**. Someone printing
+with a section collapsed still gets the whole notice.
 
 ## Rate
 

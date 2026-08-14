@@ -27,17 +27,19 @@
 
   /* Alpha — White */
   --alpha-white-20:rgba(255,255,255,.20);
+  --alpha-white-30:rgba(255,255,255,.30);
   --alpha-white-70:rgba(255,255,255,.70);
 
   /* Alpha — Black */
   --alpha-black-20:rgba(10,10,10,.04);
+  --alpha-black-30:rgba(10,10,10,.11);
+  --alpha-black-40:rgba(10,10,10,.18);
 
   /* Brand Blue (Cars24) */
   --brand-blue-25:#F6F5FF;
   --brand-blue-100:#E3E1FF;
   --brand-blue-300:#4736FE;   /* ✦ primary */
   --brand-blue-400:#4031E5;
-  --brand-blue-500:#392BCB;
   --brand-blue-900:#191359;
 
   /* Neutral */
@@ -69,8 +71,8 @@
   --lego-spacing-14:14px;  --lego-spacing-16:16px;  --lego-spacing-18:18px;
   --lego-spacing-20:20px;  --lego-spacing-24:24px;  --lego-spacing-26:26px;
   --lego-spacing-28:28px;  --lego-spacing-30:30px;  --lego-spacing-32:32px;
-  --lego-spacing-36:36px;  --lego-spacing-40:40px;  --lego-spacing-48:48px;
-  --lego-spacing-56:56px;
+  --lego-spacing-36:36px;  --lego-spacing-40:40px;  --lego-spacing-44:44px;
+  --lego-spacing-48:48px;  --lego-spacing-56:56px;
 
   /* ─── BORDER ──────────────────────────────────────────────────────── */
   --border-none:0px;
@@ -84,6 +86,15 @@
   --radius-s:12px;     --radius-m:14px;     --radius-l:16px;
   --radius-xl:20px;    --radius-xxl:24px;   --radius-xxxl:32px;
   --radius-full:999px;
+
+  /* ─── MOTION (not a Lego layer — kept as tokens so it stays uniform) ─ */
+  --ease-out:cubic-bezier(.22,1,.36,1);
+  --ease-spring:cubic-bezier(.34,1.4,.64,1);
+  --dur-1:120ms;
+  --dur-2:200ms;
+  --dur-3:320ms;
+  --dur-4:460ms;
+  --stagger:55ms;
 }
 
 /* ─── LAYER 2 — SEMANTIC TOKENS + BRAND THEME (Cars24) ───────────────── */
@@ -102,8 +113,8 @@
   --lego-color-surface-subtle-hover:var(--neutral-100);
   --lego-color-surface-brand-primary-rest:var(--brand-blue-300);
   --lego-color-surface-brand-primary-hover:var(--brand-blue-400);
-  --lego-color-surface-brand-primary-active:var(--brand-blue-500);
   --lego-color-surface-brand-subtle-rest:var(--brand-blue-25);
+  --lego-color-surface-brand-subtle-active:var(--brand-blue-100);
   --lego-color-surface-feedback-success-rest:var(--green-50);
   --lego-color-surface-feedback-success-subtle:var(--green-100);
   --lego-color-surface-feedback-success-strong:var(--green-600);
@@ -115,6 +126,7 @@
   /* text */
   --lego-color-text-primary-rest:var(--neutral-900);
   --lego-color-text-secondary-rest:var(--neutral-500);
+  --lego-color-text-disabled-rest:var(--neutral-400);
   --lego-color-text-inverse-rest:var(--base-white);
   --lego-color-text-inverse-secondary-rest:var(--alpha-white-70);
   --lego-color-text-brand-primary-rest:var(--brand-blue-300);
@@ -125,6 +137,7 @@
   /* icon */
   --lego-color-icon-secondary-rest:var(--neutral-500);
   --lego-color-icon-inverse-rest:var(--base-white);
+  --lego-color-icon-brand-primary-rest:var(--brand-blue-300);
 
   /* border */
   --lego-color-border-default-rest:var(--neutral-200);
@@ -132,13 +145,15 @@
   --lego-color-border-strong-rest:var(--neutral-300);
   --lego-color-border-brand-primary-rest:var(--brand-blue-300);
   --lego-color-border-brand-subtle-rest:var(--brand-blue-100);
-  --lego-color-border-inverse-rest:var(--alpha-white-20);
+  --lego-color-border-inverse-rest:var(--alpha-white-30);
   --lego-color-border-feedback-success-rest:var(--green-500);
   --lego-color-border-feedback-danger-rest:var(--red-500);
 
   /* translucent */
   --lego-color-translucent-white-20:var(--alpha-white-20);
   --lego-color-translucent-black-20:var(--alpha-black-20);
+  --lego-color-translucent-black-30:var(--alpha-black-30);
+  --lego-color-translucent-black-40:var(--alpha-black-40);
 }
 
 /* ─── LAYER 3 — TYPOGRAPHY (mobile scale) ───────────────────────────── */
@@ -191,7 +206,7 @@
 /* ─── LAYER 4 — COMPONENTS ──────────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box}
 *{margin:0;padding:0}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 
 body{
   background:var(--lego-color-surface-subtle-rest);
@@ -204,7 +219,7 @@ body{
 @media(min-width:1024px){body{padding:var(--lego-spacing-48)}}
 
 .page{
-  max-width:900px;
+  max-width:940px;
   margin-inline:auto;
   display:flex;
   flex-direction:column;
@@ -213,80 +228,262 @@ body{
 
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .icon{width:var(--lego-spacing-16);height:var(--lego-spacing-16);flex:none}
+.icon--sm{width:var(--lego-spacing-14);height:var(--lego-spacing-14)}
 
-/* Toolbar ─────────────────────────────────────────────────────────── */
-.toolbar{display:flex;flex-wrap:wrap;gap:var(--lego-spacing-8);align-items:center}
-.field{position:relative;display:flex;flex:1 1 260px;min-width:0}
-
-.select{
-  width:100%;
-  appearance:none;
-  font-family:var(--brand-font);
-  font-weight:var(--weight-medium);
-  color:var(--lego-color-text-primary-rest);
-  background:var(--lego-color-surface-default-rest);
-  border:var(--border-regular) solid var(--lego-color-border-default-rest);
-  border-radius:var(--radius-xs);
-  padding:var(--lego-spacing-12) var(--lego-spacing-40) var(--lego-spacing-12) var(--lego-spacing-16);
-  cursor:pointer;
-  transition:border-color .15s;
+/* ═══ PAGE HEADER ═══════════════════════════════════════════════════ */
+.topbar{
+  position:sticky;
+  top:var(--lego-spacing-8);
+  z-index:20;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:var(--lego-spacing-12);
+  flex-wrap:wrap;
+  padding:var(--lego-spacing-12) var(--lego-spacing-16);
+  background:var(--lego-color-surface-brand-primary-rest);
+  color:var(--lego-color-text-inverse-rest);
+  border-radius:var(--radius-xl);
+  box-shadow:0 var(--lego-spacing-4) var(--lego-spacing-16) var(--lego-color-translucent-black-30);
 }
-.select:hover{border-color:var(--lego-color-border-strong-rest)}
-.field__chevron{
-  position:absolute;
-  right:var(--lego-spacing-16);
-  top:50%;
-  transform:translateY(-50%);
-  color:var(--lego-color-icon-secondary-rest);
-  pointer-events:none;
+@media(min-width:1024px){
+  .topbar{padding:var(--lego-spacing-14) var(--lego-spacing-24);top:var(--lego-spacing-16)}
 }
+.topbar__brand{display:flex;align-items:center;gap:var(--lego-spacing-12);min-width:0}
+.topbar__logo{
+  display:block;
+  height:var(--lego-spacing-20);
+  width:auto;
+  aspect-ratio:874/189;   /* logo artwork ratio — geometry, not a spacing token */
+  color:var(--lego-color-icon-inverse-rest);
+}
+.topbar__divider{
+  width:var(--border-regular);
+  height:var(--lego-spacing-20);
+  background:var(--lego-color-border-inverse-rest);
+  border-radius:var(--radius-full);
+}
+.topbar__title{color:var(--lego-color-text-inverse-rest);white-space:nowrap}
+.topbar__actions{display:flex;align-items:center;gap:var(--lego-spacing-8)}
 
+/* ═══ BUTTONS ═══════════════════════════════════════════════════════ */
 .btn{
   display:inline-flex;
   align-items:center;
   justify-content:center;
   gap:var(--lego-spacing-8);
-  padding:var(--lego-spacing-12) var(--lego-spacing-16);
+  padding:var(--lego-spacing-10) var(--lego-spacing-16);
   border:var(--border-regular) solid transparent;
-  border-radius:var(--radius-s);
+  border-radius:var(--radius-full);
   font-family:var(--brand-font);
   font-weight:var(--weight-semibold);
   cursor:pointer;
-  transition:background .15s,border-color .15s,color .15s;
+  white-space:nowrap;
+  transition:background var(--dur-2) var(--ease-out),
+             border-color var(--dur-2) var(--ease-out),
+             color var(--dur-2) var(--ease-out),
+             transform var(--dur-1) var(--ease-out),
+             box-shadow var(--dur-2) var(--ease-out);
 }
-.btn--primary{
-  background:var(--lego-color-surface-brand-primary-rest);
+.btn:active{transform:scale(.96)}
+
+/* on the brand-blue topbar */
+.btn--onbrand{
+  background:var(--lego-color-translucent-white-20);
+  border-color:var(--lego-color-border-inverse-rest);
   color:var(--lego-color-text-inverse-rest);
 }
-.btn--primary:hover{background:var(--lego-color-surface-brand-primary-hover)}
-.btn--primary:active{background:var(--lego-color-surface-brand-primary-active)}
-
-.btn--toggle{
+.btn--onbrand:hover{background:var(--alpha-white-30)}
+.btn--solid{
   background:var(--lego-color-surface-default-rest);
-  border-color:var(--lego-color-border-default-rest);
-  border-radius:var(--radius-full);
-  color:var(--lego-color-text-primary-rest);
-}
-.btn--toggle:hover{
-  background:var(--lego-color-surface-subtle-hover);
-  border-color:var(--lego-color-border-strong-rest);
-}
-.btn--toggle[aria-pressed="true"]{
-  background:var(--lego-color-surface-brand-subtle-rest);
-  border-color:var(--lego-color-border-brand-primary-rest);
   color:var(--lego-color-text-brand-primary-rest);
+  border-color:transparent;
 }
+.btn--solid:hover{box-shadow:0 var(--lego-spacing-2) var(--lego-spacing-10) var(--lego-color-translucent-black-40)}
 
-:where(.btn,.select):focus-visible{
+:where(.btn,.dd__trigger,.dd__search input,.sec__toggle,.dd__opt):focus-visible{
   outline:var(--border-bold) solid var(--lego-color-border-brand-primary-rest);
   outline-offset:var(--lego-spacing-2);
 }
+.topbar :where(.btn):focus-visible{
+  outline-color:var(--lego-color-border-inverse-rest);
+  outline-width:var(--border-bold);
+}
 
-/* Sheet ───────────────────────────────────────────────────────────── */
-.sheet{
+/* ═══ FILTER BAR ════════════════════════════════════════════════════ */
+.filters{
   background:var(--lego-color-surface-default-rest);
   border:var(--border-regular) solid var(--lego-color-border-default-rest);
   border-radius:var(--radius-l);
+  padding:var(--lego-spacing-16);
+  display:flex;
+  flex-direction:column;
+  gap:var(--lego-spacing-12);
+}
+.filters__grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:var(--lego-spacing-10);
+}
+.filters__foot{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:var(--lego-spacing-12);
+  flex-wrap:wrap;
+}
+.filters__count{color:var(--lego-color-text-secondary-rest)}
+.filters__count b{color:var(--lego-color-text-primary-rest);font-weight:var(--weight-semibold)}
+.filters__reset{
+  background:none;
+  border:var(--border-regular) solid transparent;
+  border-radius:var(--radius-full);
+  padding:var(--lego-spacing-6) var(--lego-spacing-12);
+  color:var(--lego-color-text-brand-primary-rest);
+  font-family:var(--brand-font);
+  font-weight:var(--weight-semibold);
+  cursor:pointer;
+  transition:background var(--dur-2) var(--ease-out),opacity var(--dur-2) var(--ease-out);
+}
+.filters__reset:hover{background:var(--lego-color-surface-brand-subtle-rest)}
+.filters__reset[hidden]{display:none}
+
+/* ═══ DROPDOWN (searchable combobox — replaces native select) ════════ */
+.dd{position:relative;min-width:0}
+
+.dd__trigger{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:var(--lego-spacing-8);
+  text-align:left;
+  padding:var(--lego-spacing-8) var(--lego-spacing-12);
+  background:var(--lego-color-surface-default-rest);
+  border:var(--border-regular) solid var(--lego-color-border-default-rest);
+  border-radius:var(--radius-s);
+  cursor:pointer;
+  font-family:var(--brand-font);
+  color:var(--lego-color-text-primary-rest);
+  transition:border-color var(--dur-2) var(--ease-out),
+             background var(--dur-2) var(--ease-out),
+             box-shadow var(--dur-2) var(--ease-out);
+}
+.dd__trigger:hover{border-color:var(--lego-color-border-strong-rest);background:var(--lego-color-surface-subtle-rest)}
+.dd[data-open="true"] .dd__trigger{
+  border-color:var(--lego-color-border-brand-primary-rest);
+  border-width:var(--border-medium);
+  background:var(--lego-color-surface-default-rest);
+}
+.dd__texts{display:flex;flex-direction:column;gap:var(--lego-spacing-2);min-width:0;flex:1}
+.dd__label{color:var(--lego-color-text-secondary-rest)}
+[data-brand] .dd__value{
+  color:var(--lego-color-text-primary-rest);
+  font-weight:var(--weight-semibold);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.dd__chevron{
+  color:var(--lego-color-icon-secondary-rest);
+  transition:transform var(--dur-3) var(--ease-out),color var(--dur-2) var(--ease-out);
+}
+.dd[data-open="true"] .dd__chevron{transform:rotate(180deg);color:var(--lego-color-icon-brand-primary-rest)}
+
+.dd__panel{
+  position:absolute;
+  z-index:30;
+  top:calc(100% + var(--lego-spacing-6));
+  left:0;
+  right:auto;
+  width:max-content;
+  min-width:100%;
+  max-width:min(360px,calc(100vw - var(--lego-spacing-32)));
+  background:var(--lego-color-surface-default-rest);
+  border:var(--border-regular) solid var(--lego-color-border-default-rest);
+  border-radius:var(--radius-m);
+  box-shadow:0 var(--lego-spacing-10) var(--lego-spacing-32) var(--lego-color-translucent-black-40);
+  padding:var(--lego-spacing-8);
+  display:flex;
+  flex-direction:column;
+  gap:var(--lego-spacing-8);
+  transform-origin:top center;
+  animation:dd-in var(--dur-2) var(--ease-out) both;
+}
+.dd[data-open="false"] .dd__panel{display:none}
+.dd--end .dd__panel{left:auto;right:0}
+@keyframes dd-in{
+  from{opacity:0;transform:translateY(calc(-1 * var(--lego-spacing-6))) scale(.97)}
+  to{opacity:1;transform:none}
+}
+
+.dd__search{position:relative;display:flex;align-items:center}
+.dd__search .icon{
+  position:absolute;
+  left:var(--lego-spacing-10);
+  color:var(--lego-color-icon-secondary-rest);
+  pointer-events:none;
+}
+.dd__search input{
+  width:100%;
+  font-family:var(--brand-font);
+  font-weight:var(--weight-regular);
+  color:var(--lego-color-text-primary-rest);
+  background:var(--lego-color-surface-subtle-rest);
+  border:var(--border-regular) solid var(--lego-color-border-default-rest);
+  border-radius:var(--radius-xs);
+  padding:var(--lego-spacing-8) var(--lego-spacing-10) var(--lego-spacing-8) var(--lego-spacing-32);
+  transition:border-color var(--dur-2) var(--ease-out),background var(--dur-2) var(--ease-out);
+}
+.dd__search input:focus{
+  outline:none;
+  background:var(--lego-color-surface-default-rest);
+  border-color:var(--lego-color-border-brand-primary-rest);
+  border-width:var(--border-medium);
+}
+.dd__search input::placeholder{color:var(--lego-color-text-disabled-rest)}
+
+.dd__list{
+  list-style:none;
+  max-height:var(--dd-list-max);
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  gap:var(--lego-spacing-2);
+  scroll-behavior:smooth;
+}
+.dd{--dd-list-max:264px}   /* ~7 rows before scrolling — a viewport budget, not a token */
+
+.dd__opt{
+  display:flex;
+  align-items:center;
+  gap:var(--lego-spacing-8);
+  padding:var(--lego-spacing-8) var(--lego-spacing-10);
+  border-radius:var(--radius-xs);
+  cursor:pointer;
+  color:var(--lego-color-text-primary-rest);
+  transition:background var(--dur-1) var(--ease-out),color var(--dur-1) var(--ease-out);
+}
+.dd__opt:hover{background:var(--lego-color-surface-subtle-hover)}
+.dd__opt[data-active="true"]{background:var(--lego-color-surface-brand-subtle-rest)}
+.dd__opt[aria-selected="true"]{
+  background:var(--lego-color-surface-brand-subtle-rest);
+  color:var(--lego-color-text-brand-strong-rest);
+}
+.dd__opt[aria-selected="true"][data-active="true"]{background:var(--lego-color-surface-brand-subtle-active)}
+.dd__opt__text{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dd__opt__hint{color:var(--lego-color-text-secondary-rest);flex:none}
+.dd__opt[aria-selected="true"] .dd__opt__hint{color:var(--lego-color-text-brand-primary-rest)}
+.dd__tick{color:var(--lego-color-icon-brand-primary-rest);flex:none;opacity:0;transition:opacity var(--dur-1) var(--ease-out)}
+.dd__opt[aria-selected="true"] .dd__tick{opacity:1}
+.dd__empty{
+  padding:var(--lego-spacing-12) var(--lego-spacing-10);
+  color:var(--lego-color-text-secondary-rest);
+  text-align:center;
+}
+
+/* ═══ SHEET ═════════════════════════════════════════════════════════ */
+.sheet{
+  background:var(--lego-color-surface-default-rest);
+  border:var(--border-regular) solid var(--lego-color-border-default-rest);
+  border-radius:var(--radius-xxl);
   overflow:hidden;
   box-shadow:0 var(--lego-spacing-2) var(--lego-spacing-12) var(--lego-color-translucent-black-20);
 }
@@ -297,25 +494,27 @@ body{
   padding:var(--lego-spacing-24);
   display:flex;
   flex-direction:column;
-  gap:var(--lego-spacing-16);
+  gap:var(--lego-spacing-12);
 }
 @media(min-width:1024px){.sheet__hd{padding:var(--lego-spacing-32)}}
-
 .sheet__brandrow{
   display:flex;
   align-items:center;
-  justify-content:space-between;
+  /* only the chip is here on screen (the page header carries the logo), so it
+     hugs the sheet's right edge; print puts the logo back and splits them. */
+  justify-content:flex-end;
   gap:var(--lego-spacing-16);
   flex-wrap:wrap;
 }
+/* The page header already carries the logo on screen. The printed sheet has no
+   page header, so the mark appears there instead — see @media print. */
+.sheet__brandrow .logo{display:none}
 .logo{
-  display:block;
   height:var(--lego-spacing-20);
   width:auto;
-  aspect-ratio:874/189;   /* logo artwork ratio — geometry, not a spacing token */
+  aspect-ratio:874/189;
   color:var(--lego-color-icon-inverse-rest);
 }
-@media(min-width:1024px){.logo{height:var(--lego-spacing-24)}}
 
 .chip{
   display:inline-flex;
@@ -328,7 +527,6 @@ body{
   color:var(--lego-color-text-inverse-rest);
   white-space:nowrap;
 }
-
 .sheet__eyebrow{color:var(--lego-color-text-inverse-secondary-rest)}
 [data-brand] .sheet__title{font-weight:var(--weight-bold);margin-top:var(--lego-spacing-4)}
 
@@ -345,30 +543,75 @@ body{
   color:var(--lego-color-text-brand-primary-rest);
 }
 
-/* Section */
-.sec{
-  padding:var(--lego-spacing-24);
-  display:flex;
-  flex-direction:column;
-  gap:var(--lego-spacing-16);
-  border-top:var(--border-regular) solid var(--lego-color-border-subtle-rest);
-}
-@media(min-width:1024px){.sec{padding:var(--lego-spacing-32)}}
-/* the headline strip already draws a divider — don't stack a second one on it */
+/* ═══ COLLAPSIBLE SECTION ═══════════════════════════════════════════ */
+.sec{border-top:var(--border-regular) solid var(--lego-color-border-subtle-rest)}
 .headline+.sec{border-top:var(--border-none)}
-.sec__title{color:var(--lego-color-text-secondary-rest)}
 
-/* Checks ──────────────────────────────────────────────────────────── */
+.sec__toggle{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:var(--lego-spacing-12);
+  padding:var(--lego-spacing-20) var(--lego-spacing-24);
+  background:none;
+  border:none;
+  cursor:pointer;
+  text-align:left;
+  font-family:var(--brand-font);
+  color:var(--lego-color-text-secondary-rest);
+  transition:background var(--dur-2) var(--ease-out),color var(--dur-2) var(--ease-out);
+}
+@media(min-width:1024px){.sec__toggle{padding:var(--lego-spacing-20) var(--lego-spacing-32)}}
+.sec__toggle:hover{background:var(--lego-color-surface-subtle-rest);color:var(--lego-color-text-primary-rest)}
+.sec__toggle__text{flex:1;min-width:0}
+.sec__summary{
+  color:var(--lego-color-text-secondary-rest);
+  opacity:0;
+  transform:translateX(calc(-1 * var(--lego-spacing-4)));
+  transition:opacity var(--dur-3) var(--ease-out),transform var(--dur-3) var(--ease-out);
+}
+.sec[data-open="false"] .sec__summary{opacity:1;transform:none}
+.sec__caret{
+  color:var(--lego-color-icon-secondary-rest);
+  flex:none;
+  transition:transform var(--dur-3) var(--ease-spring),color var(--dur-2) var(--ease-out);
+}
+.sec[data-open="false"] .sec__caret{transform:rotate(-90deg)}
+.sec__toggle:hover .sec__caret{color:var(--lego-color-icon-brand-primary-rest)}
+
+.sec__inner{
+  padding:0 var(--lego-spacing-24) var(--lego-spacing-24);
+}
+@media(min-width:1024px){.sec__inner{padding:0 var(--lego-spacing-32) var(--lego-spacing-32)}}
+
+/* Animate the collapse only where 0fr interpolation is supported, so an
+   unsupporting browser simply leaves the section open rather than blank. */
+@supports (grid-template-rows: 0fr){
+  .sec__body{
+    display:grid;
+    grid-template-rows:1fr;
+    transition:grid-template-rows var(--dur-3) var(--ease-out),opacity var(--dur-2) var(--ease-out);
+  }
+  .sec__body>*{overflow:hidden;min-height:0}
+  .sec[data-open="false"] .sec__body{grid-template-rows:0fr;opacity:0}
+}
+
+/* ═══ CHECKS ════════════════════════════════════════════════════════ */
 .checks{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--lego-spacing-12)}
 
 .check{
   background:var(--lego-color-surface-subtle-rest);
   border:var(--border-regular) solid var(--lego-color-border-default-rest);
-  border-radius:var(--radius-m);
-  padding:var(--lego-spacing-20);
+  border-radius:var(--radius-l);
+  padding:var(--lego-spacing-16);
   display:flex;
   flex-direction:column;
-  gap:var(--lego-spacing-12);
+  gap:var(--lego-spacing-10);
+  transition:transform var(--dur-2) var(--ease-out),box-shadow var(--dur-2) var(--ease-out);
+}
+.check:hover{
+  transform:translateY(calc(-1 * var(--lego-spacing-2)));
+  box-shadow:0 var(--lego-spacing-8) var(--lego-spacing-20) var(--lego-color-translucent-black-30);
 }
 .check--pass{
   background:var(--lego-color-surface-feedback-success-rest);
@@ -378,7 +621,6 @@ body{
   background:var(--lego-color-surface-feedback-danger-rest);
   border-color:var(--lego-color-border-feedback-danger-rest);
 }
-
 .check__top{display:flex;align-items:center;justify-content:space-between;gap:var(--lego-spacing-8)}
 [data-brand] .check__idx{color:var(--lego-color-text-secondary-rest);font-weight:var(--weight-semibold)}
 [data-brand] .check__title{color:var(--lego-color-text-primary-rest);font-weight:var(--weight-semibold)}
@@ -391,9 +633,10 @@ body{
 .badge{
   display:inline-flex;
   align-items:center;
-  padding:var(--lego-spacing-2) var(--lego-spacing-6);
+  gap:var(--lego-spacing-4);
+  padding:var(--lego-spacing-2) var(--lego-spacing-8);
   border:var(--border-regular) solid transparent;
-  border-radius:var(--radius-xxs);
+  border-radius:var(--radius-full);
   white-space:nowrap;
 }
 [data-brand] .badge{font-weight:var(--weight-bold)}
@@ -419,44 +662,50 @@ body{
 .meter__fill{
   display:block;
   height:100%;
+  width:0;
   border-radius:var(--radius-full);
   background:var(--lego-color-surface-feedback-neutral-strong);
+  transition:width var(--dur-4) var(--ease-out);
+  transition-delay:calc(var(--i,0) * var(--stagger));
 }
 .check--pass .meter__fill{background:var(--lego-color-surface-feedback-success-strong)}
 .check--miss .meter__fill{background:var(--lego-color-surface-feedback-danger-strong)}
 
-/* Ladder ──────────────────────────────────────────────────────────── */
+/* ═══ LADDER ════════════════════════════════════════════════════════ */
 .ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--lego-spacing-12)}
 
 .rung{
   background:var(--lego-color-surface-subtle-rest);
   border:var(--border-regular) solid var(--lego-color-border-default-rest);
-  border-radius:var(--radius-m);
+  border-radius:var(--radius-l);
   padding:var(--lego-spacing-16) var(--lego-spacing-12);
   display:flex;
   flex-direction:column;
   align-items:center;
   gap:var(--lego-spacing-4);
   text-align:center;
+  transition:transform var(--dur-2) var(--ease-out),box-shadow var(--dur-2) var(--ease-out);
 }
+.rung:hover{transform:translateY(calc(-1 * var(--lego-spacing-2)))}
 .rung--on{
   background:var(--lego-color-surface-brand-primary-rest);
   border-color:var(--lego-color-surface-brand-primary-rest);
   border-width:var(--border-medium);
+  box-shadow:0 var(--lego-spacing-6) var(--lego-spacing-20) var(--lego-color-translucent-black-30);
 }
 [data-brand] .rung__a{color:var(--lego-color-text-primary-rest);font-weight:var(--weight-bold)}
 .rung__b{color:var(--lego-color-text-secondary-rest)}
 .rung--on .rung__a{color:var(--lego-color-text-inverse-rest)}
 .rung--on .rung__b{color:var(--lego-color-text-inverse-secondary-rest)}
 
-/* Money chain ─────────────────────────────────────────────────────── */
+/* ═══ MONEY CHAIN ═══════════════════════════════════════════════════ */
 .chain{
   display:grid;
   grid-template-columns:repeat(5,1fr);
   gap:var(--border-regular);
   background:var(--lego-color-border-default-rest);
   border:var(--border-regular) solid var(--lego-color-border-default-rest);
-  border-radius:var(--radius-m);
+  border-radius:var(--radius-l);
   overflow:hidden;
 }
 .chain__cell{
@@ -468,14 +717,17 @@ body{
   justify-content:center;
   gap:var(--lego-spacing-4);
   text-align:center;
+  transition:background var(--dur-2) var(--ease-out);
 }
-[data-brand] .chain__v{color:var(--lego-color-text-primary-rest);font-weight:var(--weight-bold)}
+.chain__cell:hover{background:var(--lego-color-surface-subtle-rest)}
+[data-brand] .chain__v{color:var(--lego-color-text-primary-rest);font-weight:var(--weight-bold);font-variant-numeric:tabular-nums}
 .chain__k{color:var(--lego-color-text-secondary-rest)}
 .chain__cell--total{background:var(--lego-color-surface-brand-primary-rest)}
+.chain__cell--total:hover{background:var(--lego-color-surface-brand-primary-hover)}
 .chain__cell--total .chain__v{color:var(--lego-color-text-inverse-rest)}
 .chain__cell--total .chain__k{color:var(--lego-color-text-inverse-secondary-rest)}
 
-/* Footer ──────────────────────────────────────────────────────────── */
+/* ═══ FOOTER + EMPTY STATE ══════════════════════════════════════════ */
 .sheet__ft{
   padding:var(--lego-spacing-20) var(--lego-spacing-24);
   background:var(--lego-color-surface-subtle-rest);
@@ -488,97 +740,195 @@ body{
   font-weight:var(--weight-semibold);
 }
 
+.empty{
+  padding:var(--lego-spacing-56) var(--lego-spacing-24);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:var(--lego-spacing-12);
+  text-align:center;
+}
+.empty__icon{
+  width:var(--lego-spacing-48);
+  height:var(--lego-spacing-48);
+  color:var(--lego-color-icon-secondary-rest);
+}
+.empty__text{color:var(--lego-color-text-secondary-rest)}
+
+/* ═══ MICROANIMATIONS ═══════════════════════════════════════════════ */
+@keyframes rise{
+  from{opacity:0;transform:translateY(var(--lego-spacing-12))}
+  to{opacity:1;transform:none}
+}
+@keyframes pop{
+  0%{transform:scale(.8);opacity:0}
+  60%{transform:scale(1.06)}
+  100%{transform:scale(1);opacity:1}
+}
+/* re-runs on every render because draw() replaces the nodes */
+.anim-rise{animation:rise var(--dur-3) var(--ease-out) both;animation-delay:calc(var(--i,0) * var(--stagger))}
+.anim-pop{animation:pop var(--dur-3) var(--ease-spring) both;animation-delay:calc(var(--i,0) * var(--stagger) + var(--dur-2))}
+
 /* ─── RESPONSIVE ────────────────────────────────────────────────────── */
+@media(max-width:860px){
+  .filters__grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
 @media(max-width:760px){
   .checks,.ladder{grid-template-columns:repeat(2,1fr)}
   .chain{grid-template-columns:repeat(2,1fr)}
   .chain__cell--total{grid-column:1/-1}
+  .sheet{border-radius:var(--radius-xl)}
+  .sheet__hd,.headline,.sec__toggle{padding-left:var(--lego-spacing-16);padding-right:var(--lego-spacing-16)}
+  .sec__inner{padding-left:var(--lego-spacing-16);padding-right:var(--lego-spacing-16)}
+  .sheet__ft{padding-left:var(--lego-spacing-16);padding-right:var(--lego-spacing-16)}
 }
-@media(max-width:520px){
-  .field{flex:1 1 100%}
-}
-@media(max-width:400px){
+@media(max-width:560px){
+  .topbar{padding:var(--lego-spacing-10) var(--lego-spacing-12);border-radius:var(--radius-l)}
+  .topbar__title,.topbar__divider{display:none}
+  .topbar__actions{flex:1;justify-content:flex-end}
+  .filters__grid{grid-template-columns:1fr}
   .checks,.ladder,.chain{grid-template-columns:1fr}
+  .dd{--dd-list-max:216px}
+}
+
+/* ─── REDUCED MOTION ────────────────────────────────────────────────── */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{
+    animation-duration:1ms !important;
+    animation-delay:0ms !important;
+    transition-duration:1ms !important;
+    transition-delay:0ms !important;
+  }
+  .btn:active{transform:none}
+  .check:hover,.rung:hover{transform:none}
 }
 
 /* ─── PRINT — one A4 sheet per hub ──────────────────────────────────── */
 @media print{
   @page{margin:12mm}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  *,*::before,*::after{animation:none !important;transition:none !important}
   body{background:var(--lego-color-surface-default-rest);padding:var(--border-none)}
-  .toolbar{display:none}
+  .topbar,.filters{display:none}
   .page{max-width:none;gap:var(--border-none)}
   .sheet{
     border:var(--border-none);
     border-radius:var(--radius-none);
     box-shadow:none;
   }
-  /* A4 is narrower than 760px, which would otherwise trip the mobile
-     breakpoint and push the notice onto a second page. Keep it wide. */
+  /* the printed sheet has no page header, so it carries the logo itself */
+  .sheet__brandrow .logo{display:block}
+  .sheet__brandrow{justify-content:space-between}
+
+  /* A collapsed section must still print in full, and the affordances that
+     only make sense on screen come off. */
+  .sec__body{grid-template-rows:1fr !important;opacity:1 !important}
+  .sec__body>*{overflow:visible !important}
+  .sec__caret,.sec__summary{display:none}
+  .sec__toggle{padding-bottom:var(--lego-spacing-8)}
+  .meter__fill{transition:none}
+
+  /* A4 is narrower than the mobile breakpoint, which would otherwise stack
+     the grids and push the notice onto a second page. Keep it wide. */
   .checks,.ladder{grid-template-columns:repeat(4,1fr)}
   .chain{grid-template-columns:repeat(5,1fr)}
   .chain__cell--total{grid-column:auto}
-  /* Tighten to the page without touching the on-screen rhythm */
-  .sheet__hd{padding:var(--lego-spacing-16) var(--lego-spacing-20);gap:var(--lego-spacing-12)}
-  .headline{padding:var(--lego-spacing-12) var(--lego-spacing-20)}
-  .sec{padding:var(--lego-spacing-16) var(--lego-spacing-20);gap:var(--lego-spacing-10)}
-  .check{padding:var(--lego-spacing-12);gap:var(--lego-spacing-8)}
-  .rung{padding:var(--lego-spacing-12) var(--lego-spacing-8)}
-  .chain__cell{padding:var(--lego-spacing-12) var(--lego-spacing-8)}
-  .sheet__ft{padding:var(--lego-spacing-12) var(--lego-spacing-20)}
-  .check,.rung,.chain,.chain__cell,.checks,.ladder,.sec{break-inside:avoid}
+  .sheet__hd{padding:var(--lego-spacing-14) var(--lego-spacing-20);gap:var(--lego-spacing-10)}
+  .headline{padding:var(--lego-spacing-10) var(--lego-spacing-20)}
+  .sec__toggle{padding:var(--lego-spacing-12) var(--lego-spacing-20) var(--lego-spacing-6)}
+  .sec__inner{padding:0 var(--lego-spacing-20) var(--lego-spacing-12)}
+  .check{padding:var(--lego-spacing-10);gap:var(--lego-spacing-6)}
+  .rung{padding:var(--lego-spacing-10) var(--lego-spacing-8)}
+  .chain__cell{padding:var(--lego-spacing-10) var(--lego-spacing-8)}
+  .sheet__ft{padding:var(--lego-spacing-10) var(--lego-spacing-20)}
+  .check:hover,.rung:hover,.chain__cell:hover{transform:none;box-shadow:none;background-color:revert-layer}
 }
 </style>
 </head>
 
 <body data-brand="cars24">
 
-<!-- Toolbar icons. The logo is inlined per-render instead: Chromium will not
-     paint a sprite <use> reference in print, and this notice has to print. -->
+<!-- Toolbar / UI icons. The Cars24 mark is injected from JS instead: Chromium
+     will not paint a sprite <use> reference in print, and the sheet must print. -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
-<symbol id="c24-chevron" viewBox="0 0 16 16">
-<path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M4 6l4 4 4-4"/>
+<symbol id="i-chevron" viewBox="0 0 16 16">
+<path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M4 6.5l4 4 4-4"/>
 </symbol>
-<symbol id="c24-printer" viewBox="0 0 16 16">
+<symbol id="i-search" viewBox="0 0 16 16">
+<path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M7 11.5a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9zM10.4 10.4l3.1 3.1"/>
+</symbol>
+<symbol id="i-printer" viewBox="0 0 16 16">
 <path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M4.5 6V2.5h7V6M4.5 12H3a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-1.5M4.5 9.5h7v4h-7z"/>
+</symbol>
+<symbol id="i-cross" viewBox="0 0 16 16">
+<path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4.5 4.5l7 7M11.5 4.5l-7 7"/>
+</symbol>
+<symbol id="i-tick" viewBox="0 0 16 16">
+<path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 8.5l3.5 3.5L13 5"/>
+</symbol>
+<symbol id="i-empty" viewBox="0 0 48 48">
+<path fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M21 34a13 13 0 1 0 0-26 13 13 0 0 0 0 26zM30.5 30.5L41 41M16 21h10"/>
 </symbol>
 </defs></svg>
 
 <div class="page">
 
-  <div class="toolbar">
-    <label class="sr-only" for="hub">Choose hub</label>
-    <span class="field">
-      <select class="select label-2" id="hub"></select>
-      <svg class="icon field__chevron" aria-hidden="true"><use href="#c24-chevron"></use></svg>
-    </span>
-    <button class="btn btn--toggle label-2" id="lang" type="button" aria-pressed="false">हिन्दी</button>
-    <button class="btn btn--primary label-2" id="print" type="button">
-      <svg class="icon" aria-hidden="true"><use href="#c24-printer"></use></svg>
-      <span id="printLabel">Print</span>
-    </button>
-  </div>
+  <header class="topbar">
+    <div class="topbar__brand">
+      <span id="topbarLogo"></span>
+      <span class="topbar__divider" aria-hidden="true"></span>
+      <span class="topbar__title label-1" id="appTitle">Hub Incentive</span>
+    </div>
+    <div class="topbar__actions">
+      <button class="btn btn--onbrand label-3" id="lang" type="button" aria-pressed="false">हिन्दी</button>
+      <button class="btn btn--solid label-3" id="print" type="button">
+        <svg class="icon icon--sm" aria-hidden="true"><use href="#i-printer"></use></svg>
+        <span id="printLabel">Print</span>
+      </button>
+    </div>
+  </header>
 
-  <article class="sheet" id="sheet" aria-live="polite"></article>
+  <section class="filters" id="filters">
+    <h2 class="sr-only" id="filtersTitle">Filters</h2>
+    <div class="filters__grid">
+      <div class="dd" id="ddHub"></div>
+      <div class="dd" id="ddLeague"></div>
+      <div class="dd" id="ddTier"></div>
+      <div class="dd dd--end" id="ddSort"></div>
+    </div>
+    <div class="filters__foot">
+      <p class="filters__count label-3" id="count" aria-live="polite"></p>
+      <button class="filters__reset label-3" id="reset" type="button" hidden></button>
+    </div>
+  </section>
+
+  <article class="sheet" id="sheet"></article>
 
 </div>
 
 <script>
 let HUBS=[{"hub": "Noida sec-37 Parking", "league": "A", "heads": 11, "units9": 451, "qtr": 4510, "recv": 79.4, "disp": 93.4, "dg": 3.8, "dgt": 17, "yms": 79.1, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [false, true, true, true], "passed": 3, "q": 0.75}, {"hub": "Metrowalk_Parking Yard", "league": "A", "heads": 10, "units9": 246, "qtr": 2460, "recv": 81.9, "disp": 99.9, "dg": 3.7, "dgt": 9, "yms": 85.8, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [false, true, true, true], "passed": 3, "q": 0.75}, {"hub": "Gurgaon_Parking 2", "league": "A", "heads": 9, "units9": 222, "qtr": 2220, "recv": 86.6, "disp": 85.9, "dg": 7.2, "dgt": 16, "yms": 86.0, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [true, false, false, true], "passed": 2, "q": 0.5}, {"hub": "Bangalore Parking", "league": "A", "heads": 3, "units9": 179, "qtr": 1790, "recv": 64.6, "disp": 59.1, "dg": 14.5, "dgt": 26, "yms": 60.2, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [false, false, false, false], "passed": 0, "q": 0.0}, {"hub": "Hyderabad-2 Parking", "league": "A", "heads": 3, "units9": 167, "qtr": 1670, "recv": 96.9, "disp": 100.0, "dg": 1.8, "dgt": 3, "yms": 67.7, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [true, true, true, false], "passed": 3, "q": 0.75}, {"hub": "Pune_Cars24 Parking", "league": "A", "heads": 3, "units9": 127, "qtr": 1270, "recv": 83.3, "disp": 84.8, "dg": 2.4, "dgt": 3, "yms": 76.4, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [true, false, true, true], "passed": 3, "q": 0.75}, {"hub": "Chennai Parking", "league": "A", "heads": 3, "units9": 115, "qtr": 1150, "recv": 74.4, "disp": 80.9, "dg": 1.7, "dgt": 2, "yms": 71.3, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [false, false, true, true], "passed": 2, "q": 0.5}, {"hub": "Kolkata-3 Parking", "league": "A", "heads": 3, "units9": 111, "qtr": 1110, "recv": 86.4, "disp": 94.3, "dg": 1.8, "dgt": 2, "yms": 44.1, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [true, true, true, false], "passed": 3, "q": 0.75}, {"hub": "Lucknow Parking", "league": "B", "heads": 2, "units9": 80, "qtr": 800, "recv": 93.3, "disp": 79.9, "dg": 2.5, "dgt": 2, "yms": 83.8, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, false, true, true], "passed": 2, "q": 0.5}, {"hub": "Patna-2 Parking", "league": "B", "heads": 3, "units9": 61, "qtr": 610, "recv": 84.8, "disp": 100.0, "dg": 4.9, "dgt": 3, "yms": 82.0, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, true, true, true], "passed": 3, "q": 0.75}, {"hub": "Jaipur Parking-2", "league": "B", "heads": 2, "units9": 50, "qtr": 500, "recv": 87.0, "disp": 79.3, "dg": 12.0, "dgt": 6, "yms": 64.0, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, false, false, true], "passed": 1, "q": 0.0}, {"hub": "Indore Parking", "league": "B", "heads": 2, "units9": 47, "qtr": 470, "recv": 93.9, "disp": 66.1, "dg": 2.1, "dgt": 1, "yms": 66.0, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, false, true, true], "passed": 2, "q": 0.5}, {"hub": "Kochi Parking", "league": "B", "heads": 1, "units9": 46, "qtr": 460, "recv": 96.2, "disp": 81.8, "dg": 0.0, "dgt": 0, "yms": 26.1, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, false, true, false], "passed": 2, "q": 0.5}, {"hub": "Coimbatore Parking", "league": "B", "heads": 1, "units9": 33, "qtr": 330, "recv": 42.9, "disp": 51.2, "dg": 0.0, "dgt": 0, "yms": 0.0, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, false, true, false], "passed": 1, "q": 0.0}, {"hub": "Meerut Parking", "league": "B", "heads": 2, "units9": 24, "qtr": 240, "recv": 100.0, "disp": 100.0, "dg": 4.2, "dgt": 1, "yms": 100.0, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, true, true], "passed": 4, "q": 1.0}, {"hub": "Agra Parking", "league": "B", "heads": 1, "units9": 24, "qtr": 240, "recv": 94.7, "disp": 100.0, "dg": 8.3, "dgt": 2, "yms": 62.5, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, false, true], "passed": 3, "q": 0.75}, {"hub": "Dehradun Parking", "league": "B", "heads": 1, "units9": 22, "qtr": 220, "recv": 93.3, "disp": 83.3, "dg": 0.0, "dgt": 0, "yms": 59.1, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, false, true, false], "passed": 1, "q": 0.0}, {"hub": "Bhubaneswar Parking", "league": "B", "heads": 1, "units9": 20, "qtr": 200, "recv": 94.7, "disp": 98.0, "dg": 0.0, "dgt": 0, "yms": 85.0, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, true, true], "passed": 4, "q": 1.0}, {"hub": "Kanpur Parking", "league": "B", "heads": 1, "units9": 19, "qtr": 190, "recv": 80.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 47.4, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, true, true, false], "passed": 2, "q": 0.5}, {"hub": "Bhopal-2 Parking", "league": "B", "heads": 1, "units9": 18, "qtr": 180, "recv": 76.9, "disp": 97.3, "dg": 0.0, "dgt": 0, "yms": 66.7, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, false, true, true], "passed": 2, "q": 0.5}, {"hub": "Ranchi-2 Parking", "league": "B", "heads": 2, "units9": 17, "qtr": 170, "recv": 100.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 58.8, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, true, false], "passed": 3, "q": 0.75}, {"hub": "Gwalior Parking", "league": "B", "heads": 1, "units9": 13, "qtr": 130, "recv": 100.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 46.1, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, true, false], "passed": 3, "q": 0.75}, {"hub": "Raipur Parking", "league": "B", "heads": 1, "units9": 13, "qtr": 130, "recv": 60.0, "disp": 100.0, "dg": 7.7, "dgt": 1, "yms": 38.5, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, true, false, false], "passed": 1, "q": 0.0}, {"hub": "Trivandrum Parking", "league": "B", "heads": 1, "units9": 12, "qtr": 120, "recv": 100.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 16.7, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, true, false], "passed": 3, "q": 0.75}, {"hub": "Gorakhpur Parking", "league": "B", "heads": 1, "units9": 7, "qtr": 70, "recv": 100.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 71.4, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, true, true], "passed": 4, "q": 1.0}, {"hub": "Thrissur Parking", "league": "B", "heads": 1, "units9": 6, "qtr": 60, "recv": 100.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 0.0, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, true, false], "passed": 3, "q": 0.75}];
 let RATE=15;
-// Cars24 logo (Cars24 Logo Repository, SVG). Single-colour, so it picks up
-// --lego-color-icon-inverse-rest through currentColor.
-const LOGO=`<svg class="logo" viewBox="163 501 874 189" preserveAspectRatio="xMinYMid meet" role="img" aria-label="CARS24">
-<path fill="currentColor" d="M322.9,510.43h-140.34c-10.71,0-19.4,8.68-19.4,19.4v140.34c0,10.71,8.68,19.4,19.4,19.4h140.34c10.71,0,19.4-8.69,19.4-19.4v-140.34c0-10.72-8.69-19.4-19.4-19.4ZM315.69,617.34c-7.46,26.96-31.88,46.87-61.06,47.51-.49.02-.98.02-1.47.02s-.98,0-1.47-.02c-.54-.01-1.07-.03-1.61-.06-.06,0-.12,0-.17.01-21.07-1.04-39.49-12.13-50.58-28.58-6.97-10.34-11.04-22.81-11.04-36.21,0-6.33.91-12.45,2.59-18.23.19-.63.77-1.07,1.43-1.07h22.99c1.05,0,1.76,1.05,1.39,2.04-2.06,5.3-3.2,11.13-3.2,17.26,0,19.6,11.67,36.19,27.76,41.76,1.56.55,3.17.99,4.81,1.32,2.3.46,4.68.7,7.1.7,4.15,0,8.15-.71,11.91-2.02,6.29-2.17,11.9-6.03,16.41-11.11,3.61-4.06,6.51-8.88,8.46-14.23.22-.59.78-.99,1.4-.99h22.92c.99,0,1.7.95,1.44,1.9ZM315.67,590.96h-22.47c-.71,0-1.31-.5-1.45-1.19-1.7-7.85-5.32-14.87-10.29-20.45-3.15-3.55-6.84-6.5-10.92-8.69-1.76-.95-3.59-1.76-5.5-2.42-3.75-1.3-7.74-2-11.88-2h-44.36c-1.33,0-1.99-1.62-1.04-2.56,10.97-10.75,25.76-17.64,42.15-18.46.06,0,.12,0,.17.01.54-.03,1.07-.06,1.61-.06.49-.02.98-.02,1.47-.02s.98,0,1.47.02c31.49.69,57.45,23.83,62.5,54.05.15.91-.54,1.76-1.46,1.76Z"/>
+const LOGO_PATHS=`<path fill="currentColor" d="M322.9,510.43h-140.34c-10.71,0-19.4,8.68-19.4,19.4v140.34c0,10.71,8.68,19.4,19.4,19.4h140.34c10.71,0,19.4-8.69,19.4-19.4v-140.34c0-10.72-8.69-19.4-19.4-19.4ZM315.69,617.34c-7.46,26.96-31.88,46.87-61.06,47.51-.49.02-.98.02-1.47.02s-.98,0-1.47-.02c-.54-.01-1.07-.03-1.61-.06-.06,0-.12,0-.17.01-21.07-1.04-39.49-12.13-50.58-28.58-6.97-10.34-11.04-22.81-11.04-36.21,0-6.33.91-12.45,2.59-18.23.19-.63.77-1.07,1.43-1.07h22.99c1.05,0,1.76,1.05,1.39,2.04-2.06,5.3-3.2,11.13-3.2,17.26,0,19.6,11.67,36.19,27.76,41.76,1.56.55,3.17.99,4.81,1.32,2.3.46,4.68.7,7.1.7,4.15,0,8.15-.71,11.91-2.02,6.29-2.17,11.9-6.03,16.41-11.11,3.61-4.06,6.51-8.88,8.46-14.23.22-.59.78-.99,1.4-.99h22.92c.99,0,1.7.95,1.44,1.9ZM315.67,590.96h-22.47c-.71,0-1.31-.5-1.45-1.19-1.7-7.85-5.32-14.87-10.29-20.45-3.15-3.55-6.84-6.5-10.92-8.69-1.76-.95-3.59-1.76-5.5-2.42-3.75-1.3-7.74-2-11.88-2h-44.36c-1.33,0-1.99-1.62-1.04-2.56,10.97-10.75,25.76-17.64,42.15-18.46.06,0,.12,0,.17.01.54-.03,1.07-.06,1.61-.06.49-.02.98-.02,1.47-.02s.98,0,1.47.02c31.49.69,57.45,23.83,62.5,54.05.15.91-.54,1.76-1.46,1.76Z"/>
 <path fill="currentColor" d="M676.19,577.49h21.91c.76,0,1.38.62,1.38,1.38v17.26c3.3-13.74,12.83-21.42,28.96-20.96.75.02,1.36.63,1.36,1.38v21.21c0,.76-.62,1.38-1.38,1.38h-2.2c-14.69,0-25.98,9.79-25.98,26.17v48.7c0,.76-.62,1.38-1.38,1.38h-22.66c-.76,0-1.38-.62-1.38-1.38v-95.15c0-.76.62-1.38,1.38-1.38Z"/>
 <path fill="currentColor" d="M656.74,576.92h-22.82c-.76,0-1.38.62-1.38,1.38v11.43c-8.12-9.47-19.44-15.36-31.95-15.36-24.71,0-44.75,22.92-44.75,51.18s20.04,51.18,44.75,51.18c12.52,0,23.84-5.88,31.95-15.36v12.05c0,.76.62,1.38,1.38,1.38h22.82c.76,0,1.38-.62,1.38-1.38v-95.14c0-.76-.62-1.38-1.38-1.38ZM632.54,628.1c-1.21,14.49-12.7,25.85-26.7,25.85-14.81,0-26.81-12.71-26.81-28.39s12-28.38,26.81-28.38c14,0,25.49,11.35,26.7,25.84.07.84.11,1.69.11,2.54s-.04,1.71-.11,2.54Z"/>
 <path fill="currentColor" d="M815.08,676.49h102.31c.76,0,1.38-.62,1.38-1.38v-22.86c0-.76-.62-1.38-1.38-1.38h-49.88l36.21-42.88.89-1.05c7-8.48,11.33-19.26,11.65-31.04.02-.49.03-.98.03-1.48,0-28.23-22.89-51.12-51.13-51.12-25.19,0-46.12,18.22-50.35,42.19-.12.69.31,1.36.98,1.55l22.35,6.43c.84.24,1.68-.35,1.75-1.22,1.14-13.6,13.03-24.15,27.14-23.12,12.46.91,22.53,11.03,23.37,23.5.46,6.8-1.77,13.08-5.72,17.87l-.4.47-28.47,33.71-22.12,26.19-19.16,22.68c-.1.12-.16.28-.16.45v1.81c0,.38.31.69.69.69Z"/>
 <path fill="currentColor" d="M1035.46,615.64h-14.4v-90.92c0-.76-.62-1.38-1.38-1.38h-23.52c-.45,0-.88.22-1.13.59l-63.77,91.71-12.23,17.6c-.16.23-.25.5-.25.79v2.87c0,.76.62,1.38,1.38,1.38h75.29v36.8c0,.76.62,1.38,1.38,1.38h22.87c.76,0,1.38-.62,1.38-1.38v-36.8h14.4c.76,0,1.38-.62,1.38-1.38v-19.89c0-.76-.62-1.38-1.38-1.38ZM995.43,615.64h-32.73l32.73-47.08v47.08Z"/>
 <path fill="currentColor" d="M543.04,618.26c.9,0,1.57.85,1.34,1.72-8.73,32.74-38.59,56.86-74.07,56.86s-66.86-25.36-74.7-59.35c-1.29-5.57-1.97-11.36-1.97-17.32,0-6.61.84-13.04,2.41-19.16,8.5-33.07,38.52-57.51,74.26-57.51s65.03,23.86,73.93,56.34c.24.87-.43,1.73-1.34,1.73h-27.83c-.57,0-1.07-.36-1.28-.89-7.11-18.26-23.9-31.08-43.47-31.08-26.02,0-47.1,22.64-47.1,50.56s21.09,50.57,47.1,50.57c19.76,0,36.67-13.06,43.66-31.58.2-.54.72-.9,1.29-.9h27.79,0Z"/>
-<path fill="currentColor" d="M775.73,676.66c-8.06,0-14.68-1.09-19.88-3.25-5.2-2.17-9.32-4.89-12.35-8.18-3.03-3.28-5.3-6.53-6.78-9.75-1.29-2.79-2.34-6.01-3.17-9.64-.2-.87.45-1.7,1.35-1.7h20.71c.59,0,1.11.38,1.31.95.81,2.31,1.79,4.25,2.94,5.84,1.3,1.8,3.32,3.38,6.04,4.74,2.72,1.37,6.32,2.04,10.78,2.04,5.33,0,9.17-1.14,11.52-3.44,2.35-2.29,3.53-4.86,3.53-7.71s-1.02-4.93-3.07-6.6c-2.04-1.67-5.05-2.94-9.01-3.81l-13.56-2.78c-5.45-1.12-10.53-2.75-15.24-4.93-4.71-2.17-8.55-5.14-11.52-8.92-2.97-3.78-4.46-8.64-4.46-14.58,0-8.8,3.35-16.07,10.04-21.83,6.69-5.76,15.79-8.64,27.32-8.64,7.31,0,13.35.99,18.12,2.97,4.77,1.98,8.61,4.46,11.52,7.44,2.91,2.97,5.08,5.95,6.5,8.92,1.22,2.55,2.24,5.51,3.05,8.88.21.87-.45,1.71-1.34,1.71h-19.95c-.57,0-1.1-.35-1.29-.89-.7-1.95-1.56-3.57-2.58-4.87-1.18-1.49-2.91-2.82-5.2-3.99-2.29-1.18-5.36-1.76-9.2-1.76-5.2,0-8.89,1.12-11.06,3.35-2.17,2.23-3.25,4.59-3.25,7.06,0,2.73,1.18,4.83,3.53,6.32,2.35,1.49,5.39,2.6,9.1,3.35l12.82,2.78c9.17,1.86,16.69,5.08,22.58,9.67,5.88,4.59,8.83,11.21,8.83,19.88,0,5.83-1.52,11.12-4.55,15.89-3.03,4.77-7.44,8.55-13.19,11.33-5.76,2.78-12.73,4.18-20.9,4.18h0Z"/>
-</svg>`;
+<path fill="currentColor" d="M775.73,676.66c-8.06,0-14.68-1.09-19.88-3.25-5.2-2.17-9.32-4.89-12.35-8.18-3.03-3.28-5.3-6.53-6.78-9.75-1.29-2.79-2.34-6.01-3.17-9.64-.2-.87.45-1.7,1.35-1.7h20.71c.59,0,1.11.38,1.31.95.81,2.31,1.79,4.25,2.94,5.84,1.3,1.8,3.32,3.38,6.04,4.74,2.72,1.37,6.32,2.04,10.78,2.04,5.33,0,9.17-1.14,11.52-3.44,2.35-2.29,3.53-4.86,3.53-7.71s-1.02-4.93-3.07-6.6c-2.04-1.67-5.05-2.94-9.01-3.81l-13.56-2.78c-5.45-1.12-10.53-2.75-15.24-4.93-4.71-2.17-8.55-5.14-11.52-8.92-2.97-3.78-4.46-8.64-4.46-14.58,0-8.8,3.35-16.07,10.04-21.83,6.69-5.76,15.79-8.64,27.32-8.64,7.31,0,13.35.99,18.12,2.97,4.77,1.98,8.61,4.46,11.52,7.44,2.91,2.97,5.08,5.95,6.5,8.92,1.22,2.55,2.24,5.51,3.05,8.88.21.87-.45,1.71-1.34,1.71h-19.95c-.57,0-1.1-.35-1.29-.89-.7-1.95-1.56-3.57-2.58-4.87-1.18-1.49-2.91-2.82-5.2-3.99-2.29-1.18-5.36-1.76-9.2-1.76-5.2,0-8.89,1.12-11.06,3.35-2.17,2.23-3.25,4.59-3.25,7.06,0,2.73,1.18,4.83,3.53,6.32,2.35,1.49,5.39,2.6,9.1,3.35l12.82,2.78c9.17,1.86,16.69,5.08,22.58,9.67,5.88,4.59,8.83,11.21,8.83,19.88,0,5.83-1.52,11.12-4.55,15.89-3.03,4.77-7.44,8.55-13.19,11.33-5.76,2.78-12.73,4.18-20.9,4.18h0Z"/>`;
+const logoSvg=cls=>`<svg class="${cls}" viewBox="163 501 874 189" preserveAspectRatio="xMinYMid meet" role="img" aria-label="CARS24">${LOGO_PATHS}</svg>`;
+
 const T={
- en:{eyebrow:"Quarterly team incentive · August cycle",lg:"League",people:"people",print:"Print",
+ en:{app:"Hub Incentive",eyebrow:"Quarterly team incentive · August cycle",lg:"League",people:"people",print:"Print",
+  filters:"Filters",fHub:"Hub",fLeague:"League",fTier:"Team keeps",fSort:"Sort by",
+  searchHub:"Search hubs",noMatchShort:"No matches",all:"All",
+  leagueOpt:h=>"League "+h,
+  tierOpts:[["1","Everything"],["0.75","Three-quarters"],["0.5","Half"],["0","Nothing"]],
+  sortOpts:[["cars","Cars in (high → low)"],["pay","Per person (high → low)"],["name","Hub name (A → Z)"]],
+  count:(n,t)=>n===t?`<b>${t}</b> hubs`:`<b>${n}</b> of ${t} hubs`,
+  reset:"Clear filters",
+  noHubs:"No hubs match these filters",noHubsHint:"Clear a filter to see hubs again.",
   rule:'Every car your hub takes in earns the team <strong>₹RATE</strong>. Pass all 4 checks and you keep it all.',
   checks:"The 4 checks — measured every month",need:"Need",pass:"PASS",miss:"MISS",
   names:["Documents received in 24 hrs","Documents dispatched in 24 hrs","Dealer complaints","Yard app updated"],
@@ -587,8 +937,18 @@ const T={
   chain:"Your team's money this quarter",
   ck:["Cars in","× ₹RATE per car","× what you keep","÷ RATE_HEADS people","Each person gets"],
   ft:"Paid once a quarter with salary. Numbers shown are from the August cycle. Checks are measured monthly and averaged over the quarter. Questions — ask your hub in-charge.",
-  exempt:"Not available here"},
- hi:{eyebrow:"त्रैमासिक टीम इंसेंटिव · अगस्त चक्र",lg:"लीग",people:"लोग",print:"प्रिंट",
+  exempt:"Not available here",
+  sChecks:p=>`${p} of 4 passed`,sLadder:p=>`keeps ${p}%`,sMoney:m=>`${m} each`,
+  expand:"Show section",collapse:"Hide section"},
+ hi:{app:"हब इंसेंटिव",eyebrow:"त्रैमासिक टीम इंसेंटिव · अगस्त चक्र",lg:"लीग",people:"लोग",print:"प्रिंट",
+  filters:"फ़िल्टर",fHub:"हब",fLeague:"लीग",fTier:"टीम को मिलेगा",fSort:"क्रम",
+  searchHub:"हब खोजें",noMatchShort:"कुछ नहीं मिला",all:"सभी",
+  leagueOpt:h=>"लीग "+h,
+  tierOpts:[["1","पूरा पैसा"],["0.75","तीन-चौथाई"],["0.5","आधा"],["0","कुछ नहीं"]],
+  sortOpts:[["cars","गाड़ियाँ (ज़्यादा → कम)"],["pay","प्रति व्यक्ति (ज़्यादा → कम)"],["name","हब का नाम (अ → ज्ञ)"]],
+  count:(n,t)=>n===t?`<b>${t}</b> हब`:`${t} में से <b>${n}</b> हब`,
+  reset:"फ़िल्टर हटाएँ",
+  noHubs:"इन फ़िल्टर से कोई हब नहीं मिला",noHubsHint:"कोई फ़िल्टर हटाकर दोबारा देखें।",
   rule:'आपके हब में आने वाली हर गाड़ी टीम को <strong>₹RATE</strong> दिलाती है। चारों चेक पास करें तो पूरा पैसा आपका।',
   checks:"4 चेक — हर महीने देखे जाते हैं",need:"चाहिए",pass:"पास",miss:"फेल",
   names:["24 घंटे में डॉक्युमेंट रिसीव","24 घंटे में डॉक्युमेंट डिस्पैच","डीलर शिकायत","यार्ड ऐप अपडेट"],
@@ -597,23 +957,204 @@ const T={
   chain:"इस तिमाही आपकी टीम का पैसा",
   ck:["गाड़ियाँ","× ₹RATE प्रति गाड़ी","× आपका हिस्सा","÷ RATE_HEADS लोग","हर व्यक्ति को"],
   ft:"तिमाही में एक बार सैलरी के साथ। ऊपर दिए नंबर अगस्त चक्र के हैं। चेक हर महीने नापे जाते हैं और तिमाही का औसत लिया जाता है। सवाल हों तो हब इंचार्ज से पूछें।",
-  exempt:"यहाँ उपलब्ध नहीं"}};
+  exempt:"यहाँ उपलब्ध नहीं",
+  sChecks:p=>`4 में से ${p} पास`,sLadder:p=>`${p}% मिलेगा`,sMoney:m=>`${m} हर व्यक्ति`,
+  expand:"सेक्शन खोलें",collapse:"सेक्शन बंद करें"}};
 
 let lang='en';
-const sel=document.getElementById('hub');
-function fillOptions(){
-  sel.innerHTML='';
-  HUBS.forEach((h,i)=>{
-    const o=document.createElement('option');
-    o.value=i;
-    o.textContent=h.hub+"  ·  "+T[lang].lg+" "+h.league;
-    sel.appendChild(o);
-  });
-}
-function money(n){return '₹'+Math.round(n).toLocaleString('en-IN');}
+const reduceMotion=matchMedia('(prefers-reduced-motion:reduce)');
 
-// How close the hub is to each threshold, 0-100. Complaints (index 2) are
-// inverted — fewer is better. An exempt yard app check reads as met.
+/* Hub names come from hubs.json, so they are escaped before going into innerHTML. */
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money=n=>'₹'+Math.round(n).toLocaleString('en-IN');
+const perPerson=h=>Math.min(5000,h.qtr*RATE*h.q/h.heads);
+
+/* ── filter + view state ─────────────────────────────────────────────── */
+const DEFAULTS={league:'all',tier:'all',sort:'cars'};
+const F={...DEFAULTS};
+let selected=0;                                   // index into HUBS
+const open={checks:true,ladder:true,money:true};  // survives re-renders
+
+function visibleHubs(){
+  let list=HUBS.map((h,i)=>({h,i}));
+  if(F.league!=='all') list=list.filter(x=>x.h.league===F.league);
+  if(F.tier!=='all')   list=list.filter(x=>String(x.h.q)===F.tier);
+  const s=F.sort;
+  return list.sort((a,b)=>
+    s==='name' ? a.h.hub.localeCompare(b.h.hub) :
+    s==='pay'  ? perPerson(b.h)-perPerson(a.h)  :
+                 b.h.qtr-a.h.qtr);
+}
+const leagues=()=>[...new Set(HUBS.map(h=>h.league))].sort();
+
+/* ── dropdown: searchable listbox, replaces the native select ────────── */
+function Dropdown(root,cfg){
+  const id=root.id;
+  root.dataset.open='false';
+  root.innerHTML=`
+    <button class="dd__trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="${id}-list">
+      <span class="dd__texts">
+        <span class="dd__label caption-md"></span>
+        <span class="dd__value label-2"></span>
+      </span>
+      <svg class="icon dd__chevron" aria-hidden="true"><use href="#i-chevron"></use></svg>
+    </button>
+    <div class="dd__panel">
+      <div class="dd__search"${cfg.searchable?'':' hidden'}>
+        <svg class="icon icon--sm" aria-hidden="true"><use href="#i-search"></use></svg>
+        <input type="text" class="body-2" autocomplete="off" spellcheck="false" role="combobox"
+               aria-expanded="true" aria-autocomplete="list" aria-controls="${id}-list">
+      </div>
+      <ul class="dd__list" role="listbox" id="${id}-list"></ul>
+      <p class="dd__empty body-2" hidden></p>
+    </div>`;
+
+  const trigger=root.querySelector('.dd__trigger');
+  const labelEl=root.querySelector('.dd__label');
+  const valueEl=root.querySelector('.dd__value');
+  const input  =root.querySelector('.dd__search input');
+  const list   =root.querySelector('.dd__list');
+  const emptyEl=root.querySelector('.dd__empty');
+
+  let isOpen=false, active=0, query='';
+  const keyHost=()=>cfg.searchable?input:trigger;
+
+  function matches(){
+    const all=cfg.items();
+    const q=query.trim().toLowerCase();
+    return (!cfg.searchable||!q) ? all : all.filter(o=>o.label.toLowerCase().includes(q));
+  }
+
+  function paintList(){
+    const items=matches(), val=String(cfg.value());
+    if(active>=items.length) active=Math.max(0,items.length-1);
+    list.innerHTML=items.map((o,i)=>`
+      <li class="dd__opt body-2" role="option" id="${id}-opt-${i}" data-value="${esc(o.value)}"
+          aria-selected="${String(o.value)===val}" data-active="${i===active}">
+        <span class="dd__opt__text">${esc(o.label)}</span>
+        ${o.hint?`<span class="dd__opt__hint caption-md">${esc(o.hint)}</span>`:''}
+        <svg class="icon icon--sm dd__tick" aria-hidden="true"><use href="#i-tick"></use></svg>
+      </li>`).join('');
+    emptyEl.hidden=items.length>0;
+    emptyEl.textContent=T[lang].noMatchShort;
+    const cur=items[active];
+    keyHost().setAttribute('aria-activedescendant',cur?`${id}-opt-${active}`:'');
+    if(cur) list.children[active]?.scrollIntoView({block:'nearest'});
+  }
+
+  function paintTrigger(){
+    labelEl.textContent=cfg.label();
+    valueEl.textContent=cfg.valueLabel();
+    if(cfg.searchable) input.placeholder=cfg.searchPlaceholder?.()||'';
+  }
+
+  function openPanel(){
+    if(isOpen) return;
+    isOpen=true; root.dataset.open='true';
+    trigger.setAttribute('aria-expanded','true');
+    query=''; if(cfg.searchable) input.value='';
+    const items=matches(), val=String(cfg.value());
+    active=Math.max(0,items.findIndex(o=>String(o.value)===val));
+    paintList();
+    keyHost().focus();
+  }
+  function closePanel(refocus){
+    if(!isOpen) return;
+    isOpen=false; root.dataset.open='false';
+    trigger.setAttribute('aria-expanded','false');
+    keyHost().removeAttribute('aria-activedescendant');
+    if(refocus) trigger.focus();
+  }
+  function setActive(i){
+    const items=matches();
+    if(!items.length) return;
+    active=(i+items.length)%items.length;
+    paintList();
+  }
+  function choose(v){
+    closePanel(true);
+    cfg.onSelect(v);
+  }
+
+  trigger.addEventListener('click',()=>isOpen?closePanel(true):openPanel());
+
+  root.addEventListener('keydown',e=>{
+    if(!isOpen){
+      if(e.key==='Enter'||e.key===' '||e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();openPanel();}
+      return;
+    }
+    const items=matches();
+    switch(e.key){
+      case 'Escape':    e.preventDefault(); closePanel(true); break;
+      case 'ArrowDown': e.preventDefault(); setActive(active+1); break;
+      case 'ArrowUp':   e.preventDefault(); setActive(active-1); break;
+      case 'Home':      e.preventDefault(); setActive(0); break;
+      case 'End':       e.preventDefault(); setActive(items.length-1); break;
+      case 'Enter':     e.preventDefault(); if(items[active]) choose(items[active].value); break;
+      case 'Tab':       closePanel(false); break;
+    }
+  });
+
+  if(cfg.searchable) input.addEventListener('input',()=>{query=input.value;active=0;paintList();});
+
+  list.addEventListener('click',e=>{
+    const li=e.target.closest('.dd__opt');
+    if(li) choose(li.dataset.value);
+  });
+  list.addEventListener('mousemove',e=>{
+    const li=e.target.closest('.dd__opt');
+    if(!li) return;
+    const i=[...list.children].indexOf(li);
+    if(i>-1&&i!==active){active=i;[...list.children].forEach((n,j)=>n.dataset.active=String(j===i));
+      keyHost().setAttribute('aria-activedescendant',`${id}-opt-${i}`);}
+  });
+
+  document.addEventListener('pointerdown',e=>{if(!root.contains(e.target)) closePanel(false);});
+
+  paintTrigger();
+  return {refresh(){paintTrigger(); if(isOpen) paintList();}, close(){closePanel(false);}};
+}
+
+/* ── the four filters ────────────────────────────────────────────────── */
+const ddHub=Dropdown(document.getElementById('ddHub'),{
+  searchable:true,
+  label:()=>T[lang].fHub,
+  searchPlaceholder:()=>T[lang].searchHub,
+  items:()=>visibleHubs().map(({h,i})=>({value:i,label:h.hub,hint:T[lang].lg+' '+h.league})),
+  value:()=>selected,
+  valueLabel:()=>HUBS[selected]?HUBS[selected].hub:'—',
+  onSelect:v=>{selected=+v;sync();}
+});
+const ddLeague=Dropdown(document.getElementById('ddLeague'),{
+  label:()=>T[lang].fLeague,
+  items:()=>[{value:'all',label:T[lang].all},...leagues().map(l=>({value:l,label:T[lang].leagueOpt(l)}))],
+  value:()=>F.league,
+  valueLabel:()=>F.league==='all'?T[lang].all:T[lang].leagueOpt(F.league),
+  onSelect:v=>{F.league=v;sync();}
+});
+const ddTier=Dropdown(document.getElementById('ddTier'),{
+  label:()=>T[lang].fTier,
+  items:()=>[{value:'all',label:T[lang].all},...T[lang].tierOpts.map(([v,l])=>({value:v,label:l}))],
+  value:()=>F.tier,
+  valueLabel:()=>F.tier==='all'?T[lang].all:(T[lang].tierOpts.find(([v])=>v===F.tier)?.[1]??T[lang].all),
+  onSelect:v=>{F.tier=v;sync();}
+});
+const ddSort=Dropdown(document.getElementById('ddSort'),{
+  label:()=>T[lang].fSort,
+  items:()=>T[lang].sortOpts.map(([v,l])=>({value:v,label:l})),
+  value:()=>F.sort,
+  valueLabel:()=>T[lang].sortOpts.find(([v])=>v===F.sort)[1],
+  onSelect:v=>{F.sort=v;sync();}
+});
+const DDS=[ddHub,ddLeague,ddTier,ddSort];
+
+/* ── sheet ───────────────────────────────────────────────────────────── */
+const sheetEl=document.getElementById('sheet');
+const countEl=document.getElementById('count');
+const resetEl=document.getElementById('reset');
+
+/* How close the hub is to each threshold, 0-100. Complaints (index 2) are
+   inverted — fewer is better. An exempt yard app check reads as met. */
 function meterPct(i,h){
   if(i===3&&h.ymsx) return 100;
   const got=[h.recv,h.disp,h.dg,h.yms][i];
@@ -623,96 +1164,189 @@ function meterPct(i,h){
   return need<=0?100:Math.min(100,Math.round(got/need*100));
 }
 
-function draw(){
- const h=HUBS[+sel.value]||HUBS[0],t=T[lang];
- const pool=h.qtr*RATE*h.q, per=Math.min(5000,pool/h.heads);
- const got=[h.recv==null?'—':h.recv+'%', h.disp==null?'—':h.disp+'%', h.dg+' / 100', h.ymsx?'—':(h.yms==null?'—':h.yms+'%')];
- const need=[h.bar.recv+'% +', h.bar.disp+'% +', 'max '+h.bar.dg+' / 100', h.ymsx?t.exempt:h.bar.yms+'% +'];
+function section(key,title,summary,body){
+  const isOpen=open[key];
+  const t=T[lang];
+  return `<section class="sec" data-sec="${key}" data-open="${isOpen}">
+    <h2>
+      <button class="sec__toggle" type="button" aria-expanded="${isOpen}" aria-controls="sec-${key}"
+              title="${isOpen?t.collapse:t.expand}">
+        <svg class="icon sec__caret" aria-hidden="true"><use href="#i-chevron"></use></svg>
+        <span class="sec__toggle__text label-2">${title}</span>
+        <span class="sec__summary caption-md">${summary}</span>
+      </button>
+    </h2>
+    <div class="sec__body" id="sec-${key}"><div><div class="sec__inner">${body}</div></div></div>
+  </section>`;
+}
 
- document.getElementById('sheet').innerHTML=`
+function draw(){
+  const t=T[lang];
+  const vis=visibleHubs();
+
+  if(!vis.length){
+    sheetEl.innerHTML=`<div class="empty anim-rise">
+      <svg class="empty__icon" aria-hidden="true"><use href="#i-empty"></use></svg>
+      <p class="h4">${t.noHubs}</p>
+      <p class="empty__text body-2">${t.noHubsHint}</p>
+    </div>`;
+    return;
+  }
+
+  const h=HUBS[selected];
+  const per=perPerson(h);
+  const got=[h.recv==null?'—':h.recv+'%', h.disp==null?'—':h.disp+'%', h.dg+' / 100', h.ymsx?'—':(h.yms==null?'—':h.yms+'%')];
+  const need=[h.bar.recv+'% +', h.bar.disp+'% +', 'max '+h.bar.dg+' / 100', h.ymsx?t.exempt:h.bar.yms+'% +'];
+
+  const checksBody=`<div class="checks">
+   ${[0,1,2,3].map(i=>`
+     <article class="check anim-rise ${h.ch[i]?'check--pass':'check--miss'}" style="--i:${i}">
+       <div class="check__top">
+         <span class="check__idx label-4">0${i+1}</span>
+         <span class="badge anim-pop ${h.ch[i]?'badge--pass':'badge--miss'} caption-sm" style="--i:${i}">
+           <svg class="icon icon--sm" aria-hidden="true"><use href="#i-${h.ch[i]?'tick':'cross'}"></use></svg>${h.ch[i]?t.pass:t.miss}
+         </span>
+       </div>
+       <h3 class="check__title h6">${t.names[i]}</h3>
+       <div class="check__foot">
+         <div class="meter"><span class="meter__fill" data-w="${meterPct(i,h)}" style="--i:${i}"></span></div>
+         <p class="check__need caption-md">${t.need}: ${need[i]}</p>
+         <p class="check__got h2">${got[i]}</p>
+       </div>
+     </article>`).join('')}
+  </div>`;
+
+  const ladderBody=`<div class="ladder">
+   ${[4,3,2,1].map((n,i)=>{
+     const on=h.passed===n||(n===1&&h.passed<=1);
+     return `<div class="rung anim-rise ${on?'rung--on':''}" style="--i:${i}"${on?' aria-current="true"':''}>
+       <span class="rung__a h4">${t.rungs[i]}</span>
+       <span class="rung__b body-3">${t.keeps[i]}</span>
+     </div>`;}).join('')}
+  </div>`;
+
+  const cell=(v,fmt,k,total)=>`<div class="chain__cell ${total?'chain__cell--total':''}">
+    <span class="chain__v ${total?'h2':'h4'}" data-count="${v}" data-fmt="${fmt}">${fmt==='money'?money(0):fmt==='pct'?'0%':'0'}</span>
+    <span class="chain__k caption-md">${k}</span></div>`;
+
+  const chainBody=`<div class="chain">
+    ${cell(h.qtr,'num',t.ck[0])}
+    ${cell(h.qtr*RATE,'money',t.ck[1].replace('RATE',RATE))}
+    ${cell(h.q*100,'pct',t.ck[2])}
+    ${cell(h.heads,'num',t.ck[3].replace('RATE_HEADS',h.heads))}
+    ${cell(per,'money',t.ck[4],true)}
+  </div>`;
+
+  sheetEl.innerHTML=`
  <header class="sheet__hd">
    <div class="sheet__brandrow">
-     ${LOGO}
-     <span class="chip label-3">${t.lg} ${h.league} · ${h.heads} ${t.people}</span>
+     ${logoSvg('logo')}
+     <span class="chip label-3">${t.lg} ${esc(h.league)} · ${h.heads} ${t.people}</span>
    </div>
    <div>
      <p class="sheet__eyebrow label-3">${t.eyebrow}</p>
-     <h1 class="sheet__title h1">${h.hub}</h1>
+     <h1 class="sheet__title h1">${esc(h.hub)}</h1>
    </div>
  </header>
 
  <p class="headline body-1">${t.rule.replace('RATE',RATE)}</p>
 
- <section class="sec">
-   <h2 class="sec__title label-2">${t.checks}</h2>
-   <div class="checks">
-   ${[0,1,2,3].map(i=>`
-     <article class="check ${h.ch[i]?'check--pass':'check--miss'}">
-       <div class="check__top">
-         <span class="check__idx label-4">0${i+1}</span>
-         <span class="badge ${h.ch[i]?'badge--pass':'badge--miss'} caption-sm">${h.ch[i]?t.pass:t.miss}</span>
-       </div>
-       <h3 class="check__title h6">${t.names[i]}</h3>
-       <div class="check__foot">
-         <div class="meter"><span class="meter__fill" style="width:${meterPct(i,h)}%"></span></div>
-         <p class="check__need caption-md">${t.need}: ${need[i]}</p>
-         <p class="check__got h2">${got[i]}</p>
-       </div>
-     </article>`).join('')}
-   </div>
- </section>
-
- <section class="sec">
-   <h2 class="sec__title label-2">${t.ladder}</h2>
-   <div class="ladder">
-   ${[4,3,2,1].map((n,i)=>{
-     const on=h.passed===n||(n===1&&h.passed<=1);
-     return `<div class="rung ${on?'rung--on':''}"${on?' aria-current="true"':''}>
-       <span class="rung__a h4">${t.rungs[i]}</span>
-       <span class="rung__b body-3">${t.keeps[i]}</span>
-     </div>`;}).join('')}
-   </div>
- </section>
-
- <section class="sec">
-   <h2 class="sec__title label-2">${t.chain}</h2>
-   <div class="chain">
-     <div class="chain__cell"><span class="chain__v h4">${h.qtr.toLocaleString('en-IN')}</span><span class="chain__k caption-md">${t.ck[0]}</span></div>
-     <div class="chain__cell"><span class="chain__v h4">${money(h.qtr*RATE)}</span><span class="chain__k caption-md">${t.ck[1].replace('RATE',RATE)}</span></div>
-     <div class="chain__cell"><span class="chain__v h4">${Math.round(h.q*100)}%</span><span class="chain__k caption-md">${t.ck[2]}</span></div>
-     <div class="chain__cell"><span class="chain__v h4">${h.heads}</span><span class="chain__k caption-md">${t.ck[3].replace('RATE_HEADS',h.heads)}</span></div>
-     <div class="chain__cell chain__cell--total"><span class="chain__v h2">${money(per)}</span><span class="chain__k caption-md">${t.ck[4]}</span></div>
-   </div>
- </section>
+ ${section('checks',t.checks,t.sChecks(h.passed),checksBody)}
+ ${section('ladder',t.ladder,t.sLadder(Math.round(h.q*100)),ladderBody)}
+ ${section('money', t.chain, t.sMoney(money(per)),chainBody)}
 
  <footer class="sheet__ft body-3">${t.ft}</footer>`;
+
+  animateIn();
 }
 
-sel.onchange=draw;
+/* ── micro-interactions ──────────────────────────────────────────────── */
+function fmtCount(v,kind){
+  return kind==='money' ? money(v)
+       : kind==='pct'   ? Math.round(v)+'%'
+       :                  Math.round(v).toLocaleString('en-IN');
+}
+/* Bumped on every render and by settle(), so a count-up left over from an
+   earlier draw can never write over newer (or final, pre-print) values. */
+let gen=0;
+function settle(){                       // jump everything to its final value
+  gen++;
+  sheetEl.querySelectorAll('[data-count]').forEach(el=>{el.textContent=fmtCount(+el.dataset.count,el.dataset.fmt);});
+  sheetEl.querySelectorAll('.meter__fill').forEach(el=>{el.style.width=el.dataset.w+'%';});
+}
+function animateIn(){
+  if(reduceMotion.matches){settle();return;}
+  const g=++gen;
+  requestAnimationFrame(()=>{
+    if(g!==gen) return;
+    sheetEl.querySelectorAll('.meter__fill').forEach(el=>{el.style.width=el.dataset.w+'%';});
+  });
+  sheetEl.querySelectorAll('[data-count]').forEach(el=>{
+    const to=+el.dataset.count, kind=el.dataset.fmt, t0=performance.now(), dur=540;
+    const step=now=>{
+      if(g!==gen) return;
+      /* clamp low as well as high: a rAF timestamp can precede t0, which would
+         otherwise ease to a negative number and flash "₹-782" on screen. */
+      const p=Math.min(1,Math.max(0,(now-t0)/dur)), e=1-Math.pow(1-p,3);
+      el.textContent=fmtCount(to*e,kind);
+      if(p<1) requestAnimationFrame(step); else el.textContent=fmtCount(to,kind);
+    };
+    requestAnimationFrame(step);
+  });
+}
+
+/* collapse/expand — delegated, so it survives every re-render */
+sheetEl.addEventListener('click',e=>{
+  const btn=e.target.closest('.sec__toggle');
+  if(!btn) return;
+  const sec=btn.closest('.sec'), key=sec.dataset.sec;
+  open[key]=!open[key];
+  sec.dataset.open=String(open[key]);
+  btn.setAttribute('aria-expanded',String(open[key]));
+  btn.title=open[key]?T[lang].collapse:T[lang].expand;
+});
+
+/* ── glue ────────────────────────────────────────────────────────────── */
+function paintChrome(){
+  const t=T[lang], vis=visibleHubs();
+  document.getElementById('appTitle').textContent=t.app;
+  document.getElementById('printLabel').textContent=t.print;
+  document.getElementById('filtersTitle').textContent=t.filters;
+  countEl.innerHTML=t.count(vis.length,HUBS.length);
+  resetEl.textContent=t.reset;
+  resetEl.hidden=F.league===DEFAULTS.league&&F.tier===DEFAULTS.tier&&F.sort===DEFAULTS.sort;
+}
+function sync(){
+  const vis=visibleHubs();
+  if(vis.length&&!vis.some(x=>x.i===selected)) selected=vis[0].i;
+  DDS.forEach(d=>d.refresh());
+  paintChrome();
+  draw();
+}
+
 document.getElementById('print').onclick=()=>window.print();
+resetEl.onclick=()=>{Object.assign(F,DEFAULTS);sync();};
 document.getElementById('lang').onclick=e=>{
   lang=lang==='en'?'hi':'en';
   const btn=e.currentTarget;
-  btn.setAttribute('aria-pressed',lang==='hi');
+  btn.setAttribute('aria-pressed',String(lang==='hi'));
   btn.textContent=lang==='en'?'हिन्दी':'English';
   document.documentElement.lang=lang;
-  document.getElementById('printLabel').textContent=T[lang].print;
-  const i=sel.value;
-  fillOptions();
-  sel.value=i;
-  draw();
+  DDS.forEach(d=>d.close());
+  sync();
 };
+addEventListener('beforeprint',settle);
 
-fillOptions();
-draw();
+document.getElementById('topbarLogo').innerHTML=logoSvg('topbar__logo');
+sync();
 
 // Monthly refresh: replace hubs.json in the repo and Vercel redeploys automatically.
 // Falls back to the data baked in above so the file still works opened directly from disk.
 fetch('./hubs.json',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(d=>{
   if(!d||!Array.isArray(d)||!d.length) return;
   HUBS=d;
-  fillOptions();
-  draw();
+  if(selected>=HUBS.length) selected=0;
+  sync();
 }).catch(()=>{});
 </script>
 </body>
