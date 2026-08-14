@@ -597,7 +597,7 @@ body{
 }
 
 /* ═══ CHECKS ════════════════════════════════════════════════════════ */
-.checks{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--lego-spacing-12)}
+.checks{display:grid;grid-template-columns:repeat(var(--cols,4),1fr);gap:var(--lego-spacing-12)}
 
 .check{
   background:var(--lego-color-surface-subtle-rest);
@@ -672,7 +672,7 @@ body{
 .check--miss .meter__fill{background:var(--lego-color-surface-feedback-danger-strong)}
 
 /* ═══ LADDER ════════════════════════════════════════════════════════ */
-.ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--lego-spacing-12)}
+.ladder{display:grid;grid-template-columns:repeat(var(--cols,4),1fr);gap:var(--lego-spacing-12)}
 
 .rung{
   background:var(--lego-color-surface-subtle-rest);
@@ -831,7 +831,7 @@ body{
 
   /* A4 is narrower than the mobile breakpoint, which would otherwise stack
      the grids and push the notice onto a second page. Keep it wide. */
-  .checks,.ladder{grid-template-columns:repeat(4,1fr)}
+  .checks,.ladder{grid-template-columns:repeat(var(--cols,4),1fr)}
   .chain{grid-template-columns:repeat(5,1fr)}
   .chain__cell--total{grid-column:auto}
   .sheet__hd{padding:var(--lego-spacing-14) var(--lego-spacing-20);gap:var(--lego-spacing-10)}
@@ -908,7 +908,7 @@ body{
 </div>
 
 <script>
-let HUBS=[{"hub": "Noida sec-37 Parking", "league": "A", "heads": 11, "units9": 451, "qtr": 4510, "recv": 79.4, "disp": 93.4, "dg": 3.8, "dgt": 17, "yms": 79.1, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [false, true, true, true], "passed": 3, "q": 0.75}, {"hub": "Metrowalk_Parking Yard", "league": "A", "heads": 10, "units9": 246, "qtr": 2460, "recv": 81.9, "disp": 99.9, "dg": 3.7, "dgt": 9, "yms": 85.8, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [false, true, true, true], "passed": 3, "q": 0.75}, {"hub": "Gurgaon_Parking 2", "league": "A", "heads": 9, "units9": 222, "qtr": 2220, "recv": 86.6, "disp": 85.9, "dg": 7.2, "dgt": 16, "yms": 86.0, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [true, false, false, true], "passed": 2, "q": 0.5}, {"hub": "Bangalore Parking", "league": "A", "heads": 3, "units9": 179, "qtr": 1790, "recv": 64.6, "disp": 59.1, "dg": 14.5, "dgt": 26, "yms": 60.2, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [false, false, false, false], "passed": 0, "q": 0.0}, {"hub": "Hyderabad-2 Parking", "league": "A", "heads": 3, "units9": 167, "qtr": 1670, "recv": 96.9, "disp": 100.0, "dg": 1.8, "dgt": 3, "yms": 67.7, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [true, true, true, false], "passed": 3, "q": 0.75}, {"hub": "Pune_Cars24 Parking", "league": "A", "heads": 3, "units9": 127, "qtr": 1270, "recv": 83.3, "disp": 84.8, "dg": 2.4, "dgt": 3, "yms": 76.4, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [true, false, true, true], "passed": 3, "q": 0.75}, {"hub": "Chennai Parking", "league": "A", "heads": 3, "units9": 115, "qtr": 1150, "recv": 74.4, "disp": 80.9, "dg": 1.7, "dgt": 2, "yms": 71.3, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [false, false, true, true], "passed": 2, "q": 0.5}, {"hub": "Kolkata-3 Parking", "league": "A", "heads": 3, "units9": 111, "qtr": 1110, "recv": 86.4, "disp": 94.3, "dg": 1.8, "dgt": 2, "yms": 44.1, "ymsx": false, "bar": {"recv": 83, "disp": 90, "dg": 5, "yms": 70}, "ch": [true, true, true, false], "passed": 3, "q": 0.75}, {"hub": "Lucknow Parking", "league": "B", "heads": 2, "units9": 80, "qtr": 800, "recv": 93.3, "disp": 79.9, "dg": 2.5, "dgt": 2, "yms": 83.8, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, false, true, true], "passed": 2, "q": 0.5}, {"hub": "Patna-2 Parking", "league": "B", "heads": 3, "units9": 61, "qtr": 610, "recv": 84.8, "disp": 100.0, "dg": 4.9, "dgt": 3, "yms": 82.0, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, true, true, true], "passed": 3, "q": 0.75}, {"hub": "Jaipur Parking-2", "league": "B", "heads": 2, "units9": 50, "qtr": 500, "recv": 87.0, "disp": 79.3, "dg": 12.0, "dgt": 6, "yms": 64.0, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, false, false, true], "passed": 1, "q": 0.0}, {"hub": "Indore Parking", "league": "B", "heads": 2, "units9": 47, "qtr": 470, "recv": 93.9, "disp": 66.1, "dg": 2.1, "dgt": 1, "yms": 66.0, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, false, true, true], "passed": 2, "q": 0.5}, {"hub": "Kochi Parking", "league": "B", "heads": 1, "units9": 46, "qtr": 460, "recv": 96.2, "disp": 81.8, "dg": 0.0, "dgt": 0, "yms": 26.1, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, false, true, false], "passed": 2, "q": 0.5}, {"hub": "Coimbatore Parking", "league": "B", "heads": 1, "units9": 33, "qtr": 330, "recv": 42.9, "disp": 51.2, "dg": 0.0, "dgt": 0, "yms": 0.0, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, false, true, false], "passed": 1, "q": 0.0}, {"hub": "Meerut Parking", "league": "B", "heads": 2, "units9": 24, "qtr": 240, "recv": 100.0, "disp": 100.0, "dg": 4.2, "dgt": 1, "yms": 100.0, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, true, true], "passed": 4, "q": 1.0}, {"hub": "Agra Parking", "league": "B", "heads": 1, "units9": 24, "qtr": 240, "recv": 94.7, "disp": 100.0, "dg": 8.3, "dgt": 2, "yms": 62.5, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, false, true], "passed": 3, "q": 0.75}, {"hub": "Dehradun Parking", "league": "B", "heads": 1, "units9": 22, "qtr": 220, "recv": 93.3, "disp": 83.3, "dg": 0.0, "dgt": 0, "yms": 59.1, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, false, true, false], "passed": 1, "q": 0.0}, {"hub": "Bhubaneswar Parking", "league": "B", "heads": 1, "units9": 20, "qtr": 200, "recv": 94.7, "disp": 98.0, "dg": 0.0, "dgt": 0, "yms": 85.0, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, true, true], "passed": 4, "q": 1.0}, {"hub": "Kanpur Parking", "league": "B", "heads": 1, "units9": 19, "qtr": 190, "recv": 80.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 47.4, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, true, true, false], "passed": 2, "q": 0.5}, {"hub": "Bhopal-2 Parking", "league": "B", "heads": 1, "units9": 18, "qtr": 180, "recv": 76.9, "disp": 97.3, "dg": 0.0, "dgt": 0, "yms": 66.7, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, false, true, true], "passed": 2, "q": 0.5}, {"hub": "Ranchi-2 Parking", "league": "B", "heads": 2, "units9": 17, "qtr": 170, "recv": 100.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 58.8, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, true, false], "passed": 3, "q": 0.75}, {"hub": "Gwalior Parking", "league": "B", "heads": 1, "units9": 13, "qtr": 130, "recv": 100.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 46.1, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, true, false], "passed": 3, "q": 0.75}, {"hub": "Raipur Parking", "league": "B", "heads": 1, "units9": 13, "qtr": 130, "recv": 60.0, "disp": 100.0, "dg": 7.7, "dgt": 1, "yms": 38.5, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [false, true, false, false], "passed": 1, "q": 0.0}, {"hub": "Trivandrum Parking", "league": "B", "heads": 1, "units9": 12, "qtr": 120, "recv": 100.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 16.7, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, true, false], "passed": 3, "q": 0.75}, {"hub": "Gorakhpur Parking", "league": "B", "heads": 1, "units9": 7, "qtr": 70, "recv": 100.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 71.4, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, true, true], "passed": 4, "q": 1.0}, {"hub": "Thrissur Parking", "league": "B", "heads": 1, "units9": 6, "qtr": 60, "recv": 100.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 0.0, "ymsx": false, "bar": {"recv": 94, "disp": 98, "dg": 5, "yms": 60}, "ch": [true, true, true, false], "passed": 3, "q": 0.75}];
+let HUBS=[{"hub": "Noida sec-37 Parking", "league": "A", "heads": 11, "units9": 451, "qtr": 4510, "n": 4, "recv": 79.4, "disp": 93.4, "dg": 3.8, "dgt": 17, "yms": 79.1, "ymsx": false, "base": null, "bar": {"recv": 85.0, "disp": 100.0, "dg": 5, "yms": 70}, "ch": [false, false, true, true], "passed": 2, "q": 0.5}, {"hub": "Metrowalk_Parking Yard", "league": "A", "heads": 10, "units9": 246, "qtr": 2460, "n": 4, "recv": 81.9, "disp": 99.9, "dg": 3.7, "dgt": 9, "yms": 85.8, "ymsx": false, "base": null, "bar": {"recv": 92.0, "disp": 100.0, "dg": 5, "yms": 70}, "ch": [false, false, true, true], "passed": 2, "q": 0.5}, {"hub": "Gurgaon_Parking 2", "league": "A", "heads": 9, "units9": 222, "qtr": 2220, "n": 4, "recv": 86.6, "disp": 85.9, "dg": 7.2, "dgt": 16, "yms": 86.0, "ymsx": false, "base": null, "bar": {"recv": 92.0, "disp": 100.0, "dg": 5, "yms": 70}, "ch": [false, false, false, true], "passed": 1, "q": 0.0}, {"hub": "Bangalore Parking", "league": "A", "heads": 3, "units9": 179, "qtr": 1790, "n": 4, "recv": 64.6, "disp": 59.1, "dg": 14.5, "dgt": 26, "yms": 60.2, "ymsx": false, "base": null, "bar": {"recv": 85.0, "disp": 100.0, "dg": 5, "yms": 70}, "ch": [false, false, false, false], "passed": 0, "q": 0.0}, {"hub": "Hyderabad-2 Parking", "league": "A", "heads": 3, "units9": 167, "qtr": 1670, "n": 4, "recv": 96.9, "disp": 100.0, "dg": 1.8, "dgt": 3, "yms": 67.7, "ymsx": false, "base": null, "bar": {"recv": 99.9, "disp": 100.0, "dg": 5, "yms": 70}, "ch": [false, true, true, false], "passed": 2, "q": 0.5}, {"hub": "Pune_Cars24 Parking", "league": "A", "heads": 3, "units9": 127, "qtr": 1270, "n": 4, "recv": 83.3, "disp": 84.8, "dg": 2.4, "dgt": 3, "yms": 76.4, "ymsx": false, "base": null, "bar": {"recv": 92.0, "disp": 100.0, "dg": 5, "yms": 70}, "ch": [false, false, true, true], "passed": 2, "q": 0.5}, {"hub": "Chennai Parking", "league": "A", "heads": 3, "units9": 115, "qtr": 1150, "n": 4, "recv": 74.4, "disp": 80.9, "dg": 1.7, "dgt": 2, "yms": 71.3, "ymsx": false, "base": null, "bar": {"recv": 85.0, "disp": 100.0, "dg": 5, "yms": 70}, "ch": [false, false, true, true], "passed": 2, "q": 0.5}, {"hub": "Kolkata-3 Parking", "league": "A", "heads": 3, "units9": 111, "qtr": 1110, "n": 4, "recv": 86.4, "disp": 94.3, "dg": 1.8, "dgt": 2, "yms": 44.1, "ymsx": false, "base": null, "bar": {"recv": 92.0, "disp": 100.0, "dg": 5, "yms": 70}, "ch": [false, false, true, false], "passed": 1, "q": 0.0}, {"hub": "Lucknow Parking", "league": "B", "heads": 2, "units9": 80, "qtr": 800, "n": 4, "recv": 93.3, "disp": 79.9, "dg": 2.5, "dgt": 2, "yms": 83.8, "ymsx": false, "base": null, "bar": {"recv": 96.3, "disp": 100.0, "dg": 5, "yms": 60}, "ch": [false, false, true, true], "passed": 2, "q": 0.5}, {"hub": "Patna-2 Parking", "league": "B", "heads": 3, "units9": 61, "qtr": 610, "n": 4, "recv": 84.8, "disp": 100.0, "dg": 4.9, "dgt": 3, "yms": 82.0, "ymsx": false, "base": null, "bar": {"recv": 92.0, "disp": 100.0, "dg": 5, "yms": 60}, "ch": [false, true, true, true], "passed": 3, "q": 0.75}, {"hub": "Jaipur Parking-2", "league": "B", "heads": 2, "units9": 50, "qtr": 500, "n": 4, "recv": 87.0, "disp": 79.3, "dg": 12.0, "dgt": 6, "yms": 64.0, "ymsx": false, "base": null, "bar": {"recv": 92.0, "disp": 100.0, "dg": 5, "yms": 60}, "ch": [false, false, false, true], "passed": 1, "q": 0.0}, {"hub": "Indore Parking", "league": "B", "heads": 2, "units9": 47, "qtr": 470, "n": 4, "recv": 93.9, "disp": 66.1, "dg": 2.1, "dgt": 1, "yms": 66.0, "ymsx": false, "base": null, "bar": {"recv": 96.9, "disp": 100.0, "dg": 5, "yms": 60}, "ch": [false, false, true, true], "passed": 2, "q": 0.5}, {"hub": "Kochi Parking", "league": "B", "heads": 1, "units9": 46, "qtr": 460, "n": 4, "recv": 96.2, "disp": 81.8, "dg": 0.0, "dgt": 0, "yms": 26.1, "ymsx": false, "base": null, "bar": {"recv": 99.2, "disp": 100.0, "dg": 5, "yms": 60}, "ch": [false, false, true, false], "passed": 1, "q": 0.0}, {"hub": "Coimbatore Parking", "league": "B", "heads": 1, "units9": 33, "qtr": 330, "n": 3, "recv": 42.9, "disp": 51.2, "dg": 0.0, "dgt": 0, "yms": null, "ymsx": true, "base": null, "bar": {"recv": 85.0, "disp": 100.0, "dg": 5, "yms": null}, "ch": [false, false, true], "passed": 1, "q": 0.0}, {"hub": "Meerut Parking", "league": "B", "heads": 2, "units9": 24, "qtr": 240, "n": 4, "recv": 100.0, "disp": 100.0, "dg": 4.2, "dgt": 1, "yms": 100.0, "ymsx": false, "base": null, "bar": {"recv": 100.0, "disp": 100.0, "dg": 5, "yms": 60}, "ch": [true, true, true, true], "passed": 4, "q": 1.0}, {"hub": "Agra Parking", "league": "B", "heads": 1, "units9": 24, "qtr": 240, "n": 4, "recv": 94.7, "disp": 100.0, "dg": 8.3, "dgt": 2, "yms": 62.5, "ymsx": false, "base": null, "bar": {"recv": 97.7, "disp": 100.0, "dg": 5, "yms": 60}, "ch": [false, true, false, true], "passed": 2, "q": 0.5}, {"hub": "Dehradun Parking", "league": "B", "heads": 1, "units9": 22, "qtr": 220, "n": 4, "recv": 93.3, "disp": 83.3, "dg": 0.0, "dgt": 0, "yms": 59.1, "ymsx": false, "base": null, "bar": {"recv": 96.3, "disp": 100.0, "dg": 5, "yms": 60}, "ch": [false, false, true, false], "passed": 1, "q": 0.0}, {"hub": "Bhubaneswar Parking", "league": "B", "heads": 1, "units9": 20, "qtr": 200, "n": 4, "recv": 94.7, "disp": 98.0, "dg": 0.0, "dgt": 0, "yms": 85.0, "ymsx": false, "base": null, "bar": {"recv": 97.7, "disp": 100.0, "dg": 5, "yms": 60}, "ch": [false, false, true, true], "passed": 2, "q": 0.5}, {"hub": "Kanpur Parking", "league": "B", "heads": 1, "units9": 19, "qtr": 190, "n": 4, "recv": 80.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 47.4, "ymsx": false, "base": null, "bar": {"recv": 92.0, "disp": 100.0, "dg": 5, "yms": 60}, "ch": [false, true, true, false], "passed": 2, "q": 0.5}, {"hub": "Bhopal-2 Parking", "league": "B", "heads": 1, "units9": 18, "qtr": 180, "n": 4, "recv": 76.9, "disp": 97.3, "dg": 0.0, "dgt": 0, "yms": 66.7, "ymsx": false, "base": null, "bar": {"recv": 85.0, "disp": 100.0, "dg": 5, "yms": 60}, "ch": [false, false, true, true], "passed": 2, "q": 0.5}, {"hub": "Ranchi-2 Parking", "league": "B", "heads": 2, "units9": 17, "qtr": 170, "n": 4, "recv": 100.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 58.8, "ymsx": false, "base": null, "bar": {"recv": 100.0, "disp": 100.0, "dg": 5, "yms": 60}, "ch": [true, true, true, false], "passed": 3, "q": 0.75}, {"hub": "Gwalior Parking", "league": "B", "heads": 1, "units9": 13, "qtr": 130, "n": 4, "recv": 100.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 46.1, "ymsx": false, "base": null, "bar": {"recv": 100.0, "disp": 100.0, "dg": 5, "yms": 60}, "ch": [true, true, true, false], "passed": 3, "q": 0.75}, {"hub": "Raipur Parking", "league": "B", "heads": 1, "units9": 13, "qtr": 130, "n": 4, "recv": 60.0, "disp": 100.0, "dg": 7.7, "dgt": 1, "yms": 38.5, "ymsx": false, "base": null, "bar": {"recv": 85.0, "disp": 100.0, "dg": 5, "yms": 60}, "ch": [false, true, false, false], "passed": 1, "q": 0.0}, {"hub": "Trivandrum Parking", "league": "B", "heads": 1, "units9": 12, "qtr": 120, "n": 4, "recv": 100.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 16.7, "ymsx": false, "base": null, "bar": {"recv": 100.0, "disp": 100.0, "dg": 5, "yms": 60}, "ch": [true, true, true, false], "passed": 3, "q": 0.75}, {"hub": "Gorakhpur Parking", "league": "B", "heads": 1, "units9": 7, "qtr": 70, "n": 4, "recv": 100.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 71.4, "ymsx": false, "base": null, "bar": {"recv": 100.0, "disp": 100.0, "dg": 5, "yms": 60}, "ch": [true, true, true, true], "passed": 4, "q": 1.0}, {"hub": "Thrissur Parking", "league": "B", "heads": 1, "units9": 6, "qtr": 60, "n": 4, "recv": 100.0, "disp": 100.0, "dg": 0.0, "dgt": 0, "yms": 0.0, "ymsx": false, "base": null, "bar": {"recv": 100.0, "disp": 100.0, "dg": 5, "yms": 60}, "ch": [true, true, true, false], "passed": 3, "q": 0.75}];
 let RATE=15;
 const LOGO_PATHS=`<path fill="currentColor" d="M322.9,510.43h-140.34c-10.71,0-19.4,8.68-19.4,19.4v140.34c0,10.71,8.68,19.4,19.4,19.4h140.34c10.71,0,19.4-8.69,19.4-19.4v-140.34c0-10.72-8.69-19.4-19.4-19.4ZM315.69,617.34c-7.46,26.96-31.88,46.87-61.06,47.51-.49.02-.98.02-1.47.02s-.98,0-1.47-.02c-.54-.01-1.07-.03-1.61-.06-.06,0-.12,0-.17.01-21.07-1.04-39.49-12.13-50.58-28.58-6.97-10.34-11.04-22.81-11.04-36.21,0-6.33.91-12.45,2.59-18.23.19-.63.77-1.07,1.43-1.07h22.99c1.05,0,1.76,1.05,1.39,2.04-2.06,5.3-3.2,11.13-3.2,17.26,0,19.6,11.67,36.19,27.76,41.76,1.56.55,3.17.99,4.81,1.32,2.3.46,4.68.7,7.1.7,4.15,0,8.15-.71,11.91-2.02,6.29-2.17,11.9-6.03,16.41-11.11,3.61-4.06,6.51-8.88,8.46-14.23.22-.59.78-.99,1.4-.99h22.92c.99,0,1.7.95,1.44,1.9ZM315.67,590.96h-22.47c-.71,0-1.31-.5-1.45-1.19-1.7-7.85-5.32-14.87-10.29-20.45-3.15-3.55-6.84-6.5-10.92-8.69-1.76-.95-3.59-1.76-5.5-2.42-3.75-1.3-7.74-2-11.88-2h-44.36c-1.33,0-1.99-1.62-1.04-2.56,10.97-10.75,25.76-17.64,42.15-18.46.06,0,.12,0,.17.01.54-.03,1.07-.06,1.61-.06.49-.02.98-.02,1.47-.02s.98,0,1.47.02c31.49.69,57.45,23.83,62.5,54.05.15.91-.54,1.76-1.46,1.76Z"/>
 <path fill="currentColor" d="M676.19,577.49h21.91c.76,0,1.38.62,1.38,1.38v17.26c3.3-13.74,12.83-21.42,28.96-20.96.75.02,1.36.63,1.36,1.38v21.21c0,.76-.62,1.38-1.38,1.38h-2.2c-14.69,0-25.98,9.79-25.98,26.17v48.7c0,.76-.62,1.38-1.38,1.38h-22.66c-.76,0-1.38-.62-1.38-1.38v-95.15c0-.76.62-1.38,1.38-1.38Z"/>
@@ -929,16 +929,17 @@ const T={
   count:(n,t)=>n===t?`<b>${t}</b> hubs`:`<b>${n}</b> of ${t} hubs`,
   reset:"Clear filters",
   noHubs:"No hubs match these filters",noHubsHint:"Clear a filter to see hubs again.",
-  rule:'Every car your hub takes in earns the team <strong>₹RATE</strong>. Pass all 4 checks and you keep it all.',
-  checks:"The 4 checks — measured every month",need:"Need",pass:"PASS",miss:"MISS",
+  rule:n=>`Every car your hub takes in earns the team <strong>₹RATE</strong>. Pass all ${n} checks and you keep it all.`,
+  checks:n=>`The ${n} checks — measured every month`,need:"Need",pass:"PASS",miss:"MISS",
   names:["Documents received in 24 hrs","Documents dispatched in 24 hrs","Dealer complaints","Yard app updated"],
   ladder:"Checks passed → what your team keeps",
-  rungs:["all 4","3 of 4","2 of 4","1 or 0"],keeps:["Keep everything","Keep three-quarters","Keep half","Nothing this time"],
+  rungs4:["all 4","3 of 4","2 of 4","1 or 0"],keeps4:["Keep everything","Keep three-quarters","Keep half","Nothing this time"],
+  rungs3:["all 3","2 of 3","1 or 0"],keeps3:["Keep everything","Keep two-thirds","Nothing this time"],
+  note3:"yard app not available here",
   chain:"Your team's money this quarter",
   ck:["Cars in","× ₹RATE per car","× what you keep","÷ RATE_HEADS people","Each person gets"],
   ft:"Paid once a quarter with salary. Numbers shown are from the August cycle. Checks are measured monthly and averaged over the quarter. Questions — ask your hub in-charge.",
-  exempt:"Not available here",
-  sChecks:p=>`${p} of 4 passed`,sLadder:p=>`keeps ${p}%`,sMoney:m=>`${m} each`,
+  sChecks:(p,n)=>`${p} of ${n} passed`,sLadder:p=>`keeps ${p}%`,sMoney:m=>`${m} each`,
   expand:"Show section",collapse:"Hide section"},
  hi:{app:"हब इंसेंटिव",eyebrow:"त्रैमासिक टीम इंसेंटिव · अगस्त चक्र",lg:"लीग",people:"लोग",print:"प्रिंट",
   filters:"फ़िल्टर",fHub:"हब",fLeague:"लीग",fTier:"टीम को मिलेगा",fSort:"क्रम",
@@ -949,16 +950,17 @@ const T={
   count:(n,t)=>n===t?`<b>${t}</b> हब`:`${t} में से <b>${n}</b> हब`,
   reset:"फ़िल्टर हटाएँ",
   noHubs:"इन फ़िल्टर से कोई हब नहीं मिला",noHubsHint:"कोई फ़िल्टर हटाकर दोबारा देखें।",
-  rule:'आपके हब में आने वाली हर गाड़ी टीम को <strong>₹RATE</strong> दिलाती है। चारों चेक पास करें तो पूरा पैसा आपका।',
-  checks:"4 चेक — हर महीने देखे जाते हैं",need:"चाहिए",pass:"पास",miss:"फेल",
+  rule:n=>`आपके हब में आने वाली हर गाड़ी टीम को <strong>₹RATE</strong> दिलाती है। ${n===4?'चारों':'तीनों'} चेक पास करें तो पूरा पैसा आपका।`,
+  checks:n=>`${n} चेक — हर महीने देखे जाते हैं`,need:"चाहिए",pass:"पास",miss:"फेल",
   names:["24 घंटे में डॉक्युमेंट रिसीव","24 घंटे में डॉक्युमेंट डिस्पैच","डीलर शिकायत","यार्ड ऐप अपडेट"],
   ladder:"कितने चेक पास → टीम को कितना मिलेगा",
-  rungs:["चारों","4 में से 3","4 में से 2","1 या 0"],keeps:["पूरा पैसा","तीन-चौथाई","आधा","इस बार कुछ नहीं"],
+  rungs4:["चारों","4 में से 3","4 में से 2","1 या 0"],keeps4:["पूरा पैसा","तीन-चौथाई","आधा","इस बार कुछ नहीं"],
+  rungs3:["तीनों","3 में से 2","1 या 0"],keeps3:["पूरा पैसा","दो-तिहाई","इस बार कुछ नहीं"],
+  note3:"यार्ड ऐप यहाँ उपलब्ध नहीं",
   chain:"इस तिमाही आपकी टीम का पैसा",
   ck:["गाड़ियाँ","× ₹RATE प्रति गाड़ी","× आपका हिस्सा","÷ RATE_HEADS लोग","हर व्यक्ति को"],
   ft:"तिमाही में एक बार सैलरी के साथ। ऊपर दिए नंबर अगस्त चक्र के हैं। चेक हर महीने नापे जाते हैं और तिमाही का औसत लिया जाता है। सवाल हों तो हब इंचार्ज से पूछें।",
-  exempt:"यहाँ उपलब्ध नहीं",
-  sChecks:p=>`4 में से ${p} पास`,sLadder:p=>`${p}% मिलेगा`,sMoney:m=>`${m} हर व्यक्ति`,
+  sChecks:(p,n)=>`${n} में से ${p} पास`,sLadder:p=>`${p}% मिलेगा`,sMoney:m=>`${m} हर व्यक्ति`,
   expand:"सेक्शन खोलें",collapse:"सेक्शन बंद करें"}};
 
 let lang='en';
@@ -1154,9 +1156,8 @@ const countEl=document.getElementById('count');
 const resetEl=document.getElementById('reset');
 
 /* How close the hub is to each threshold, 0-100. Complaints (index 2) are
-   inverted — fewer is better. An exempt yard app check reads as met. */
+   inverted — fewer is better. Only 4-check hubs have a yard-app row at all. */
 function meterPct(i,h){
-  if(i===3&&h.ymsx) return 100;
   const got=[h.recv,h.disp,h.dg,h.yms][i];
   const need=[h.bar.recv,h.bar.disp,h.bar.dg,h.bar.yms][i];
   if(got==null||need==null) return 0;
@@ -1195,11 +1196,16 @@ function draw(){
 
   const h=HUBS[selected];
   const per=perPerson(h);
-  const got=[h.recv==null?'—':h.recv+'%', h.disp==null?'—':h.disp+'%', h.dg+' / 100', h.ymsx?'—':(h.yms==null?'—':h.yms+'%')];
-  const need=[h.bar.recv+'% +', h.bar.disp+'% +', 'max '+h.bar.dg+' / 100', h.ymsx?t.exempt:h.bar.yms+'% +'];
+  /* Hubs without a yard app are measured on 3 checks, not 4 — n drives the whole
+     sheet, including which payout ladder applies (two-thirds, not three-quarters). */
+  const n=h.n||4;
+  const got=[h.recv==null?'—':h.recv+'%', h.disp==null?'—':h.disp+'%', h.dg+' / 100', h.yms==null?'—':h.yms+'%'].slice(0,n);
+  const need=[h.bar.recv+'% +', h.bar.disp+'%', 'max '+h.bar.dg+' / 100', h.bar.yms+'% +'].slice(0,n);
+  const rungs=n===4?t.rungs4:t.rungs3, keeps=n===4?t.keeps4:t.keeps3;
+  const steps=n===4?[4,3,2,1]:[3,2,1];
 
-  const checksBody=`<div class="checks">
-   ${[0,1,2,3].map(i=>`
+  const checksBody=`<div class="checks" style="--cols:${n}">
+   ${[...Array(n).keys()].map(i=>`
      <article class="check anim-rise ${h.ch[i]?'check--pass':'check--miss'}" style="--i:${i}">
        <div class="check__top">
          <span class="check__idx label-4">0${i+1}</span>
@@ -1216,12 +1222,12 @@ function draw(){
      </article>`).join('')}
   </div>`;
 
-  const ladderBody=`<div class="ladder">
-   ${[4,3,2,1].map((n,i)=>{
-     const on=h.passed===n||(n===1&&h.passed<=1);
+  const ladderBody=`<div class="ladder" style="--cols:${steps.length}">
+   ${steps.map((v,i)=>{
+     const on=h.passed===v||(v===1&&h.passed<=1);
      return `<div class="rung anim-rise ${on?'rung--on':''}" style="--i:${i}"${on?' aria-current="true"':''}>
-       <span class="rung__a h4">${t.rungs[i]}</span>
-       <span class="rung__b body-3">${t.keeps[i]}</span>
+       <span class="rung__a h4">${rungs[i]}</span>
+       <span class="rung__b body-3">${keeps[i]}</span>
      </div>`;}).join('')}
   </div>`;
 
@@ -1249,9 +1255,9 @@ function draw(){
    </div>
  </header>
 
- <p class="headline body-1">${t.rule.replace('RATE',RATE)}</p>
+ <p class="headline body-1">${t.rule(n).replace('RATE',RATE)}</p>
 
- ${section('checks',t.checks,t.sChecks(h.passed),checksBody)}
+ ${section('checks',t.checks(n)+(n===3?' — '+t.note3:''),t.sChecks(h.passed,n),checksBody)}
  ${section('ladder',t.ladder,t.sLadder(Math.round(h.q*100)),ladderBody)}
  ${section('money', t.chain, t.sMoney(money(per)),chainBody)}
 
