@@ -38,19 +38,33 @@ Each hub object:
   "qtr": 4510,
   "n": 4,
   "recv": 79.4,
-  "disp": 93.4,
+  "disp": 96.9,
   "dg": 3.8,
   "dgt": 17,
-  "yms": 79.1,
+  "yms": 79.11,
   "ymsx": false,
   "base": null,
-  "bar": { "recv": 85.0, "disp": 100.0, "dg": 5, "yms": 70 },
-  "ch": [false, false, true, true],
+  "bar": {
+    "recv": 83,
+    "disp": 99,
+    "dg": 5,
+    "yms": 70
+  },
+  "ch": [
+    false,
+    false,
+    true,
+    true
+  ],
   "passed": 2,
   "q": 0.5
 }
 ```
 
+- `heads` — team headcount. **`0` means the hub is run remotely from the nearest
+  hub**, so there is no per-person split: the notice shows the team pool but prints
+  "—" for the divisor and the per-person cell, and the header chip reads "handled
+  remotely" instead of a headcount.
 - `n` — how many checks apply at this hub, `4` or `3`. Hubs without a yard app are
   measured on 3 and use a different ladder (all 3 / 2 of 3 / 1 or 0, keeping
   everything / **two-thirds** / nothing). Absent is treated as `4`.
@@ -61,15 +75,44 @@ Each hub object:
   this, and a 3-check hub simply has no fourth card. Kept because the upstream
   export still emits it.
 - `base` — currently `null` for every hub and unused by the page
-- `bar` — that hub's thresholds, per hub (they are no longer flat per league).
+- `bar` — the thresholds this hub is measured against (see Thresholds below).
   `bar.yms` is `null` on 3-check hubs
 - `ch` — pass/fail per check, in order: documents in, documents out, complaints, yard
   app. Length matches `n`
 - `passed` — count of `ch` that are true
-- `q` — what the team keeps: 1.0 / 0.75 / 0.5 / 0
+- `q` — what the team keeps. 4-check hubs: `1.0` / `0.75` / `0.5` / `0`.
+  3-check hubs: `1.0` / `0.67` / `0`
 
-`ch`, `passed` and `q` are computed upstream, not in the page. Keep them consistent
-with `bar` or the notice will show a stamp that disagrees with the payout.
+`ch`, `passed` and `q` are derived from `bar`, not computed in the page. Keep them
+consistent with `bar` or the notice will show a stamp that disagrees with the payout.
+
+### Thresholds
+
+Dispatch is **99% for every hub**. The rest are per league:
+
+| | Receiving | Dispatch | Complaints | YMS |
+|---|---|---|---|---|
+| League A | 83% + | 99% | max 5 / 100 | 70% + |
+| League B | 94% + | 99% | max 5 / 100 | 60% + |
+
+`bar.yms` is `null` on 3-check hubs. If a threshold is revised, change it in the
+source that generates `hubs.json` and re-derive `ch` / `passed` / `q` with it —
+the page only reads these values.
+
+### Deriving the data from the leaderboard export
+
+`hubs.json` comes from the monthly C2B leaderboard CSV:
+
+| Field | From |
+|---|---|
+| `heads` | Headcount |
+| `units9` | Stock in — cars stocked into the yard |
+| `qtr` | Stock in × 10 |
+| `recv` / `disp` | Receiving (0-24 hr) / Dispatch (0-24 hr) |
+| `dgt` | DG_Tickets |
+| `dg` | `dgt / units9 × 100`, to one decimal |
+| `yms` | YMS |
+| `n` | `3` when YMS reads 0.00% **and** YMS Score is full (0.1) — that pair means YMS is not available at the hub. Otherwise `4`. A YMS of 0.00% scoring `0` is a hub that has YMS and scored nothing, so it stays on 4 checks. |
 
 ## Design
 
@@ -144,11 +187,10 @@ The per-car rate is set in `index.html` (`let RATE=15;`). Change it there if the
 rate is revised, and re-announce before the quarter starts, not during.
 
 There is also a **₹5,000 per-person cap** in the page
-(`Math.min(5000, pool / h.heads)`). On the current data it never binds — the highest
-per-person figure is ₹4,175 — so nothing on the notice contradicts itself today. It
-would bind again if payouts rose, and when it does the "Each person gets" cell shows
-₹5,000 while the four cells to its left still multiply out to more. If that happens,
-either state the cap on the notice or drop it from the calculation.
+(`Math.min(5000, pool / h.heads)`). It binds for **one hub on the current data** —
+Kochi Parking, ₹5,175 uncapped — so that notice shows ₹5,000 while the four cells to
+its left multiply out to more. Either state the cap on the notice or drop it from the
+calculation; leaving it silent invites the question at the yard.
 
 ## Before you make this public
 
