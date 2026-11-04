@@ -1353,12 +1353,16 @@ function sync(){
    (DG Score needs stock-out, which the notice never receives), and Composite
    Score carries more precision than the CSV prints, so deriving it drifted by
    0.01% on two hubs. Those five ride along in hubs.json as tps, dgScore, vtf,
-   composite and rank, and are written back out untouched. */
+   composite and rank, and are written back out untouched.
+
+   Operation Complexity Multiplier is deliberately not emitted — it was blank on
+   every row of the import. The export is therefore 18 columns where the August
+   import had 19; everything else matches it exactly. */
 const CSV_HEAD=[
-  ['Weightage','30%','Metric 1','20%','Metric 2','30%','','Metric 3','10%','Metric 4','10%','Metric 5','','','','','','',''],
+  ['Weightage','30%','Metric 1','20%','Metric 2','30%','','Metric 3','10%','Metric 4','10%','Metric 5','','','','','',''],
   ['Hub Name','Receiving (0-24 hr)','Doc 1','Dispatch (0-24 hr)','Doc 2','DG_Tickets',
    'Tickets/Stock-out','DG Score','VTF% (Self Pickup)','VTF Score','YMS ','YMS Score',
-   'Composite Score','Operation Complexity Multiplier','Final Score','Rank','League','Headcount','Stock in']];
+   'Composite Score','Final Score','Rank','League','Headcount','Stock in']];
 
 /* 0.3 not 0.30, 0 not 0.0 — match how the source file prints numbers */
 const csvNum=v=>{const t=v.toFixed(6).replace(/0+$/,'').replace(/\.$/,'');return t===''||t==='-0'?'0':t;};
@@ -1374,7 +1378,7 @@ function buildCsv(){
       csvPct(h.disp), csvNum(Math.round(h.disp/100*0.20*100)/100),
       String(h.dgt), csvNum(h.tps??0), csvNum(h.dgScore??0),
       csvPct(h.vtf??0), csvNum(Math.round((h.vtf??0)/100*0.10*100)/100),
-      csvPct(yv), csvNum(ys), csvPct(h.composite??0), '', '0.00%',
+      csvPct(yv), csvNum(ys), csvPct(h.composite??0), '0.00%',
       String(h.rank??''), h.league, String(h.heads), String(h.units9)]);
   }
   return rows.map(r=>r.map(c=>csvCell(String(c))).join(',')).join('\n')+'\n';
