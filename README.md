@@ -126,12 +126,13 @@ the page only reads these values.
 
 Open the page with `?admin=1` (or `#admin`) and an **Export CSV** button appears next
 to Print. It downloads `c2b-leaderboard-<date>.csv` in **exactly the layout the data is
-imported in** — same two header rows, same 19 columns, same order — so a cycle can be
-exported, edited in a spreadsheet and fed straight back in.
+imported in** — same two header rows, same column order — so a cycle can be exported,
+edited in a spreadsheet and fed straight back in. The one difference is that
+`Operation Complexity Multiplier` is dropped, leaving 18 columns rather than 19.
 
 This is round-tripped in the test suite: exporting the committed data reproduces the
-original August import **byte for byte**, and re-importing that export reproduces
-`hubs.json` field for field.
+original August import **byte for byte once that one column is removed from it**, and
+re-importing the export reproduces `hubs.json` field for field.
 
 Most columns are rebuilt from the metrics the notice already holds (`Doc 1` is
 `Receiving × 0.30`, `Doc 2` is `Dispatch × 0.20`, `YMS Score` follows `n`, and so on).
@@ -144,8 +145,10 @@ Five cannot be, so they ride along in `hubs.json` untouched:
 | `Composite Score` | Upstream carries more precision than the CSV prints — deriving it drifted 0.01% on two hubs |
 | `Rank` | Follows Composite, and ties share a rank (two hubs tied at 15, next is 17) |
 
-`Operation Complexity Multiplier` is blank and `Final Score` is `0.00%` in the source
-for every row, so both are emitted as-is.
+`Final Score` is `0.00%` for every row in the source, so it is emitted as-is.
+`Operation Complexity Multiplier` is **not emitted** — it was blank on every row, so
+the column was dropped. The export is therefore **18 columns where the August import
+had 19**; every other column matches the import exactly, in the same order.
 
 The export always contains **every hub**, in rank order, regardless of the filters on
 screen — it is the monthly file, not the current view. There is no BOM, matching the
