@@ -57,7 +57,12 @@ Each hub object:
     true
   ],
   "passed": 2,
-  "q": 0.5
+  "q": 0.5,
+  "tps": 0.05,
+  "dgScore": 0.168,
+  "vtf": 96.2,
+  "composite": 77.53,
+  "rank": 29
 }
 ```
 
@@ -82,6 +87,9 @@ Each hub object:
 - `passed` — count of `ch` that are true
 - `q` — what the team keeps. 4-check hubs: `1.0` / `0.75` / `0.5` / `0`.
   3-check hubs: `1.0` / `0.67` / `0`
+- `tps` / `dgScore` / `vtf` / `composite` / `rank` — carried through from the
+  leaderboard export purely so the admin export can rebuild it. The notice never
+  reads them. See **Admin export** below.
 
 `ch`, `passed` and `q` are derived from `bar`, not computed in the page. Keep them
 consistent with `bar` or the notice will show a stamp that disagrees with the payout.
@@ -113,6 +121,41 @@ the page only reads these values.
 | `dg` | `dgt / units9 × 100`, to one decimal |
 | `yms` | YMS |
 | `n` | `3` when YMS reads 0.00% **and** YMS Score is full (0.1) — that pair means YMS is not available at the hub. Otherwise `4`. A YMS of 0.00% scoring `0` is a hub that has YMS and scored nothing, so it stays on 4 checks. |
+
+## Admin export
+
+Open the page with `?admin=1` (or `#admin`) and an **Export CSV** button appears next
+to Print. It downloads `c2b-leaderboard-<date>.csv` in **exactly the layout the data is
+imported in** — same two header rows, same 19 columns, same order — so a cycle can be
+exported, edited in a spreadsheet and fed straight back in.
+
+This is round-tripped in the test suite: exporting the committed data reproduces the
+original August import **byte for byte**, and re-importing that export reproduces
+`hubs.json` field for field.
+
+Most columns are rebuilt from the metrics the notice already holds (`Doc 1` is
+`Receiving × 0.30`, `Doc 2` is `Dispatch × 0.20`, `YMS Score` follows `n`, and so on).
+Five cannot be, so they ride along in `hubs.json` untouched:
+
+| Column | Why it is stored, not derived |
+|---|---|
+| `Tickets/Stock-out`, `DG Score` | Scored upstream from stock-**out**, which the notice is never given |
+| `VTF% (Self Pickup)` | A metric the notice does not show at all |
+| `Composite Score` | Upstream carries more precision than the CSV prints — deriving it drifted 0.01% on two hubs |
+| `Rank` | Follows Composite, and ties share a rank (two hubs tied at 15, next is 17) |
+
+`Operation Complexity Multiplier` is blank and `Final Score` is `0.00%` in the source
+for every row, so both are emitted as-is.
+
+The export always contains **every hub**, in rank order, regardless of the filters on
+screen — it is the monthly file, not the current view. There is no BOM, matching the
+import; everything in it is ASCII today.
+
+> **`?admin=1` is not access control.** The page has no authentication and the data is
+> in the page source either way, so anyone with the link can reach the export by adding
+> the parameter. It only keeps the button out of the way of the yard-floor link. If the
+> export needs to be genuinely restricted, that has to happen at the hosting layer —
+> see *Before you make this public*.
 
 ## Design
 

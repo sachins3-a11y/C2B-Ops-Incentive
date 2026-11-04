@@ -26,7 +26,12 @@
    true
   ],
   "passed": 2,
-  "q": 0.5
+  "q": 0.5,
+  "tps": 0.05,
+  "dgScore": 0.168,
+  "vtf": 96.2,
+  "composite": 77.53,
+  "rank": 29
  },
  {
   "hub": "Mumbai Parking",
@@ -55,7 +60,12 @@
    false
   ],
   "passed": 1,
-  "q": 0.0
+  "q": 0.0,
+  "tps": 0.04,
+  "dgScore": 0.192,
+  "vtf": 96.2,
+  "composite": 74.21,
+  "rank": 33
  },
  {
   "hub": "Metrowalk_Parking Yard",
@@ -84,7 +94,12 @@
    true
   ],
   "passed": 2,
-  "q": 0.5
+  "q": 0.5,
+  "tps": 0.03,
+  "dgScore": 0.24,
+  "vtf": 100.0,
+  "composite": 86.69,
+  "rank": 22
  },
  {
   "hub": "Gurgaon_Parking 2",
@@ -113,7 +128,12 @@
    true
   ],
   "passed": 2,
-  "q": 0.5
+  "q": 0.5,
+  "tps": 0.09,
+  "dgScore": 0.108,
+  "vtf": 100.0,
+  "composite": 74.6,
+  "rank": 32
  },
  {
   "hub": "Bangalore Parking",
@@ -142,7 +162,12 @@
    false
   ],
   "passed": 0,
-  "q": 0.0
+  "q": 0.0,
+  "tps": 0.09,
+  "dgScore": 0.096,
+  "vtf": 96.0,
+  "composite": 61.3,
+  "rank": 42
  },
  {
   "hub": "Hyderabad-2 Parking",
@@ -171,7 +196,12 @@
    false
   ],
   "passed": 2,
-  "q": 0.5
+  "q": 0.5,
+  "tps": 0.02,
+  "dgScore": 0.276,
+  "vtf": 100.0,
+  "composite": 93.06,
+  "rank": 11
  },
  {
   "hub": "Ahmedabad-3 Parking",
@@ -200,7 +230,12 @@
    true
   ],
   "passed": 2,
-  "q": 0.5
+  "q": 0.5,
+  "tps": 0.04,
+  "dgScore": 0.204,
+  "vtf": 98.6,
+  "composite": 85.93,
+  "rank": 24
  },
  {
   "hub": "Pune_Cars24 Parking",
@@ -229,7 +264,12 @@
    true
   ],
   "passed": 3,
-  "q": 0.75
+  "q": 0.75,
+  "tps": 0.03,
+  "dgScore": 0.252,
+  "vtf": 98.4,
+  "composite": 87.41,
+  "rank": 20
  },
  {
   "hub": "Chennai Parking",
@@ -258,7 +298,12 @@
    true
   ],
   "passed": 2,
-  "q": 0.5
+  "q": 0.5,
+  "tps": 0.02,
+  "dgScore": 0.288,
+  "vtf": 100.0,
+  "composite": 87.27,
+  "rank": 21
  },
  {
   "hub": "Kolkata-3 Parking",
@@ -287,7 +332,12 @@
    false
   ],
   "passed": 2,
-  "q": 0.5
+  "q": 0.5,
+  "tps": 0.02,
+  "dgScore": 0.264,
+  "vtf": 100.0,
+  "composite": 85.81,
+  "rank": 25
  },
  {
   "hub": "Surat-3 Parking",
@@ -316,7 +366,12 @@
    true
   ],
   "passed": 3,
-  "q": 0.75
+  "q": 0.75,
+  "tps": 0.02,
+  "dgScore": 0.3,
+  "vtf": 100.0,
+  "composite": 98.2,
+  "rank": 5
  },
  {
   "hub": "Lucknow Parking",
@@ -345,7 +400,12 @@
    true
   ],
   "passed": 2,
-  "q": 0.5
+  "q": 0.5,
+  "tps": 0.04,
+  "dgScore": 0.228,
+  "vtf": 100.0,
+  "composite": 88.77,
+  "rank": 17
  },
  {
   "hub": "Chandigarh Parking",
@@ -374,7 +434,12 @@
    false
   ],
   "passed": 1,
-  "q": 0.0
+  "q": 0.0,
+  "tps": 0.04,
+  "dgScore": 0.18,
+  "vtf": 100.0,
+  "composite": 73.09,
+  "rank": 34
  },
  {
   "hub": "Patna-2 Parking",
@@ -403,7 +468,12 @@
    true
   ],
   "passed": 2,
-  "q": 0.5
+  "q": 0.5,
+  "tps": 0.06,
+  "dgScore": 0.144,
+  "vtf": 100.0,
+  "composite": 77.2,
+  "rank": 30
  },
  {
   "hub": "Jaipur Parking-2",
@@ -432,7 +502,12 @@
    true
   ],
   "passed": 1,
-  "q": 0.0
+  "q": 0.0,
+  "tps": 0.13,
+  "dgScore": 0.024,
+  "vtf": 100.0,
+  "composite": 63.28,
+  "rank": 40
  },
  {
   "hub": "Indore Parking",
@@ -461,7 +536,12 @@
    true
   ],
   "passed": 3,
-  "q": 0.75
+  "q": 0.75,
+  "tps": 0.04,
+  "dgScore": 0.216,
+  "vtf": 100.0,
+  "composite": 86.21,
+  "rank": 23
  },
  {
   "hub": "Kochi Parking",
@@ -490,7 +570,12 @@
    false
   ],
   "passed": 3,
-  "q": 0.75
+  "q": 0.75,
+  "tps": 0.0,
+  "dgScore": 0.3,
+  "vtf": 100.0,
+  "composite": 91.41,
+  "rank": 14
  },
  {
   "hub": "Vadodara-2 Parking",
@@ -519,7 +604,12 @@
    true
   ],
   "passed": 1,
-  "q": 0.0
+  "q": 0.0,
+  "tps": 0.07,
+  "dgScore": 0.12,
+  "vtf": 100.0,
+  "composite": 68.33,
+  "rank": 36
  },
  {
   "hub": "Sohna Road Parking",
@@ -547,7 +637,12 @@
    true
   ],
   "passed": 2,
-  "q": 0.67
+  "q": 0.67,
+  "tps": 0.0,
+  "dgScore": 0.3,
+  "vtf": 100.0,
+  "composite": 99.14,
+  "rank": 3
  },
  {
   "hub": "Coimbatore Parking",
@@ -575,7 +670,12 @@
    true
   ],
   "passed": 1,
-  "q": 0.0
+  "q": 0.0,
+  "tps": 0.0,
+  "dgScore": 0.3,
+  "vtf": 100.0,
+  "composite": 81.63,
+  "rank": 27
  },
  {
   "hub": "Nagpur Parking",
@@ -604,7 +704,12 @@
    false
   ],
   "passed": 0,
-  "q": 0.0
+  "q": 0.0,
+  "tps": 0.11,
+  "dgScore": 0.048,
+  "vtf": 100.0,
+  "composite": 65.28,
+  "rank": 38
  },
  {
   "hub": "Rajkot-2 Parking",
@@ -633,7 +738,12 @@
    true
   ],
   "passed": 1,
-  "q": 0.0
+  "q": 0.0,
+  "tps": 0.11,
+  "dgScore": 0.048,
+  "vtf": 94.7,
+  "composite": 64.93,
+  "rank": 39
  },
  {
   "hub": "Meerut Parking",
@@ -662,7 +772,12 @@
    true
   ],
   "passed": 3,
-  "q": 0.75
+  "q": 0.75,
+  "tps": 0.06,
+  "dgScore": 0.156,
+  "vtf": 100.0,
+  "composite": 83.32,
+  "rank": 26
  },
  {
   "hub": "Agra Parking",
@@ -691,7 +806,12 @@
    true
   ],
   "passed": 2,
-  "q": 0.5
+  "q": 0.5,
+  "tps": 0.1,
+  "dgScore": 0.072,
+  "vtf": 100.0,
+  "composite": 69.94,
+  "rank": 35
  },
  {
   "hub": "Dehradun Parking",
@@ -720,7 +840,12 @@
    false
   ],
   "passed": 1,
-  "q": 0.0
+  "q": 0.0,
+  "tps": 0.0,
+  "dgScore": 0.3,
+  "vtf": 100.0,
+  "composite": 92.16,
+  "rank": 12
  },
  {
   "hub": "Bhubaneswar Parking",
@@ -749,7 +874,12 @@
    true
   ],
   "passed": 3,
-  "q": 0.75
+  "q": 0.75,
+  "tps": 0.0,
+  "dgScore": 0.3,
+  "vtf": 100.0,
+  "composite": 93.71,
+  "rank": 10
  },
  {
   "hub": "Ludhiana Parking",
@@ -778,7 +908,12 @@
    false
   ],
   "passed": 2,
-  "q": 0.5
+  "q": 0.5,
+  "tps": 0.09,
+  "dgScore": 0.084,
+  "vtf": 90.0,
+  "composite": 62.32,
+  "rank": 41
  },
  {
   "hub": "Kanpur Parking",
@@ -807,7 +942,12 @@
    false
   ],
   "passed": 1,
-  "q": 0.0
+  "q": 0.0,
+  "tps": 0.0,
+  "dgScore": 0.3,
+  "vtf": 100.0,
+  "composite": 87.68,
+  "rank": 19
  },
  {
   "hub": "Bhopal-2 Parking",
@@ -836,7 +976,12 @@
    true
   ],
   "passed": 2,
-  "q": 0.5
+  "q": 0.5,
+  "tps": 0.0,
+  "dgScore": 0.3,
+  "vtf": 100.0,
+  "composite": 88.62,
+  "rank": 18
  },
  {
   "hub": "Ranchi-2 Parking",
@@ -865,7 +1010,12 @@
    false
   ],
   "passed": 3,
-  "q": 0.75
+  "q": 0.75,
+  "tps": 0.0,
+  "dgScore": 0.3,
+  "vtf": 100.0,
+  "composite": 95.78,
+  "rank": 6
  },
  {
   "hub": "Nashik Parking",
@@ -894,7 +1044,12 @@
    true
   ],
   "passed": 3,
-  "q": 0.75
+  "q": 0.75,
+  "tps": 0.06,
+  "dgScore": 0.144,
+  "vtf": 100.0,
+  "composite": 81.46,
+  "rank": 28
  },
  {
   "hub": "Mysore Parking",
@@ -923,7 +1078,12 @@
    true
   ],
   "passed": 3,
-  "q": 0.75
+  "q": 0.75,
+  "tps": 0.0,
+  "dgScore": 0.3,
+  "vtf": 100.0,
+  "composite": 95.71,
+  "rank": 7
  },
  {
   "hub": "Gwalior Parking",
@@ -952,7 +1112,12 @@
    false
   ],
   "passed": 2,
-  "q": 0.5
+  "q": 0.5,
+  "tps": 0.0,
+  "dgScore": 0.3,
+  "vtf": 100.0,
+  "composite": 94.38,
+  "rank": 8
  },
  {
   "hub": "Raipur Parking",
@@ -981,7 +1146,12 @@
    false
   ],
   "passed": 1,
-  "q": 0.0
+  "q": 0.0,
+  "tps": 0.1,
+  "dgScore": 0.06,
+  "vtf": 100.0,
+  "composite": 57.85,
+  "rank": 43
  },
  {
   "hub": "Trivandrum Parking",
@@ -1010,7 +1180,12 @@
    false
   ],
   "passed": 2,
-  "q": 0.5
+  "q": 0.5,
+  "tps": 0.0,
+  "dgScore": 0.3,
+  "vtf": 100.0,
+  "composite": 91.43,
+  "rank": 13
  },
  {
   "hub": "Rewari Parking",
@@ -1038,7 +1213,12 @@
    true
   ],
   "passed": 2,
-  "q": 0.67
+  "q": 0.67,
+  "tps": 0.0,
+  "dgScore": 0.3,
+  "vtf": 100.0,
+  "composite": 98.34,
+  "rank": 4
  },
  {
   "hub": "Calicut-Parking",
@@ -1067,7 +1247,12 @@
    false
   ],
   "passed": 3,
-  "q": 0.75
+  "q": 0.75,
+  "tps": 0.0,
+  "dgScore": 0.3,
+  "vtf": 100.0,
+  "composite": 90.0,
+  "rank": 15
  },
  {
   "hub": "Bareilly Parking",
@@ -1095,7 +1280,12 @@
    true
   ],
   "passed": 2,
-  "q": 0.67
+  "q": 0.67,
+  "tps": 0.0,
+  "dgScore": 0.3,
+  "vtf": 100.0,
+  "composite": 99.44,
+  "rank": 2
  },
  {
   "hub": "Aurangabad Parking",
@@ -1123,7 +1313,12 @@
    true
   ],
   "passed": 3,
-  "q": 1.0
+  "q": 1.0,
+  "tps": 0.0,
+  "dgScore": 0.3,
+  "vtf": 100.0,
+  "composite": 100.0,
+  "rank": 1
  },
  {
   "hub": "Gorakhpur Parking",
@@ -1152,7 +1347,12 @@
    true
   ],
   "passed": 3,
-  "q": 0.75
+  "q": 0.75,
+  "tps": 0.0,
+  "dgScore": 0.3,
+  "vtf": 100.0,
+  "composite": 94.28,
+  "rank": 9
  },
  {
   "hub": "Allahabad Parking",
@@ -1180,7 +1380,12 @@
    false
   ],
   "passed": 1,
-  "q": 0.0
+  "q": 0.0,
+  "tps": 0.2,
+  "dgScore": 0.012,
+  "vtf": 100.0,
+  "composite": 66.7,
+  "rank": 37
  },
  {
   "hub": "Thrissur Parking",
@@ -1209,7 +1414,12 @@
    false
   ],
   "passed": 3,
-  "q": 0.75
+  "q": 0.75,
+  "tps": 0.0,
+  "dgScore": 0.3,
+  "vtf": 100.0,
+  "composite": 90.0,
+  "rank": 15
  },
  {
   "hub": "Goa Parking",
@@ -1238,6 +1448,11 @@
    false
   ],
   "passed": 1,
-  "q": 0.0
+  "q": 0.0,
+  "tps": 0.0,
+  "dgScore": 0.3,
+  "vtf": 100.0,
+  "composite": 76.73,
+  "rank": 31
  }
 ]
